@@ -1,0 +1,113 @@
+.App {
+  min-height: calc(60vh);
+}
+
+.widget {
+  padding: .3rem !important;
+  color: whitesmoke !important;
+}
+
+.widget a {
+  color: whitesmoke !important;
+}
+
+.widget-container {
+  min-height: 200px;
+  background-color: #1a9e94;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.widget-container span {
+  min-height: 60px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.widget-container.service-widget {
+  padding: 1rem;
+  justify-content: space-between !important;
+}
+
+.widget-container.service-widget:hover {
+  background-color: #ff8a1f !important;
+}
+
+
+.widget-container.service-widget:hover img {
+  transform: scale(1.2);
+  transition-duration: .5s;
+}
+
+.widget-container.service-widget>img {
+  width: 100px !important;
+  height: 100px !important;
+  transition-duration: .5s;
+}
+
+.widget-container.service-widget>span {
+  display: flex;
+  align-items: flex-end;
+}
+
+.widget-container.news-widget {
+  background-color: unset !important;
+}
+
+.widget-container.news-widget>span {
+  font-weight: 400;
+  min-height: 10px;
+}
+
+.widget-container.news-widget>img {
+  max-height: 200px;
+  width: 100%;
+  margin-bottom: .3rem;
+}
+
+.widget-container.news-widget>.title {
+  color: black;
+  min-height: 125px;
+}
+
+.widget-container.news-widget>.description {
+  color: #747474;
+  font-weight: 300;
+  text-transform: unset;
+}
+
+.widget-container.news-widget>.date {
+  color: #ff8a1f;
+}
+
+.widget-container.news-widget>.readmore {
+  background-color: #1a9e94;
+  color: whitesmoke;
+  margin-top: .3rem;
+}
+
+.recent-news>a:hover {
+  color: #ff8a1f;
+}
+
+.container-iframe {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 56.25%;
+  /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+}
+
+/* Then style the iframe to fit in the container div with full height and width */
+.responsive-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
