@@ -16,8 +16,8 @@ function App() {
         {/* <div className="App">
       </div> */}
         <Switch>
-          {Routes.map((item: any) => (
-            <Route exact path={item.path}>
+          {Routes.map((item: any, index: number) => (
+            <Route key={"menu-" + index} exact path={item.path}>
               {item.component}
             </Route>
           ))}

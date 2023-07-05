@@ -116,7 +116,7 @@ const FooterComponent = () => {
           <div className="col-lg-4 col-xs-12 recent-news">
             <h3>Berita Terbaru</h3>
             {recent.map((item: any) => (
-              <a href="">
+              <a href="/berita-terbaru">
                 <div className="mb-4 text-left">{item.title}</div>
               </a>
             ))}
