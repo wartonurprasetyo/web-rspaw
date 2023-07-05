@@ -6,6 +6,7 @@ import { formatDate, imageOnError, trimText } from "../assets/js/__global";
 import * as data from "./fakeData";
 import HeaderComponent from "./template/headerComponent";
 import FooterComponent from "./template/footerComponent";
+import { Link } from "react-router-dom";
 
 const HomeComponent = () => {
   const [slider, setSlider] = useState<any[]>([]);
@@ -228,7 +229,9 @@ const HomeComponent = () => {
                         ? trimText(info.description).substring(0, 75) + "..."
                         : trimText(info.description)}
                     </span>
-                    <button className="btn readmore">Read More...</button>
+                    <Link to={`/berita-terbaru/${info.id}`}>
+                      <button className="btn readmore">Read More...</button>
+                    </Link>
                   </div>
                 )}
               </div>
@@ -279,7 +282,9 @@ const HomeComponent = () => {
                         ? trimText(info.description).substring(0, 75) + "..."
                         : trimText(info.description)}
                     </span>
-                    <button className="btn readmore">Read More...</button>
+                    <Link to={`/berita-terbaru/${info.id}`}>
+                      <button className="btn readmore">Read More...</button>
+                    </Link>
                   </div>
                 )}
               </div>
@@ -311,7 +316,9 @@ const HomeComponent = () => {
                           ? trimText(info.description).substring(0, 75) + "..."
                           : trimText(info.description)}
                       </span>
-                      <button className="btn readmore">Read More...</button>
+                      <Link to={`/berita-terbaru/${info.id}`}>
+                        <button className="btn readmore">Read More...</button>
+                      </Link>
                     </div>
                   </a>
                 ) : (
@@ -330,7 +337,9 @@ const HomeComponent = () => {
                         ? trimText(info.description).substring(0, 75) + "..."
                         : trimText(info.description)}
                     </span>
-                    <button className="btn readmore">Read More...</button>
+                    <Link to={`/berita-terbaru/${info.id}`}>
+                      <button className="btn readmore">Read More...</button>
+                    </Link>
                   </div>
                 )}
               </div>

@@ -89,7 +89,7 @@
   color: #ff8a1f;
 }
 
-.widget-container.news-widget>.readmore {
+.widget-container.news-widget .readmore {
   background-color: #1a9e94;
   color: whitesmoke;
   margin-top: .3rem;

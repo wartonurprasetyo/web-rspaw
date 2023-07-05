@@ -7,7 +7,7 @@ import * as data from "./fakeData";
 import FooterComponent from "./template/footerComponent";
 import HeaderComponent from "./template/headerComponent";
 
-const BlogComponent = () => {
+const BlogsComponent = () => {
   const [slider, setSlider] = useState<any[]>([]);
   const [infos, setInfos] = useState<any[]>([]);
   const [services, setServices] = useState<any[]>([]);
@@ -374,4 +374,4 @@ const BlogComponent = () => {
   );
 };
 
-export default BlogComponent;
+export default BlogsComponent;

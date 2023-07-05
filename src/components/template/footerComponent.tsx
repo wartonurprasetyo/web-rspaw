@@ -8,6 +8,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import * as data from "../fakeData";
+import { Link } from "react-router-dom";
 
 const FooterComponent = () => {
   const [recent, setRecent] = useState<any[]>([]);
@@ -114,15 +115,16 @@ const FooterComponent = () => {
       <div id="scroll-to-top" className="scroll-to-top">
         <span className="icon ion-ios-arrow-up"></span>
       </div>
+
       <footer className="footer">
         <div className="container">
           <div className="row">
             <div className="col-lg-4 col-xs-12 recent-news">
               <h3>Berita Terbaru</h3>
               {recent.map((item: any) => (
-                <a href="/berita-terbaru">
+                <Link to={`/berita-terbaru/${item.id}`}>
                   <div className="mb-4 text-left">{item.title}</div>
-                </a>
+                </Link>
               ))}
             </div>
             <div className="col-lg-4 col-xs-12">

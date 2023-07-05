@@ -12,7 +12,7 @@ function App() {
     <>
       <Router>
         {/* <BrowserRouter> */}
-        <HeaderComponent></HeaderComponent>
+        {/* <HeaderComponent></HeaderComponent> */}
         {/* <div className="App">
       </div> */}
         <Switch>
@@ -22,11 +22,11 @@ function App() {
             </Route>
           ))}
         </Switch>
-
+        {/* 
         <div id="scroll-to-top" className="scroll-to-top">
           <span className="icon ion-ios-arrow-up"></span>
-        </div>
-        <FooterComponent></FooterComponent>
+        </div> */}
+        {/* <FooterComponent></FooterComponent> */}
         {/* </BrowserRouter> */}
       </Router>
     </>

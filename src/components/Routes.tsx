@@ -1,10 +1,15 @@
-import BlogComponent from "./blogsComponent";
+import BlogComponent from "./blogComponent";
+import BlogsComponent from "./blogsComponent";
 import HomeComponent from "./homeComponent";
 
 const Routes: any = [
   {
-    path: "/berita-terbaru",
+    path: "/berita-terbaru/:id",
     component: <BlogComponent />,
+  },
+  {
+    path: "/berita-terbaru",
+    component: <BlogsComponent />,
   },
   // {
   //   path: "",
