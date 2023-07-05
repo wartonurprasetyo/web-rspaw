@@ -110,92 +110,99 @@ const FooterComponent = () => {
   }, []);
 
   return (
-    <footer className="footer">
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-4 col-xs-12 recent-news">
-            <h3>Berita Terbaru</h3>
-            {recent.map((item: any) => (
-              <a href="/berita-terbaru">
-                <div className="mb-4 text-left">{item.title}</div>
-              </a>
-            ))}
+    <>
+      <div id="scroll-to-top" className="scroll-to-top">
+        <span className="icon ion-ios-arrow-up"></span>
+      </div>
+      <footer className="footer">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-4 col-xs-12 recent-news">
+              <h3>Berita Terbaru</h3>
+              {recent.map((item: any) => (
+                <a href="/berita-terbaru">
+                  <div className="mb-4 text-left">{item.title}</div>
+                </a>
+              ))}
+            </div>
+            <div className="col-lg-4 col-xs-12">
+              <h3>Kontak Kami</h3>
+              <div className="row text-left mb-2">
+                <div className="col">
+                  Address&nbsp;:&nbsp;{contactUs.address}
+                </div>
+              </div>
+              <div className="row text-left mb-2">
+                <div className="col">Phone&nbsp;:&nbsp;{contactUs.phone}</div>
+              </div>
+              <div className="row text-left mb-2">
+                <div className="col">Fax&nbsp;:&nbsp;{contactUs.fax}</div>
+              </div>
+              <div className="row text-left mb-2">
+                <div className="col">Email&nbsp;:&nbsp;{contactUs.email}</div>
+              </div>
+              <div className="row text-left mb-2">
+                <div className="col">{contactUs.url}</div>
+              </div>
+            </div>
+            <div className="col-lg-4 col-xs-12">
+              <iframe
+                loading="lazy"
+                src="https://maps.google.com/maps?q=RS%20Paru%20dr.%20Ario%20Wirawan%20Salatiga&amp;t=m&amp;z=10&amp;output=embed&amp;iwloc=near"
+                title="RS Paru dr. Ario Wirawan Salatiga"
+                aria-label="RS Paru dr. Ario Wirawan Salatiga"
+              ></iframe>
+            </div>
           </div>
-          <div className="col-lg-4 col-xs-12">
-            <h3>Kontak Kami</h3>
-            <div className="row text-left mb-2">
-              <div className="col">Address&nbsp;:&nbsp;{contactUs.address}</div>
+          <div className="row mt-5">
+            <div className="col-lg-4 col-xs-12">
+              <span
+                className="text-muted"
+                style={{
+                  fontSize: "12px",
+                }}
+              >
+                &#169;{new Date().getFullYear()} {copyright}
+              </span>
             </div>
-            <div className="row text-left mb-2">
-              <div className="col">Phone&nbsp;:&nbsp;{contactUs.phone}</div>
-            </div>
-            <div className="row text-left mb-2">
-              <div className="col">Fax&nbsp;:&nbsp;{contactUs.fax}</div>
-            </div>
-            <div className="row text-left mb-2">
-              <div className="col">Email&nbsp;:&nbsp;{contactUs.email}</div>
-            </div>
-            <div className="row text-left mb-2">
-              <div className="col">{contactUs.url}</div>
-            </div>
-          </div>
-          <div className="col-lg-4 col-xs-12">
-            <iframe
-              loading="lazy"
-              src="https://maps.google.com/maps?q=RS%20Paru%20dr.%20Ario%20Wirawan%20Salatiga&amp;t=m&amp;z=10&amp;output=embed&amp;iwloc=near"
-              title="RS Paru dr. Ario Wirawan Salatiga"
-              aria-label="RS Paru dr. Ario Wirawan Salatiga"
-            ></iframe>
-          </div>
-        </div>
-        <div className="row mt-5">
-          <div className="col-lg-4 col-xs-12">
-            <span
-              className="text-muted"
+            <div
+              className="col-lg-4 col-xs-12 gap-2"
               style={{
-                fontSize: "12px",
+                display: "flex",
+                gap: ".5rem",
               }}
             >
-              &#169;{new Date().getFullYear()} {copyright}
-            </span>
-          </div>
-          <div
-            className="col-lg-4 col-xs-12 gap-2"
-            style={{
-              display: "flex",
-              gap: ".5rem",
-            }}
-          >
-            {socmed.map((item: any) => (
-              <a
-                key={`socmed-${item.name}`}
-                href={item.url}
-                target="_blank"
-                style={
-                  {
-                    // width: "2em",
-                    // height: "2em",
-                    // margin: "0",
-                    // borderRadius: "1rem",
-                    // padding: ".3rem",
-                    // border: "1px solid gray",
+              {socmed.map((item: any) => (
+                <a
+                  key={`socmed-${item.name}`}
+                  href={item.url}
+                  target="_blank"
+                  style={
+                    {
+                      // width: "2em",
+                      // height: "2em",
+                      // margin: "0",
+                      // borderRadius: "1rem",
+                      // padding: ".3rem",
+                      // border: "1px solid gray",
+                    }
                   }
-                }
-              >
-                {/* <i > </i>
+                >
+                  {/* <i > </i>
                 <img
                   src={icons[item.name]}
                   width={32}
                   height={32}
                   alt={item.name}
                 /> */}
-                {icons[item.name]}
-              </a>
-            ))}
+                  {icons[item.name]}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    </footer>
+      </footer>
+    </>
   );
 };
 

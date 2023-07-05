@@ -4,6 +4,8 @@ import { Carousel } from "react-responsive-carousel";
 import { Parser } from "html-to-react";
 import { formatDate, imageOnError, trimText } from "../assets/js/__global";
 import * as data from "./fakeData";
+import HeaderComponent from "./template/headerComponent";
+import FooterComponent from "./template/footerComponent";
 
 const HomeComponent = () => {
   const [slider, setSlider] = useState<any[]>([]);
@@ -26,6 +28,7 @@ const HomeComponent = () => {
   }, []);
   return (
     <>
+      <HeaderComponent></HeaderComponent>
       <section>
         <div className="container text-center">
           <Carousel
@@ -383,6 +386,8 @@ const HomeComponent = () => {
           </div>
         </div>
       </section>
+
+      <FooterComponent></FooterComponent>
     </>
   );
 };

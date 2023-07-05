@@ -4,6 +4,8 @@ import { Carousel } from "react-responsive-carousel";
 import { Parser } from "html-to-react";
 import { formatDate, imageOnError, trimText } from "../assets/js/__global";
 import * as data from "./fakeData";
+import FooterComponent from "./template/footerComponent";
+import HeaderComponent from "./template/headerComponent";
 
 const BlogComponent = () => {
   const [slider, setSlider] = useState<any[]>([]);
@@ -18,12 +20,13 @@ const BlogComponent = () => {
     // setSlider(data.slider);
     // setInfos(data.info);
     // setServices(data.services);
-    // setNewsInfo(data.newsinfo);
+    setNewsInfo(data.newsinfo);
     // setArtikel(data.newsinfo);
     // setPengumuman(data.newsinfo);
   }, []);
   return (
     <>
+      <HeaderComponent></HeaderComponent>
       <section className="page-title bg-2">
         <div className="container">
           <div className="row">
@@ -43,55 +46,59 @@ const BlogComponent = () => {
       <div className="page-wrapper">
         <div className="container">
           <div className="row">
-            <div className="col-md-6">
-              <div className="post">
-                <div className="post-thumb">
-                  <a href="blog-single.html">
-                    <img
-                      className="img-fluid"
-                      src="images/blog/blog-post-1.jpg"
-                      alt=""
-                    />
-                  </a>
-                </div>
-                <h3 className="post-title">
-                  <a href="blog-single.html">How To Wear Bright Shoes</a>
-                </h3>
-                <div className="post-meta">
-                  <ul>
-                    <li>
-                      <i className="ion-calendar"></i> 20, MAR 2020
-                    </li>
-                    <li>
-                      <i className="ion-android-people"></i> POSTED BY ADMIN
-                    </li>
-                    <li>
-                      <a href="blog-grid.html">
-                        <i className="ion-pricetags"></i> LIFESTYLE
-                      </a>
-                      ,<a href="blog-left-sidebar.html"> TRAVEL</a>,{" "}
-                      <a href="blog-right-sidebar.html">FASHION</a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="post-content">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Velit vitae placeat ad architecto nostrum asperiores vel
-                    aperiam, veniam eum nulla. Maxime cum magnam, adipisci
-                    architecto quibusdam cumque veniam fugiat quae. Lorem ipsum
-                    dolor sit amet, consectetur adipisicing elit. Odio vitae ab
-                    doloremque accusamus sit, eos dolorum officiis a
-                    perspiciatis aliquid. Lorem ipsum dolor sit amet,
-                    consectetur adipisicing elit. Quod, facere.{" "}
-                  </p>
-                  <a href="blog-single.html" className="btn btn-main">
-                    Read More
-                  </a>
+            {newsinfo.map((item) => (
+              <div className="col-md-6">
+                <div className="post">
+                  <div className="post-thumb">
+                    <a href={`/berita-terbaru/${item.id}`}>
+                      <img
+                        className="img-fluid blog-image"
+                        src={item.image}
+                        onError={imageOnError}
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                  <h3 className="post-title">
+                    <a href={`/berita-terbaru/${item.id}`}>{item.title}</a>
+                  </h3>
+                  <div className="post-meta">
+                    <ul>
+                      <li>
+                        <i className="ion-calendar"></i> {formatDate(item.date)}
+                      </li>
+                      <li>
+                        <i className="ion-android-people"></i> POSTED BY{" "}
+                        {item.author}
+                      </li>
+                      {/* <li>
+                        <a href="blog-grid.html">
+                          <i className="ion-pricetags"></i> LIFESTYLE
+                        </a>
+                        ,<a href="blog-left-sidebar.html"> TRAVEL</a>,{" "}
+                        <a href="blog-right-sidebar.html">FASHION</a>
+                      </li> */}
+                    </ul>
+                  </div>
+                  <div className="post-content">
+                    {/* <p>{Parser().parse(item.description)}</p> */}
+                    <p>
+                      {item.description &&
+                      trimText(item.description).length > 250
+                        ? trimText(item.description).substring(0, 250) + "..."
+                        : trimText(item.description)}
+                    </p>
+                    <a
+                      href={`/berita-terbaru/${item.id}`}
+                      className="btn btn-main"
+                    >
+                      Read More
+                    </a>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="col-md-6">
+            ))}
+            {/* <div className="col-md-6">
               <div className="post">
                 <div className="post-thumb">
                   <a href="blog-single.html">
@@ -328,7 +335,7 @@ const BlogComponent = () => {
                   </a>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <nav aria-label="Page navigation example">
@@ -362,6 +369,7 @@ const BlogComponent = () => {
           </nav>
         </div>
       </div>
+      <FooterComponent></FooterComponent>
     </>
   );
 };
