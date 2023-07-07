@@ -6,6 +6,7 @@ import { formatDate, imageOnError, trimText } from "../assets/js/__global";
 import * as data from "./fakeData";
 import FooterComponent from "./template/footerComponent";
 import HeaderComponent from "./template/headerComponent";
+import { Link } from "react-router-dom";
 
 const BlogsComponent = () => {
   const [slider, setSlider] = useState<any[]>([]);
@@ -26,7 +27,7 @@ const BlogsComponent = () => {
   }, []);
   return (
     <>
-      <HeaderComponent></HeaderComponent>
+      {/* <HeaderComponent></HeaderComponent> */}
       <section className="page-title bg-2">
         <div className="container">
           <div className="row">
@@ -60,7 +61,7 @@ const BlogsComponent = () => {
                     </a>
                   </div>
                   <h3 className="post-title">
-                    <a href={`/berita-terbaru/${item.id}`}>{item.title}</a>
+                    <Link to={`/berita-terbaru/${item.id}`}>{item.title}</Link>
                   </h3>
                   <div className="post-meta">
                     <ul>
@@ -71,13 +72,6 @@ const BlogsComponent = () => {
                         <i className="ion-android-people"></i> POSTED BY{" "}
                         {item.author}
                       </li>
-                      {/* <li>
-                        <a href="blog-grid.html">
-                          <i className="ion-pricetags"></i> LIFESTYLE
-                        </a>
-                        ,<a href="blog-left-sidebar.html"> TRAVEL</a>,{" "}
-                        <a href="blog-right-sidebar.html">FASHION</a>
-                      </li> */}
                     </ul>
                   </div>
                   <div className="post-content">
@@ -88,254 +82,16 @@ const BlogsComponent = () => {
                         ? trimText(item.description).substring(0, 250) + "..."
                         : trimText(item.description)}
                     </p>
-                    <a
-                      href={`/berita-terbaru/${item.id}`}
+                    <Link
+                      to={`/berita-terbaru/${item.id}`}
                       className="btn btn-main"
                     >
                       Read More
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
             ))}
-            {/* <div className="col-md-6">
-              <div className="post">
-                <div className="post-thumb">
-                  <a href="blog-single.html">
-                    <img
-                      className="img-fluid"
-                      src="images/blog/blog-post-2.jpg"
-                      alt=""
-                    />
-                  </a>
-                </div>
-                <h3 className="post-title">
-                  <a href="blog-single.html">Two Ways To Wear Straight Shoes</a>
-                </h3>
-                <div className="post-meta">
-                  <ul>
-                    <li>
-                      <i className="ion-calendar"></i> 20, MAR 2020
-                    </li>
-                    <li>
-                      <i className="ion-android-people"></i> POSTED BY ADMIN
-                    </li>
-                    <li>
-                      <a href="blog-grid.html">
-                        <i className="ion-pricetags"></i> LIFESTYLE
-                      </a>
-                      ,<a href="blog-left-sidebar.html"> TRAVEL</a>,{" "}
-                      <a href="blog-right-sidebar.html">FASHION</a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="post-content">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Velit vitae placeat ad architecto nostrum asperiores vel
-                    aperiam, veniam eum nulla. Maxime cum magnam, adipisci
-                    architecto quibusdam cumque veniam fugiat quae. Lorem ipsum
-                    dolor sit amet, consectetur adipisicing elit. Odio vitae ab
-                    doloremque accusamus sit, eos dolorum officiis a
-                    perspiciatis aliquid. Lorem ipsum dolor sit amet,
-                    consectetur adipisicing elit. Quod, facere
-                  </p>
-                  <a href="blog-single.html" className="btn btn-main">
-                    Read More
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6">
-              <div className="post">
-                <div className="post-thumb">
-                  <a href="blog-single.html">
-                    <img
-                      className="img-fluid"
-                      src="images/blog/blog-post-3.jpg"
-                      alt=""
-                    />
-                  </a>
-                </div>
-                <h3 className="post-title">
-                  <a href="blog-single.html">Making A Denim Statement</a>
-                </h3>
-                <div className="post-meta">
-                  <ul>
-                    <li>
-                      <i className="ion-calendar"></i> 20, MAR 2020
-                    </li>
-                    <li>
-                      <i className="ion-android-people"></i> POSTED BY ADMIN
-                    </li>
-                    <li>
-                      <a href="blog-grid.html">
-                        <i className="ion-pricetags"></i> LIFESTYLE
-                      </a>
-                      ,<a href="blog-left-sidebar.html"> TRAVEL</a>,{" "}
-                      <a href="blog-right-sidebar.html">FASHION</a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="post-content">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Velit vitae placeat ad architecto nostrum asperiores vel
-                    aperiam, veniam eum nulla. Maxime cum magnam, adipisci
-                    architecto quibusdam cumque veniam fugiat quae. Lorem ipsum
-                    dolor sit amet, consectetur adipisicing elit. Odio vitae ab
-                    doloremque accusamus sit, eos dolorum officiis a
-                    perspiciatis aliquid. Lorem ipsum dolor sit amet,
-                    consectetur adipisicing elit. Quod, facere
-                  </p>
-                  <a href="blog-single.html" className="btn btn-main">
-                    Read More
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6">
-              <div className="post">
-                <div className="post-thumb">
-                  <a href="blog-single.html">
-                    <img
-                      className="img-fluid"
-                      src="images/blog/blog-post-4.jpg"
-                      alt=""
-                    />
-                  </a>
-                </div>
-                <h3 className="post-title">
-                  <a href="blog-single.html">Standard Text Post</a>
-                </h3>
-                <div className="post-meta">
-                  <ul>
-                    <li>
-                      <i className="ion-calendar"></i> 20, MAR 2020
-                    </li>
-                    <li>
-                      <i className="ion-android-people"></i> POSTED BY ADMIN
-                    </li>
-                    <li>
-                      <a href="blog-grid.html">
-                        <i className="ion-pricetags"></i> LIFESTYLE
-                      </a>
-                      ,<a href="blog-left-sidebar.html"> TRAVEL</a>,{" "}
-                      <a href="blog-right-sidebar.html">FASHION</a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="post-content">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Velit vitae placeat ad architecto nostrum asperiores vel
-                    aperiam, veniam eum nulla. Maxime cum magnam, adipisci
-                    architecto quibusdam cumque veniam fugiat quae. Lorem ipsum
-                    dolor sit amet, consectetur adipisicing elit. Odio vitae ab
-                    doloremque accusamus sit, eos dolorum officiis a
-                    perspiciatis aliquid. Lorem ipsum dolor sit amet,
-                    consectetur adipisicing elit. Quod, facere
-                  </p>
-                  <a href="blog-single.html" className="btn btn-main">
-                    Read More
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6">
-              <div className="post">
-                <div className="post-media post-media-audio">
-                  <iframe
-                    height="390"
-                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/115637399&amp;color=ff5500&amp;auto_play=false&amp;show_artwork=true"
-                    className="DRAGDIS_iframe"
-                  ></iframe>
-                </div>
-                <h3 className="post-title">
-                  <a href="blog-single.html">Standard Audio Post</a>
-                </h3>
-                <div className="post-meta">
-                  <ul>
-                    <li>
-                      <i className="ion-calendar"></i> 20, MAR 2020
-                    </li>
-                    <li>
-                      <i className="ion-android-people"></i> POSTED BY ADMIN
-                    </li>
-                    <li>
-                      <a href="blog-grid.html">
-                        <i className="ion-pricetags"></i> LIFESTYLE
-                      </a>
-                      ,<a href="blog-left-sidebar.html"> TRAVEL</a>,{" "}
-                      <a href="blog-right-sidebar.html">FASHION</a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="post-content">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Velit vitae placeat ad architecto nostrum asperiores vel
-                    aperiam, veniam eum nulla. Maxime cum magnam, adipisci
-                    architecto quibusdam cumque veniam fugiat quae. Lorem ipsum
-                    dolor sit amet, consectetur adipisicing elit. Odio vitae ab
-                    doloremque accusamus sit, eos dolorum officiis a
-                    perspiciatis aliquid. Lorem ipsum dolor sit amet,
-                    consectetur adipisicing elit. Quod, facere
-                  </p>
-                  <a href="blog-single.html" className="btn btn-main">
-                    Read More
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6">
-              <div className="post">
-                <div className="post-media post-media-audio">
-                  <iframe
-                    width="100%"
-                    height="400"
-                    src="https://www.youtube.com/embed/LKFuXETZUsI"
-                    frameBorder="0"
-                    allowFullScreen
-                  ></iframe>
-                </div>
-                <h3 className="post-title">
-                  <a href="blog-single.html">Standard Video Post</a>
-                </h3>
-                <div className="post-meta">
-                  <ul>
-                    <li>
-                      <i className="ion-calendar"></i> 20, MAR 2020
-                    </li>
-                    <li>
-                      <i className="ion-android-people"></i> POSTED BY ADMIN
-                    </li>
-                    <li>
-                      <a href="blog-grid.html">
-                        <i className="ion-pricetags"></i> LIFESTYLE
-                      </a>
-                      ,<a href="blog-left-sidebar.html"> TRAVEL</a>,{" "}
-                      <a href="blog-right-sidebar.html">FASHION</a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="post-content">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Velit vitae placeat ad architecto nostrum asperiores vel
-                    aperiam, veniam eum nulla. Maxime cum magnam, adipisci
-                    architecto quibusdam cumque veniam fugiat quae. Lorem ipsum
-                    dolor sit amet, consectetur adipisicing elit. Odio vitae ab
-                    doloremque accusamus sit, eos dolorum officiis a
-                    perspiciatis aliquid. Lorem ipsum dolor sit amet,
-                    consectetur adipisicing elit. Quod, facere
-                  </p>
-                  <a href="blog-single.html" className="btn btn-main">
-                    Read More
-                  </a>
-                </div>
-              </div>
-            </div> */}
           </div>
 
           <nav aria-label="Page navigation example">
@@ -369,7 +125,7 @@ const BlogsComponent = () => {
           </nav>
         </div>
       </div>
-      <FooterComponent></FooterComponent>
+      {/* <FooterComponent></FooterComponent> */}
     </>
   );
 };

@@ -7,6 +7,10 @@ import * as data from "./fakeData";
 import HeaderComponent from "./template/headerComponent";
 import FooterComponent from "./template/footerComponent";
 import { Link } from "react-router-dom";
+// import InstagramEmbed from "react-instagram-embed";
+// import instagramFeed from "react-instagram-feed";
+// import InstagramFeed from "react-ig-feed";
+// import "react-ig-feed/dist/index.css";
 
 const HomeComponent = () => {
   const [slider, setSlider] = useState<any[]>([]);
@@ -29,7 +33,7 @@ const HomeComponent = () => {
   }, []);
   return (
     <>
-      <HeaderComponent></HeaderComponent>
+      {/* <HeaderComponent></HeaderComponent> */}
       <section>
         <div className="container text-center">
           <Carousel
@@ -189,7 +193,9 @@ const HomeComponent = () => {
 
       <section>
         <div className="container text-center">
-          <h2>Berita</h2>
+          <Link to={"/berita-terbaru"}>
+            <h2>Berita</h2>
+          </Link>
           <div className="row">
             {newsinfo.map((info: any) => (
               <div className="col-md-4 widget">
@@ -370,33 +376,51 @@ const HomeComponent = () => {
         </div>
       </section>
 
-      {/* <!-- Slider Start --> */}
-      <section className="slider">
+      <section>
         <div className="container">
-          <div className="row">
-            <div className="col-md-12">
-              <div className="block">
-                <h1 className="animated fadeInUp">
-                  A Digital Marketing <br /> &#38; Design Agency
-                </h1>
-                <p className="animated fadeInUp">
-                  We love the Web and the work we do.We work closely with our
-                  clients to deliver
-                  <br /> the best possible solutions for their needs
-                </p>
-                <a
-                  href="https://themefisher.com/free-bootstrap-templates/"
-                  className="btn btn-main animated fadeInUp"
-                >
-                  Free Bootstrap Templates
-                </a>
-              </div>
-            </div>
-          </div>
+          {/* <InstagramEmbed
+            url="https://instagr.am/exdreifoprasetyo/"
+            clientAccessToken="777740733820212|1138da8db1703d018286c5929e454eb6"
+            maxWidth={320}
+            hideCaption={false}
+            containerTagName="div"
+            protocol=""
+            injectScript
+            onLoading={() => {}}
+            onSuccess={() => {}}
+            onAfterRender={() => {}}
+            onFailure={() => {}}
+          /> */}
         </div>
       </section>
 
-      <FooterComponent></FooterComponent>
+      {/* <!-- Slider Start --> */}
+      <section className="slider container">
+        <div className="container">
+          {/* <div className="row">
+            <div className="col-md-12"> */}
+          <div className="block">
+            <h1 className="animated fadeInUp">
+              A Digital Marketing <br /> &#38; Design Agency
+            </h1>
+            <p className="animated fadeInUp">
+              We love the Web and the work we do.We work closely with our
+              clients to deliver
+              <br /> the best possible solutions for their needs
+            </p>
+            <a
+              href="https://themefisher.com/free-bootstrap-templates/"
+              className="btn btn-main animated fadeInUp"
+            >
+              Free Bootstrap Templates
+            </a>
+          </div>
+          {/* </div>
+          </div> */}
+        </div>
+      </section>
+
+      {/* <FooterComponent></FooterComponent> */}
     </>
   );
 };

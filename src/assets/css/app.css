@@ -1,3 +1,8 @@
+:root {
+  --main-bg-color: #1a9e94;
+  --secondary-bg-color: #ff8a1f;
+}
+
 .App {
   min-height: calc(60vh);
 }
@@ -13,7 +18,7 @@
 
 .widget-container {
   min-height: 200px;
-  background-color: #1a9e94;
+  background-color: var(--main-bg-color);
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -33,7 +38,7 @@
 }
 
 .widget-container.service-widget:hover {
-  background-color: #ff8a1f !important;
+  background-color: var(--secondary-bg-color) !important;
 }
 
 
@@ -86,17 +91,17 @@
 }
 
 .widget-container.news-widget>.date {
-  color: #ff8a1f;
+  color: var(--secondary-bg-color);
 }
 
 .widget-container.news-widget .readmore {
-  background-color: #1a9e94;
+  background-color: var(--main-bg-color);
   color: whitesmoke;
   margin-top: .3rem;
 }
 
 .recent-news>a:hover {
-  color: #ff8a1f;
+  color: var(--secondary-bg-color);
 }
 
 .container-iframe {
@@ -126,4 +131,85 @@
 .navlink-socmed:hover {
   color: #655E7A !important;
   transition: .5s;
+}
+
+.collapse-sidepanel {
+  bottom: 4rem;
+}
+
+.collapse-sidepanel.sidepanel-container {
+  position: fixed;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.collapse-sidepanel .sidepanel-content {
+  display: flex;
+  align-items: center;
+  padding: .3rem .75rem;
+  background-color: #1a9e94;
+  border-top-right-radius: .3rem;
+  border-bottom-right-radius: .3rem;
+  color: white;
+  text-transform: capitalize;
+  cursor: pointer;
+  font-size: smaller;
+  height: 65px;
+  width: 200px;
+  transition: .3s;
+  transform: translateX(-150px);
+  box-shadow: grey 3px 3px 10px 0;
+
+}
+
+.collapse-sidepanel .sidepanel-content:hover {
+  width: 200px;
+  transition: .3s;
+  transform: translateX(0px);
+}
+
+.collapse-sidepanel>.sidepanel-content>span {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.collapse-sidepanel>.sidepanel-content>.sidepanel-image {
+  width: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: var(--secondary-bg-color); */
+}
+
+.collapse-sidepanel .sidepanel-content:hover>.sidepanel-image {
+  text-shadow: grey 10px 10px 10px 0;
+  color: var(--secondary-bg-color);
+  transition: .5s;
+}
+
+.navigation {
+  background-color: var(--main-bg-color) !important;
+}
+
+.navigation a,
+.navigation a.navbar-brand:hover {
+  color: whitesmoke !important;
+}
+
+.navigation a:focus,
+.navigation a:hover {
+  color: var(--secondary-bg-color) !important;
+}
+
+.navigation .navbar .dropdown-menu a:focus,
+.navigation .navbar .dropdown-menu a:hover {
+  background-color: var(--main-bg-color) !important;
+}
+
+.dropdown-submenu:hover>.dropdown-item,
+.dropdown-item:hover {
+  background-color: var(--main-bg-color) !important;
 }

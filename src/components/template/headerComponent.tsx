@@ -7,6 +7,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 const HeaderComponent = () => {
   let menus = [
@@ -406,7 +407,7 @@ const HeaderComponent = () => {
           <div className="row">
             <div className="col-lg-12">
               <nav className="navbar navbar-expand-lg p-0">
-                <a className="navbar-brand" href="/">
+                <NavLink className="navbar-brand" to="/">
                   <img
                     width={50}
                     height={50}
@@ -414,7 +415,7 @@ const HeaderComponent = () => {
                     alt="Logo"
                   />
                   &nbsp;RS Paru dr. Ario Wirawan Salatiga
-                </a>
+                </NavLink>
                 <div
                   className="collapse navbar-collapse ml-auto"
                   id="navbarsExample09"

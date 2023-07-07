@@ -12,13 +12,7 @@ import { Link } from "react-router-dom";
 
 const FooterComponent = () => {
   const [recent, setRecent] = useState<any[]>([]);
-  const [contactUs, setContactUs] = useState({
-    address: "Jl. Hasanuddin No. 806 Salatiga Jawa Tengah, Indonesia",
-    phone: "(0298) 326130",
-    fax: "(0298) 322703",
-    email: "rspariowirawan@gmail.com",
-    url: "humas@rspaw.or.id",
-  });
+  const [contactUs, setContactUs] = useState<any>({});
 
   const [copyright, setCopyright] = useState(
     "RSPAW Salatiga.created by SIRS & HUKORMAS RSPAW"
@@ -108,14 +102,14 @@ const FooterComponent = () => {
   };
   useEffect(() => {
     setRecent(data.newsinfo);
+    setContactUs(data.contactUs);
   }, []);
 
   return (
     <>
-      <div id="scroll-to-top" className="scroll-to-top">
+      {/* <div id="scroll-to-top" className="scroll-to-top">
         <span className="icon ion-ios-arrow-up"></span>
-      </div>
-
+      </div> */}
       <footer className="footer">
         <div className="container">
           <div className="row">

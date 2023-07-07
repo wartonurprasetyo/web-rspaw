@@ -14,7 +14,7 @@ export const trimText = (text) => {
 };
 
 export const imageOnError = (event, type = "") => {
-  console.log(event);
+  // console.log(event);
   event.currentTarget.src = ImageIcon;
   //   if (type === "user") event.currentTarget.src = ProfileIcon;
   event.currentTarget.className = `${event.currentTarget.className} error`;

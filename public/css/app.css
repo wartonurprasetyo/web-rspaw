@@ -1,0 +1,191 @@
+:root {
+  --main-bg-color: #1a9e94;
+  --secondary-bg-color: #ff8a1f;
+}
+
+.App {
+  min-height: calc(60vh);
+}
+
+.widget {
+  padding: .3rem !important;
+  color: whitesmoke !important;
+}
+
+.widget a {
+  color: whitesmoke !important;
+}
+
+.widget-container {
+  min-height: 200px;
+  background-color: var(--main-bg-color);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.widget-container span {
+  min-height: 60px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.widget-container.service-widget {
+  padding: 1rem;
+  justify-content: space-between !important;
+}
+
+.widget-container.service-widget:hover {
+  background-color: var(--secondary-bg-color) !important;
+}
+
+
+.widget-container.service-widget:hover img {
+  transform: scale(1.2);
+  transition-duration: .5s;
+}
+
+.widget-container.service-widget>img {
+  width: 100px !important;
+  height: 100px !important;
+  transition-duration: .5s;
+}
+
+.widget-container.service-widget>span {
+  display: flex;
+  align-items: flex-end;
+}
+
+.widget-container.news-widget {
+  background-color: unset !important;
+}
+
+.widget-container.news-widget>span {
+  font-weight: 400;
+  min-height: 10px;
+}
+
+.widget-container.news-widget>img {
+  max-height: 200px;
+  width: 100%;
+  margin-bottom: .3rem;
+}
+
+.blog-image {
+  max-height: 300px;
+  width: 100%;
+  margin-bottom: .3rem;
+}
+
+.widget-container.news-widget>.title {
+  color: black;
+  min-height: 125px;
+}
+
+.widget-container.news-widget>.description {
+  color: #747474;
+  font-weight: 300;
+  text-transform: unset;
+}
+
+.widget-container.news-widget>.date {
+  color: var(--secondary-bg-color);
+}
+
+.widget-container.news-widget .readmore {
+  background-color: var(--main-bg-color);
+  color: whitesmoke;
+  margin-top: .3rem;
+}
+
+.recent-news>a:hover {
+  color: var(--secondary-bg-color);
+}
+
+.container-iframe {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 56.25%;
+  /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+}
+
+/* Then style the iframe to fit in the container div with full height and width */
+.responsive-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.navlink-socmed {
+  color: whitesmoke !important;
+  transition: .5s;
+}
+
+.navlink-socmed:hover {
+  color: #655E7A !important;
+  transition: .5s;
+}
+
+.collapse-sidepanel {
+  bottom: 4rem;
+}
+
+.collapse-sidepanel.sidepanel-container {
+  position: fixed;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.collapse-sidepanel .sidepanel-content {
+  display: flex;
+  align-items: center;
+  padding: .3rem .75rem;
+  background-color: #1a9e94;
+  border-top-right-radius: .3rem;
+  border-bottom-right-radius: .3rem;
+  color: white;
+  text-transform: capitalize;
+  cursor: pointer;
+  font-size: smaller;
+  height: 65px;
+  width: 200px;
+  transition: .3s;
+  transform: translateX(-150px);
+  box-shadow: grey 3px 3px 10px 0;
+
+}
+
+.collapse-sidepanel .sidepanel-content:hover {
+  width: 200px;
+  transition: .3s;
+  transform: translateX(0px);
+}
+
+.collapse-sidepanel>.sidepanel-content>span {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.collapse-sidepanel>.sidepanel-content>.sidepanel-image {
+  width: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: var(--secondary-bg-color); */
+}
+
+.collapse-sidepanel .sidepanel-content:hover>.sidepanel-image {
+  text-shadow: grey 10px 10px 10px 0;
+  color: var(--secondary-bg-color);
+  transition: .5s;
+}

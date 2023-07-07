@@ -9,6 +9,8 @@
 /*=== MEDIA QUERY ===*/
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Volkhov:ital@1&display=swap");
 
+@import url(./app.css);
+
 body {
   line-height: 1.65;
   font-family: "Roboto", sans-serif;
@@ -684,8 +686,8 @@ input[type=tel]:focus {
 }
 
 /*--
-	features-work Start 
---*/
+   features-work Start 
+ --*/
 #features-work {
   padding-top: 50px;
   padding-bottom: 75px;
@@ -699,8 +701,8 @@ input[type=tel]:focus {
 }
 
 /*--
-	Header Start 
---*/
+   Header Start 
+ --*/
 header {
   background: #fff;
   padding: 20px 0;
@@ -735,7 +737,7 @@ header .navbar-default .navbar-nav li a:hover {
 }
 
 .navigation {
-  background: #ff8a1f;
+  background: var(--main-bg-color);
   padding: 20px 0;
   /* color: whitesmoke; */
 }
@@ -826,7 +828,7 @@ header .navbar-default .navbar-nav li a:hover {
 .navigation .navbar .dropdown-menu a:focus,
 .navigation .navbar .dropdown-menu a:hover {
   /* background: #655E7A; */
-  background-color: #ff8a1f;
+  background-color: var(--main-bg-color);
   color: #fff;
 }
 
@@ -874,7 +876,7 @@ header .navbar-default .navbar-nav li a:hover {
 .dropdown-submenu:hover>.dropdown-item,
 .dropdown-item:hover {
   /* background: #655E7A; */
-  background-color: #ff8a1f;
+  background-color: var(--main-bg-color);
   color: #fff !important;
 }
 
@@ -1457,8 +1459,8 @@ ul.dropdown-menu li {
 }
 
 /*=================================================================
-  Pricing section
-==================================================================*/
+   Pricing section
+ ==================================================================*/
 .pricing-table .pricing-item {
   padding: 40px 20px;
   background: #fff;
@@ -2150,8 +2152,8 @@ ul.dropdown-menu li {
 }
 
 /*=================================================================
-  Single Blog Page
-==================================================================*/
+   Single Blog Page
+ ==================================================================*/
 .post.post-single {
   border: none;
 }
@@ -2487,8 +2489,8 @@ ul.dropdown-menu li {
 }
 
 /*=================================================================
-  Latest Posts
-==================================================================*/
+   Latest Posts
+ ==================================================================*/
 .blog {
   background: #F6F6F6;
 }

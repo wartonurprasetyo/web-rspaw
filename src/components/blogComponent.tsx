@@ -19,7 +19,7 @@ const BlogComponent = () => {
   }, [params.id]);
   return (
     <>
-      <HeaderComponent></HeaderComponent>
+      {/* <HeaderComponent></HeaderComponent> */}
       <section className="page-title bg-2">
         <div className="container">
           <div className="row">
@@ -284,7 +284,7 @@ const BlogComponent = () => {
           </div>
         </div>
       </section>
-      <FooterComponent></FooterComponent>
+      {/* <FooterComponent></FooterComponent> */}
     </>
   );
 };

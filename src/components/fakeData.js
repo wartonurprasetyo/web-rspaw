@@ -156,3 +156,11 @@ export const newsinfo = [
     id: "news1",
   },
 ];
+
+export const contactUs = {
+  address: "Jl. Hasanuddin No. 806 Salatiga Jawa Tengah, Indonesia",
+  phone: "(0298) 326130",
+  fax: "(0298) 322703",
+  email: "rspariowirawan@gmail.com",
+  url: "humas@rspaw.or.id",
+};

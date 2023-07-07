@@ -1,6 +1,9 @@
+import React from "react";
 import BlogComponent from "./blogComponent";
 import BlogsComponent from "./blogsComponent";
 import HomeComponent from "./homeComponent";
+
+// const HomeComponent = React.lazy(() => import("./homeComponent"));
 
 const Routes: any = [
   {
