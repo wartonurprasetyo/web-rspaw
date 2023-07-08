@@ -7,6 +7,7 @@ import * as data from "./fakeData";
 import HeaderComponent from "./template/headerComponent";
 import FooterComponent from "./template/footerComponent";
 import { Link } from "react-router-dom";
+import { getAllMenus } from "../services/api_web";
 // import InstagramEmbed from "react-instagram-embed";
 // import instagramFeed from "react-instagram-feed";
 // import InstagramFeed from "react-ig-feed";
@@ -20,15 +21,24 @@ const HomeComponent = () => {
   const [artikel, setArtikel] = useState<any[]>([]);
   const [pengumuman, setPengumuman] = useState<any[]>([]);
   const [youtubeUrl, setYoutubeUrl] = useState("");
+  const [schedule, setSchedule] = useState<any>({});
 
   console.log(infos);
   useEffect(() => {
+    // getAllMenus()
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
     setSlider(data.slider);
     setInfos(data.info);
     setServices(data.services);
     setNewsInfo(data.newsinfo);
     setArtikel(data.newsinfo);
     setPengumuman(data.newsinfo);
+    setSchedule(data.schedule);
     setYoutubeUrl("https://www.youtube.com/embed/NA1BwOpvLX0");
   }, []);
   return (
@@ -48,6 +58,7 @@ const HomeComponent = () => {
             {slider.map((item: any, index: number) => (
               <div>
                 <img
+                  className="animated fadeInUp"
                   onError={imageOnError}
                   style={{
                     userSelect: "none",
@@ -55,7 +66,7 @@ const HomeComponent = () => {
                   src={item.image}
                   alt="Pepole"
                 />
-                <p className="legend">{item.label}</p>
+                <p className="animated fadeInUp legend">{item.label}</p>
               </div>
             ))}
           </Carousel>
@@ -63,7 +74,7 @@ const HomeComponent = () => {
       </section>
       <section>
         <div className="container text-center">
-          <h2>Informasi Pengunjung</h2>
+          <h2 className="section-title">Informasi Pengunjung</h2>
           <div className="row">
             {infos.map((info: any) => (
               <div className="col widget">
@@ -71,18 +82,25 @@ const HomeComponent = () => {
                   <a href={info.url}>
                     <div className="block widget-container">
                       <img
+                        className="animated fadeInUp"
                         onError={imageOnError}
                         width={70}
                         height={70}
                         alt=""
                       />
-                      <span>{info.title}</span>
+                      <span className="animated fadeInUp">{info.title}</span>
                     </div>
                   </a>
                 ) : (
                   <div className="block widget-container">
-                    <img onError={imageOnError} width={70} height={70} alt="" />
-                    <span>{info.title}</span>
+                    <img
+                      className="animated fadeInUp"
+                      onError={imageOnError}
+                      width={70}
+                      height={70}
+                      alt=""
+                    />
+                    <span className="animated fadeInUp">{info.title}</span>
                   </div>
                 )}
               </div>
@@ -92,7 +110,7 @@ const HomeComponent = () => {
       </section>
       <section>
         <div className="container text-center">
-          <h2>Layanan Unggulan</h2>
+          <h2 className="section-title">Layanan Unggulan</h2>
           <div className="row">
             {services
               .filter((item: any) => item.type == "top-service")
@@ -102,6 +120,7 @@ const HomeComponent = () => {
                     <a href={info.url}>
                       <div className="block ">
                         <img
+                          className="animated fadeInUp"
                           onError={imageOnError}
                           src={info.img}
                           width="100%"
@@ -112,6 +131,7 @@ const HomeComponent = () => {
                   ) : (
                     <div className="block ">
                       <img
+                        className="animated fadeInUp"
                         onError={imageOnError}
                         src={info.img}
                         width="100%"
@@ -127,40 +147,62 @@ const HomeComponent = () => {
 
       <section>
         <div className="container text-center">
-          <h2>Layanan Kami</h2>
+          <h2 className="section-title">Layanan Kami</h2>
           <div className="row">
             {services
               .filter((item: any) => item.type == "general")
               .map((info: any) => (
-                <div className="col widget">
-                  {info.url ? (
-                    <a href={info.url}>
-                      <div className="block widget-container service-widget">
-                        <img
-                          onError={imageOnError}
-                          src={info.img}
-                          style={{
-                            borderRadius: "100%",
-                          }}
-                          alt=""
-                        />
-                        <span>{info.title}</span>
-                      </div>
-                    </a>
-                  ) : (
-                    <div className="block widget-container service-widget">
-                      <img
-                        onError={imageOnError}
-                        src={info.img}
-                        style={{
-                          borderRadius: "100%",
-                        }}
-                        alt=""
-                      />
-                      <span>{info.title}</span>
-                    </div>
-                  )}
+                <div className="col-lg-2 col-md-4 col-sm-6">
+                  <div className="service-item">
+                    <img
+                      // className="animated fadeInUp"
+                      onError={imageOnError}
+                      src={info.img}
+                      style={{
+                        borderRadius: "100%",
+                        width: "100px",
+                        height: "100px",
+                      }}
+                      alt=""
+                    />
+                    <h4 className="animated fadeInUp">{info.title}</h4>
+                    {/* <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                      sed do eiusmod tempor incididunt{" "}
+                    </p> */}
+                  </div>
                 </div>
+                // <div className="col widget">
+                //   {info.url ? (
+                //     <a href={info.url}>
+                //       <div className="block widget-container service-widget">
+                //         <img
+                //           className="animated fadeInUp"
+                //           onError={imageOnError}
+                //           src={info.img}
+                //           style={{
+                //             borderRadius: "100%",
+                //           }}
+                //           alt=""
+                //         />
+                //         <span className="animated fadeInUp">{info.title}</span>
+                //       </div>
+                //     </a>
+                //   ) : (
+                //     <div className="block widget-container service-widget">
+                //       <img
+                //         className="animated fadeInUp"
+                //         onError={imageOnError}
+                //         src={info.img}
+                //         style={{
+                //           borderRadius: "100%",
+                //         }}
+                //         alt=""
+                //       />
+                //       <span className="animated fadeInUp">{info.title}</span>
+                //     </div>
+                //   )}
+                // </div>
               ))}
           </div>
         </div>
@@ -168,7 +210,7 @@ const HomeComponent = () => {
 
       <section>
         <div className="container text-center">
-          <h2>Layanan Pengaduan</h2>
+          <h2 className="section-title">Layanan Pengaduan</h2>
           <div className="row">
             {services
               .filter((item: any) => item.type == "complaint")
@@ -177,12 +219,12 @@ const HomeComponent = () => {
                   {info.url ? (
                     <a href={info.url}>
                       <div className="block widget-container">
-                        <span>{info.title}</span>
+                        <span className="animated fadeInUp">{info.title}</span>
                       </div>
                     </a>
                   ) : (
                     <div className="block widget-container">
-                      <span>{info.title}</span>
+                      <span className="animated fadeInUp">{info.title}</span>
                     </div>
                   )}
                 </div>
@@ -194,7 +236,7 @@ const HomeComponent = () => {
       <section>
         <div className="container text-center">
           <Link to={"/berita-terbaru"}>
-            <h2>Berita</h2>
+            <h2 className="section-title">Berita</h2>
           </Link>
           <div className="row">
             {newsinfo.map((info: any) => (
@@ -205,18 +247,24 @@ const HomeComponent = () => {
                       <img
                         onError={imageOnError}
                         src={info.image}
-                        className="rounded img-fluid"
+                        className="animated fadeInUp rounded img-fluid"
                         alt=""
                       />
-                      <span className="date">{formatDate(info.date)}</span>
-                      <span className="title">{info.title}</span>
-                      <span className="description">
+                      <span className="animated fadeInUp date">
+                        {formatDate(info.date)}
+                      </span>
+                      <span className="animated fadeInUp title">
+                        {info.title}
+                      </span>
+                      <span className="animated fadeInUp description">
                         {info.description &&
                         trimText(info.description).length > 75
                           ? trimText(info.description).substring(0, 75) + "..."
                           : trimText(info.description)}
                       </span>
-                      <button className="btn readmore">Read More...</button>
+                      <button className="animated fadeInUp btn readmore">
+                        Read More...
+                      </button>
                     </div>
                   </a>
                 ) : (
@@ -224,19 +272,25 @@ const HomeComponent = () => {
                     <img
                       onError={imageOnError}
                       src={info.image}
-                      className="rounded img-fluid"
+                      className="animated fadeInUp rounded img-fluid"
                       alt=""
                     />
-                    <span className="date">{formatDate(info.date)}</span>
-                    <span className="title">{info.title}</span>
-                    <span className="description">
+                    <span className="animated fadeInUp date">
+                      {formatDate(info.date)}
+                    </span>
+                    <span className="animated fadeInUp title">
+                      {info.title}
+                    </span>
+                    <span className="animated fadeInUp description">
                       {info.description &&
                       trimText(info.description).length > 75
                         ? trimText(info.description).substring(0, 75) + "..."
                         : trimText(info.description)}
                     </span>
                     <Link to={`/berita-terbaru/${info.id}`}>
-                      <button className="btn readmore">Read More...</button>
+                      <button className="animated fadeInUp btn readmore">
+                        Read More...
+                      </button>
                     </Link>
                   </div>
                 )}
@@ -248,7 +302,7 @@ const HomeComponent = () => {
 
       <section>
         <div className="container text-center">
-          <h2>Pengumuman</h2>
+          <h2 className="section-title">Pengumuman</h2>
           <div className="row">
             {pengumuman.map((info: any) => (
               <div className="col-md-4 widget">
@@ -258,18 +312,24 @@ const HomeComponent = () => {
                       <img
                         onError={imageOnError}
                         src={info.image}
-                        className="rounded img-fluid"
+                        className="animated fadeInUp rounded img-fluid"
                         alt=""
                       />
-                      <span className="date">{formatDate(info.date)}</span>
-                      <span className="title">{info.title}</span>
-                      <span className="description">
+                      <span className="animated fadeInUp date">
+                        {formatDate(info.date)}
+                      </span>
+                      <span className="animated fadeInUp title">
+                        {info.title}
+                      </span>
+                      <span className="animated fadeInUp description">
                         {info.description &&
                         trimText(info.description).length > 75
                           ? trimText(info.description).substring(0, 75) + "..."
                           : trimText(info.description)}
                       </span>
-                      <button className="btn readmore">Read More...</button>
+                      <button className="animated fadeInUp btn readmore">
+                        Read More...
+                      </button>
                     </div>
                   </a>
                 ) : (
@@ -277,19 +337,25 @@ const HomeComponent = () => {
                     <img
                       onError={imageOnError}
                       src={info.image}
-                      className="rounded img-fluid"
+                      className="animated fadeInUp rounded img-fluid"
                       alt=""
                     />
-                    <span className="date">{formatDate(info.date)}</span>
-                    <span className="title">{info.title}</span>
-                    <span className="description">
+                    <span className="animated fadeInUp date">
+                      {formatDate(info.date)}
+                    </span>
+                    <span className="animated fadeInUp title">
+                      {info.title}
+                    </span>
+                    <span className="animated fadeInUp description">
                       {info.description &&
                       trimText(info.description).length > 75
                         ? trimText(info.description).substring(0, 75) + "..."
                         : trimText(info.description)}
                     </span>
                     <Link to={`/berita-terbaru/${info.id}`}>
-                      <button className="btn readmore">Read More...</button>
+                      <button className="animated fadeInUp btn readmore">
+                        Read More...
+                      </button>
                     </Link>
                   </div>
                 )}
@@ -301,7 +367,7 @@ const HomeComponent = () => {
 
       <section>
         <div className="container text-center">
-          <h2>Artikel</h2>
+          <h2 className="section-title">Artikel</h2>
           <div className="row">
             {artikel.map((info: any) => (
               <div className="col-md-4 widget">
@@ -311,19 +377,25 @@ const HomeComponent = () => {
                       <img
                         onError={imageOnError}
                         src={info.image}
-                        className="rounded img-fluid"
+                        className="animated fadeInUp rounded img-fluid"
                         alt=""
                       />
-                      <span className="date">{formatDate(info.date)}</span>
-                      <span className="title">{info.title}</span>
-                      <span className="description">
+                      <span className="animated fadeInUp date">
+                        {formatDate(info.date)}
+                      </span>
+                      <span className="animated fadeInUp title">
+                        {info.title}
+                      </span>
+                      <span className="animated fadeInUp description">
                         {info.description &&
                         trimText(info.description).length > 75
                           ? trimText(info.description).substring(0, 75) + "..."
                           : trimText(info.description)}
                       </span>
                       <Link to={`/berita-terbaru/${info.id}`}>
-                        <button className="btn readmore">Read More...</button>
+                        <button className="animated fadeInUp btn readmore">
+                          Read More...
+                        </button>
                       </Link>
                     </div>
                   </a>
@@ -332,19 +404,25 @@ const HomeComponent = () => {
                     <img
                       onError={imageOnError}
                       src={info.image}
-                      className="rounded img-fluid"
+                      className="animated fadeInUp rounded img-fluid"
                       alt=""
                     />
-                    <span className="date">{formatDate(info.date)}</span>
-                    <span className="title">{info.title}</span>
-                    <span className="description">
+                    <span className="animated fadeInUp date">
+                      {formatDate(info.date)}
+                    </span>
+                    <span className="animated fadeInUp title">
+                      {info.title}
+                    </span>
+                    <span className="animated fadeInUp description">
                       {info.description &&
                       trimText(info.description).length > 75
                         ? trimText(info.description).substring(0, 75) + "..."
                         : trimText(info.description)}
                     </span>
                     <Link to={`/berita-terbaru/${info.id}`}>
-                      <button className="btn readmore">Read More...</button>
+                      <button className="animated fadeInUp btn readmore">
+                        Read More...
+                      </button>
                     </Link>
                   </div>
                 )}
@@ -395,28 +473,37 @@ const HomeComponent = () => {
       </section>
 
       {/* <!-- Slider Start --> */}
-      <section className="slider container">
+      <section
+        className="slider container mt-4"
+        style={{
+          padding: "25px 0",
+        }}
+      >
         <div className="container">
-          {/* <div className="row">
-            <div className="col-md-12"> */}
-          <div className="block">
-            <h1 className="animated fadeInUp">
-              A Digital Marketing <br /> &#38; Design Agency
-            </h1>
-            <p className="animated fadeInUp">
-              We love the Web and the work we do.We work closely with our
-              clients to deliver
-              <br /> the best possible solutions for their needs
-            </p>
-            <a
-              href="https://themefisher.com/free-bootstrap-templates/"
-              className="btn btn-main animated fadeInUp"
+          <div className="row">
+            <div
+              className="col-md-6 text-light"
+              style={{
+                minHeight: "360px",
+                alignItems: "center",
+                display: "flex",
+                flexDirection: "column",
+              }}
             >
-              Free Bootstrap Templates
-            </a>
+              {Parser().parse(schedule.title)}
+              {Parser().parse(schedule.description)}
+            </div>
+            <div className="col-md-6">
+              <iframe
+                width={"100%"}
+                height={"100%"}
+                loading="lazy"
+                src="https://maps.google.com/maps?q=RS%20PARU%20dr%20Ario%20Wirawan%20Salatiga&amp;t=m&amp;z=11&amp;output=embed&amp;iwloc=near"
+                title="RS PARU dr Ario Wirawan Salatiga"
+                aria-label="RS PARU dr Ario Wirawan Salatiga"
+              ></iframe>
+            </div>
           </div>
-          {/* </div>
-          </div> */}
         </div>
       </section>
 

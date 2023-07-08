@@ -1,19 +1,21 @@
-// import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
-// import { Route, Switch } from "react-router";
-// import "../../assets/app.css";
-import FooterComponent from "../template/footerComponent";
-import HeaderComponent from "../template/headerComponent";
-import Routes from "../Routes";
-import { BrowserRouter, useLocation } from "react-router-dom";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAmbulance,
   faCalendar,
   faPhone,
 } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
+import {
+  Route,
+  BrowserRouter as Router,
+  Switch,
+  useLocation,
+} from "react-router-dom";
+import { reqToken } from "../../services/api_web";
+import Routes from "../Routes";
 import * as data from "../fakeData";
+import FooterComponent from "../template/footerComponent";
+import HeaderComponent from "../template/headerComponent";
 
 function App() {
   const [contactUs, setContactUs] = useState<any>({});
@@ -23,7 +25,14 @@ function App() {
   }, [location.pathname]);
   useEffect(() => {
     setContactUs(data.contactUs);
+    reqToken()
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   }, []);
+
+  useEffect(() => {
+    console.log(window.location.pathname);
+  }, [window.location.pathname]);
   return (
     <>
       <Router>

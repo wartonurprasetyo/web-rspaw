@@ -58,6 +58,21 @@
   align-items: flex-end;
 }
 
+.service-item {
+  min-height: 200px;
+}
+
+.service-item>img {
+  width: 100px !important;
+  height: 100px !important;
+  transition-duration: .5s;
+}
+
+.service-item:hover>img {
+  transform: scale(1.2);
+  transition-duration: .5s;
+}
+
 .widget-container.news-widget {
   background-color: unset !important;
 }

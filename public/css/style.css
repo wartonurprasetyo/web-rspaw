@@ -2406,6 +2406,12 @@ ul.dropdown-menu li {
   background-attachment: fixed;
 }
 
+.bg-contact-us {
+  background: url("../images/bg-contact-us.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+}
+
 .widget {
   margin-bottom: 30px;
 }

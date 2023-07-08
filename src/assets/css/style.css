@@ -877,7 +877,7 @@ header .navbar-default .navbar-nav li a:hover {
 .dropdown-item:hover {
   background: #655E7A;
   /* background-color: var(--main-bg-color); */
-  color: #fff !important;
+  color: #fff;
 }
 
 .dropdown-item.active {

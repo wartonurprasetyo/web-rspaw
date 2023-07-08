@@ -5,6 +5,18 @@ import layananIGDImg from "../assets/images/igd-icon.png";
 import penunjangMedikImg from "../assets/images/penunjang-medik-icon2.png";
 import medicalCheckupImg from "../assets/images/penunjang-medik-icon.png";
 import fasilitasUmumImg from "../assets/images/fasilitas-umum.jpeg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFacebookSquare,
+  faInstagramSquare,
+  faTwitterSquare,
+  faWhatsappSquare,
+  faYoutubeSquare,
+} from "@fortawesome/free-brands-svg-icons";
+import {
+  faEnvelope,
+  faEnvelopeSquare,
+} from "@fortawesome/free-solid-svg-icons";
 
 export const slider = [
   {
@@ -164,3 +176,58 @@ export const contactUs = {
   email: "rspariowirawan@gmail.com",
   url: "humas@rspaw.or.id",
 };
+
+export const schedule = {
+  title:
+    '<h4 style="text-align: center;">JADWAL<strong>&nbsp;BESUK</strong></h4>',
+  description:
+    '<div style="text-align: center;"><strong>&nbsp;</strong></div><h4 style="text-align: center;"><strong>Kami Informasikan untuk Jam Besuk adalah sebagai berikut :</strong></h4><div style="text-align: center;"><strong>&nbsp;</strong></div><h4 style="text-align: center;"><strong>Pagi&nbsp; : Pukul 10.00 &ndash; 12.00 WIB</strong></h4><h4 style="text-align: center;">Sore : Pukul 17.00 &ndash; 19.00 WIB</h4><div style="text-align: center;"><strong>&nbsp;</strong></div><h4 style="text-align: center;"><strong>MOHON PERHATIAN KEPADA SEMUA PENGUNJUNG&nbsp;</strong><strong>UNTUK TETAP MEMATUHI PROTOKOL KESEHATAN</strong></h4>',
+};
+
+export const socmedFooter = [
+  {
+    name: "facebook",
+    url: "https://www.facebook.com/RSPAWSalatigaOfficial",
+    color: "#3b5998",
+  },
+  {
+    name: "twitter",
+    url: "https://twitter.com/rspawsalatiga",
+    color: "#1da1f2",
+  },
+  {
+    name: "instagram",
+    url: "https://www.instagram.com/rspawsalatiga/?hl=id",
+    color: "#F2006E",
+  },
+  {
+    name: "whatsapp",
+    url: "https://wa.me/6285740058522",
+    color: "#25d366",
+  },
+];
+
+export const socmed = [
+  {
+    name: "youtube",
+    url: "https://www.youtube.com/channel/UCp7d0r31ov6CkxRh8rxblHQ",
+    color: "#cd201f",
+  },
+  {
+    name: "email",
+    url: "mailto:humas.rspaw@gmail.com",
+    color: "#56AC00",
+  },
+];
+
+export const iconsSocmed = {
+  facebook: <FontAwesomeIcon className="fa-xl" icon={faFacebookSquare} />,
+  twitter: <FontAwesomeIcon className="fa-xl" icon={faTwitterSquare} />,
+  instagram: <FontAwesomeIcon className="fa-xl" icon={faInstagramSquare} />,
+  whatsapp: <FontAwesomeIcon className="fa-xl" icon={faWhatsappSquare} />,
+  youtube: <FontAwesomeIcon className="fa-xl" icon={faYoutubeSquare} />,
+  email: <FontAwesomeIcon className="fa-xl" icon={faEnvelopeSquare} />,
+};
+
+export const history =
+  '<p style="text-align:start;">Sebelumnya bernama RSTP Ngawen Salatiga. Pada awal berdiri di tahun 1934,  rumah sakit ini berfungsi sebagai tempat petirahan bagi penderita kesehatan paru yang pada masa itu lebih banyak didominasi oleh warga keturunan Belanda.</p><p style="text-align:start;">Dari fungsi awal tersebut, sampai saat ini masih banyak anggota masyarakat yang menyebutnya dengan Sanatorium. Pendirian Sanatorium tersebut dilatarbelakangi dengan kondisi udara yang sejuk karena secara geografis daerah Ngawen Salatiga memiliki ketinggian  kurang lebih 800 meter dari permukaan air laut dengan suhu udara berkisar antara 18 – 29  C.</p><p style="text-align:start;">Kondisi tersebut dianggap sangat ideal sebagai tempat petirahan bagi masyarakat Belanda yang terganggu kesehatan parunya oleh karena wilayah Salatiga, Ambarawa, dan sekitarnya banyak ditinggali oleh warga negara Belanda, mengingat kota Salatiga dan sekitarnya merupakan daerah konsentrasi militer/tentara Belanda dengan status sebagai daerah gemeente/kota praja.</p><p></p><img src="https://rspaw.or.id/wp-content/uploads/2022/09/WhatsApp-Image-2017-11-28-at-10.47.11-AM-768x510.jpeg" alt="undefined" style="float:none;height: auto;width: auto"/><p style="text-align:start;">Memasuki masa penjajahan Jepang, fungsi sanatorium ini masih tetap berlanjut, hanya   penggunaannya  sudah  mulai  dimanfaatkan  oleh  warga  negara   Indonesia (pribumi), meskipun pada saat itu pemberian pelayanan kesehatan belum juga dilaksanakan. Baru pada tahun 1952 meskipun masih dengan sebutan sanatorium, sudah mulai mulai dilakukan pemberian pelayanan ditandai dengan  adanya  tenaga dokter, paramedis, dan peralatan untuk pengobatan penyakit TBC.</p><p style="text-align:start;">Sejalan dengan kebutuhan akan penanggulangan penyakit paru yang pada masa – masa tersebut memiliki angka kesakitan yang cukup tinggi, fungsi sanatorium dengan pemberian pelayanan ditegaskan lagi dengan penyebutan institusi ini sebagai Rumah Sakit Paru – Paru.</p><p style="text-align:start;">Rumah Sakit ini secara kelembagaan berada di bawah <a href="http://www.depkes.go.id/" target="_blank">Departemen Kesehatan RI</a> yang saat ini disebut dengan Kementerian Kesehatan, dengan struktur organisasi tidak jelas.</p><p style="text-align:start;">Baru pada tahun 1978 dengan Surat Keputusan Menteri Kesehatan RI Nomor  : 137/MenKes/SK/IV/1978 ditetapkan Struktur Organisasi yang lebih jelas tugas pokok dan fungsinya yaitu sebagai rumah sakit khusus yang menyelenggarakan pelayanan terhadap penderita penyakit TB paru, dengan sebutan RSTP. Beberapa sanatorium di Jawa Tengah yang ditetapkan sebagai RSTP hanya RSTP “Ngawen” Salatiga dan RSTP Kalibakung Slawi Tegal, sedangkan 3 ( tiga ) eks sanatorium, masing-masing di Semarang, Klaten, dan Purwokerto dikonversi dengan Rumah Sakit Umum.</p><p></p><img src="https://rspaw.or.id/wp-content/uploads/2022/09/Pdture1.jpg" alt="undefined" style="float:none;height: auto;width: auto"/><p><span style="color: rgb(55,0,10);background-color: rgb(255,255,255);font-size: 18px;font-family: Karla, sans-serif;">Selanjutnya pada tanggal 26 September 2002, dengan Surat Keputusan Menteri Kesehatan RI, nomor 1208/Menkes/SK/IX/2002, RSTP “Ngawen” Salatiga berubah nama menjadi Rumah Sakit Paru dr. Ario Wirawan Salatiga, dan merupakan satu-satunya rumah sakit paru di Provinsi Jawa Tengah.</span></p><p></p><img src="https://rspaw.or.id/wp-content/uploads/2022/09/download-1.jpg" alt="undefined" style="float:none;height: auto;width: auto"/><p style="text-align:start;">Peluang ini menjadikan Rumah Sakit Paru dr. Ario Wirawan Salatiga memiliki kesempatan untuk berkembang menjadi rumah sakit, dengan cakupan wilayah yang cukup luas yaitu wilayah Jawa Tengah dan Provinsi lain yang tidak memiliki RSTP.  Peluang ini bertambah besar bila ditinjau dari letak Rumah Sakit Paru dr. Ario Wirawan Salatiga yang berlokasi diantara 3 (tiga) kota besar yaitu Semarang, Yogyakarta, dan Surakarta, dimana ketiga kota tersebut diharapkan mampu mendukung keberadaan Rumah Sakit Paru dr. Ario Wirawan Salatiga baik dalam pengadaan SDM, sarana, maupun prasarana.</p><p style="text-align:start;">Perubahan situasi dan kondisi serta perilaku hidup masyarakat mengisyaratkan, bahwa ke depan seharusnya Rumah Sakit Paru dr. Ario Wirawan Salatiga kembali pada fungsi dan tugas pokok melaksanakan dan penanggulangan dan penyembuhan penyakit paru (tidak sebatas penanggulangan dan penyembuhan penyakit TB Paru saja). Tugas ini secara riil telah dilakukan oleh Rumah Sakit Tuberkulosa Paru- Paru “Ngawen” Salatiga.</p><p style="text-align:start;">Kemudian dengan terbitnya SK Menkes RI tanggal 26 Pebruari 2004 Nomor : 190/MENKES/SK/II/2004 tentang Organisasi dan Tata Kerja Rumah Sakit Paru, yang meningkatkan tingkat eselonisasi menjadi eselon IIb, hal ini membawa konsekuensi bertambahnya beban kerja, kebutuhan dana SDM, serta lebih luasnya cakupan pelayanan.</p><p style="text-align:start;">Kemudian tahun 2004 terbit SK Menkes RI tanggal 26 Pebruari 2004 Nomor: 190/MENKES/SK/II/2004 tentang Organisasi dan Tata Kerja Rumah Sakit Paru, yang membawa konsekuensi bertambahnya beban kerja, kebutuhan dana dan SDM, serta lebih luasnya cakupan pelayanan, dengan nama RSP dr. Ario Wirawan Salatiga, sebagai rumah sakit eselon IIb.</p><p></p><img src="https://rspaw.or.id/wp-content/uploads/2022/09/Picturfdfe1.jpg" alt="undefined" style="float:none;height: auto;width: auto"/><p style="text-align:start;">Kebijakan pemerintah selanjutnya, dalam hal ini Departemen Kesehatan RI menetapkan bahwa Unit Pelaksana Teknis (UPT) Depkes RI sebagai Instansi Pemerintah yang menerapkan Pola Pengelolaan Keuangan Badan Layanan Umum (PPK-BLU) berdasarkan SK Menteri Keuangan no.274/KMK.05/2007 tanggal 21 Juni 2007 dan SK Menteri Kesehatan No. 756/Menkes/SK/VI/2007 tanggal 26 Juni 2007.</p><p style="text-align:start;">Perkembangan selanjutnya dengan diterbitkannya Permenkes Nomor 249/Menkes/Per/III/2008, tentang Organisasi dan Tata Kerja Rumah Sakit Paru dr. Ario Wirawan Salatiga mempunyai kesempatan untuk lebih berkembang, hal ini juga didukung dengan keluarnya SK Menteri Kesehatan RI Nomor 438/Menkes/SK/VI/2009 tanggal 18 Juni 2009, tentang Peningkatan Kelas Rumah Sakit Paru dr. Ario Wirawan Salatiga menjadi Rumah Sakit Khusus Kelas A, sehingga <a href="http://www.rspaw.or.id/" target="_self">Rumah sakit Paru dr. Ario Wirawan Salatiga</a> dapat lebih fleksibel dalam melaksanakan pengelolaan keuangan, peningkatan dan pengembangan pelayanan guna memberikan pelayanan kesehatan kepada masyarakat secara paripurna.</p><p></p><img src="https://rspaw.or.id/wp-content/uploads/2022/09/P1110109small-768x512.jpg" alt="undefined" style="float:none;height: auto;width: auto"/><p style="text-align:center;"><span style="color: rgb(146,146,146);background-color: rgb(255,255,255);font-size: 14.4;font-family: Karla, sans-serif;">RSP dr. Ario Wirawan Saat Ini</span></p>';
