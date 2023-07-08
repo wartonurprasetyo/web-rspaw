@@ -4,21 +4,21 @@ import { useParams } from "react-router-dom";
 import * as data from "./fakeData";
 import { Parser } from "html-to-react";
 
-const HistoryComponent = () => {
+const UpayaComponent = () => {
   // const [newsinfo, setNewsInfo] = useState<any>({});
   const [socmed, setSocmed] = useState<any[]>([]);
   const [icons, setIcon] = useState<any>({});
-  const [history, setHistory] = useState<any>({});
+  const [upaya, setupaya] = useState<any>({});
 
   const params: any = useParams();
 
   useEffect(() => {
-    setHistory(data.history);
+    setupaya(data.upaya);
   }, []);
   return (
     <>
       {/* <HeaderComponent></HeaderComponent> */}
-      <section className="page-title bg-contact-us">
+      {/* <section className="page-title bg-contact-us">
         <div className="container">
           <div className="row">
             <div className="col-md-12">
@@ -29,17 +29,15 @@ const HistoryComponent = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      <section className="about section">
+      <section>
         <div className="container">
           <div className="row align-items-center">
             <div className="col-12 mt-5 mt-lg-0">
               <div className="pl-0 pl-lg-4">
-                <h2 className="section-title">
-                  Sejarah Singkat RS Paru Dr. Ario Wirawan
-                </h2>
-                {Parser().parse(history)}
+                <h2 className="section-title section-title-post ">6 Upaya</h2>
+                {Parser().parse(upaya)}
               </div>
             </div>
           </div>
@@ -50,4 +48,4 @@ const HistoryComponent = () => {
   );
 };
 
-export default HistoryComponent;
+export default UpayaComponent;

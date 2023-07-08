@@ -324,3 +324,18 @@ a.navlink-socmed {
   background: #1d192c;
   opacity: 0.4;
 }
+
+.section-title.section-title-post {
+  text-align: center !important;
+  font-size: 3rem;
+  margin-bottom: 4rem;
+}
+
+.portfolio-item {
+  /* width: 30%; */
+  padding: .3rem;
+}
+
+/* .portfolio-item img {
+  height: 100%
+} */
