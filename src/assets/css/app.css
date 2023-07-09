@@ -213,13 +213,13 @@
   transform: translateX(0px);
 }
 
-.collapse-sidepanel>.sidepanel-content>span {
+.collapse-sidepanel .sidepanel-content span {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
 
-.collapse-sidepanel>.sidepanel-content>.sidepanel-image {
+.collapse-sidepanel .sidepanel-content .sidepanel-image {
   width: 25px;
   display: flex;
   justify-content: center;
@@ -227,7 +227,7 @@
   /* background-color: var(--secondary-bg-color); */
 }
 
-.collapse-sidepanel .sidepanel-content:hover>.sidepanel-image {
+.collapse-sidepanel .sidepanel-content:hover .sidepanel-image {
   text-shadow: grey 10px 10px 10px 0;
   color: var(--secondary-bg-color);
   transition: .5s;

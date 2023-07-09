@@ -57,39 +57,57 @@ function App() {
           <span className="icon ion-ios-arrow-up"></span>
         </div>
         <div className="collapse-sidepanel sidepanel-container">
-          <div className="sidepanel-content">
-            <span>pendaftaran</span>
-            <div className="sidepanel-image">
-              <FontAwesomeIcon
-                className="fa-xl"
-                icon={faCalendar}
-              ></FontAwesomeIcon>
+          <a
+            href="https://daftaronline.rspaw.or.id/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div className="sidepanel-content">
+              <span>pendaftaran</span>
+              <div className="sidepanel-image">
+                <FontAwesomeIcon
+                  className="fa-xl"
+                  icon={faCalendar}
+                ></FontAwesomeIcon>
+              </div>
             </div>
-          </div>
-          <div className="sidepanel-content">
-            <span>
-              <span>emergency call</span>
-              <span>{contactUs.phone}</span>
-            </span>
-            <div className="sidepanel-image">
-              <FontAwesomeIcon
-                className="fa-xl"
-                icon={faAmbulance}
-              ></FontAwesomeIcon>
+          </a>
+          <a
+            href={`tel:${contactUs.phone}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div className="sidepanel-content">
+              <span>
+                <span>emergency call</span>
+                <span>{contactUs.phone}</span>
+              </span>
+              <div className="sidepanel-image">
+                <FontAwesomeIcon
+                  className="fa-xl"
+                  icon={faAmbulance}
+                ></FontAwesomeIcon>
+              </div>
             </div>
-          </div>
-          <div className="sidepanel-content">
-            <span>
-              <span>contact center</span>
-              <span>{contactUs?.phone}</span>
-            </span>
-            <div className="sidepanel-image">
-              <FontAwesomeIcon
-                className="fa-xl"
-                icon={faPhone}
-              ></FontAwesomeIcon>
+          </a>
+          <a
+            href={`tel:${contactUs.phone}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div className="sidepanel-content">
+              <span>
+                <span>contact center</span>
+                <span>{contactUs?.phone}</span>
+              </span>
+              <div className="sidepanel-image">
+                <FontAwesomeIcon
+                  className="fa-xl"
+                  icon={faPhone}
+                ></FontAwesomeIcon>
+              </div>
             </div>
-          </div>
+          </a>
         </div>
         <FooterComponent></FooterComponent>
         {/* </BrowserRouter> */}

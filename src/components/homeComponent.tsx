@@ -1,13 +1,10 @@
-import { useEffect, useState } from "react";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
 import { Parser } from "html-to-react";
+import { useEffect, useState } from "react";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Link } from "react-router-dom";
 import { formatDate, imageOnError, trimText } from "../assets/js/__global";
 import * as data from "./fakeData";
-import HeaderComponent from "./template/headerComponent";
-import FooterComponent from "./template/footerComponent";
-import { Link } from "react-router-dom";
-import { getAllMenus } from "../services/api_web";
 // import InstagramEmbed from "react-instagram-embed";
 // import instagramFeed from "react-instagram-feed";
 // import InstagramFeed from "react-ig-feed";
