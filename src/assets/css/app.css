@@ -339,3 +339,9 @@ a.navlink-socmed {
 /* .portfolio-item img {
   height: 100%
 } */
+
+.post .post-title {
+  color: var(--secondary-bg-color);
+  font-weight: 600;
+  text-align: center;
+}

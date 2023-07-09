@@ -12,6 +12,7 @@ import UpayaComponent from "./upayaComponent";
 import MaklumatComponent from "./maklumatComponent";
 import VideoComponent from "./videoComponent";
 import WBKFotoComponent from "./WBKFotoComponent";
+import PostComponent from "./postComponent";
 
 // const HomeComponent = React.lazy(() => import("./homeComponent"));
 
@@ -63,6 +64,10 @@ const Routes: any = [
   {
     path: "/page-profil-wbk-foto",
     component: <WBKFotoComponent />,
+  },
+  {
+    path: "/post/:id",
+    component: <PostComponent />,
   },
 
   // {
