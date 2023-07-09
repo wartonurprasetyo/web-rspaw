@@ -30,6 +30,31 @@ export const reqToken = () => {
   });
 };
 
+export const fetchReqToken = () => {
+  console.log("get menu");
+  const requestOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      client_uid: `rspaw`,
+      client_key:
+        "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
+      client_token: "",
+    },
+    body: JSON.stringify({}),
+  };
+
+  return new Promise((resolve, reject) => {
+    fetch(`${baseUrlDev}reqtoken`, requestOptions)
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
 export const getAllMenus = () => {
   console.log("get menu");
   return new Promise((resolve, reject) => {

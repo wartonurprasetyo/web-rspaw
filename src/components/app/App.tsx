@@ -11,7 +11,7 @@ import {
   Switch,
   useLocation,
 } from "react-router-dom";
-import { reqToken } from "../../services/api_web";
+import { fetchReqToken, reqToken } from "../../services/api_web";
 import Routes from "../Routes";
 import * as data from "../fakeData";
 import FooterComponent from "../template/footerComponent";
