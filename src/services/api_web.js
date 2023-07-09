@@ -3,10 +3,10 @@ import Config from "../config/Config";
 import axios from "axios";
 
 const baseUrlDev = Config.BaseUrlDev;
-console.log("axios", axios);
+// console.log("axios", axios);
 
 export const reqToken = () => {
-  console.log("get menu");
+  // console.log("get menu");
   return new Promise((resolve, reject) => {
     axios
       .post(
@@ -31,7 +31,7 @@ export const reqToken = () => {
 };
 
 export const fetchReqToken = () => {
-  console.log("get menu");
+  // console.log("get menu");
   const requestOptions = {
     method: "POST",
     headers: {
@@ -56,7 +56,7 @@ export const fetchReqToken = () => {
 };
 
 export const getAllMenus = (client_token = localStorage.getItem("token")) => {
-  console.log("get menu");
+  // console.log("get menu");
   return new Promise((resolve, reject) => {
     axios
       .get(`${baseUrlDev}client/nav/all`, {
@@ -80,7 +80,7 @@ export const getPostByUrl = (
   data,
   client_token = localStorage.getItem("token")
 ) => {
-  console.log("get post");
+  // console.log("get post");
   // let data = {
   //   post_url: "/post/halo",
   // };
@@ -107,7 +107,7 @@ export const getPostById = (
   data,
   client_token = localStorage.getItem("token")
 ) => {
-  console.log("get post");
+  // console.log("get post");
   // let data = {
   //   post_id: "1",
   // };
@@ -134,7 +134,7 @@ export const getPostByGroup = (
   data,
   client_token = localStorage.getItem("token")
 ) => {
-  console.log("get post");
+  // console.log("get post");
   // let data = {
   //   post_group: "post",
   //   post_status: "1",
