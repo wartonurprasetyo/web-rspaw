@@ -26,7 +26,10 @@ function App() {
   useEffect(() => {
     setContactUs(data.contactUs);
     reqToken()
-      .then((res) => console.log(res))
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem("token", res.data.Response.data);
+      })
       .catch((err) => console.log(err));
   }, []);
 

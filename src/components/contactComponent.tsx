@@ -34,7 +34,7 @@ const ContactComponent = () => {
       <section className="contact-form">
         <div className="container">
           <div className="contact-box row">
-            <div className="col-md-6 col-sm-12">
+            <div className="col-md-6 col-sm-12 pl-4">
               <div className="block">
                 <h2>Office :</h2>
                 <ul className="address-block">
@@ -51,10 +51,11 @@ const ContactComponent = () => {
                     {contactUs.phone}
                   </li>
                 </ul>
-                <ul className="social-icons">
+                <ul className="social-icons text-right">
                   {socmed.map((item: any) => (
-                    <li>
+                    <li key={`socmed-button-${item.name}`}>
                       <a
+                        className=""
                         style={{
                           color: `${item.color}`,
                         }}

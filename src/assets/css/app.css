@@ -256,7 +256,7 @@
 a:hover,
 a:focus,
 a.navlink-socmed:hover {
-  color: white !important;
+  /* color: white !important; */
   text-shadow: 0px 0px 10px var(--secondary-bg-color);
   transition: .5s;
 }
