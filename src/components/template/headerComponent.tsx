@@ -8,7 +8,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { getAllMenus } from "../../services/api_web";
+import { getAllMenus, reqToken } from "../../services/api_web";
 
 const HeaderComponent = () => {
   const [socmed, setSocmed] = useState([
@@ -198,14 +198,25 @@ const HeaderComponent = () => {
     },
   ]);
   useEffect(() => {
-    getAllMenus()
-      .then((res) => {
-        console.log(res);
-        setMenus(res.data.data.nav);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const asyncFuntion = async () => {
+      let token = "";
+      await reqToken()
+        .then((res) => {
+          console.log(res);
+          localStorage.setItem("token", res.data.Response.data);
+          token = res.data.Response.data;
+        })
+        .catch((err) => console.log(err));
+      await getAllMenus(token)
+        .then((res) => {
+          console.log(res);
+          setMenus(res.data.data.nav);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    asyncFuntion();
   }, []);
   return (
     <>
