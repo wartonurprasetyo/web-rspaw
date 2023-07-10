@@ -14,12 +14,12 @@ const PostComponent = () => {
   useEffect(() => {
     console.log(params.id);
     let newData = {
-      post_url: `post/${params.id}`,
+      post_url: `/post/${params.id}`,
     };
     getPostByUrl(newData)
       .then((res) => {
         console.log(res.data);
-        setDataPost(res.data.data);
+        setDataPost(res.data.Data);
       })
       .catch((err) => {
         console.log(err);
