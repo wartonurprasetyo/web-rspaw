@@ -47,32 +47,42 @@ import wbkIGD from "../assets/images/IGD-2-1024x789.png";
 import wbkFisio from "../assets/images/SOSIALISASI-FISIO-1024x781.png";
 import wbkFarmasi from "../assets/images/FARMASI-2-1024x795.png";
 import wbkKeuangan from "../assets/images/KEUANGAN-1024x770.png";
+import slide1 from "../assets/images/slider/slide-1.png";
+import slide2 from "../assets/images/slider/2.png";
+import slide3 from "../assets/images/slider/3.png";
+import slide4 from "../assets/images/slider/1-6.png";
+import slide5 from "../assets/images/slider/PERAWAT-1024x734.png";
+import slide6 from "../assets/images/slider/slide-admedika-3 (1).png";
+import slide7 from "../assets/images/slider/slide-admedika-3.png";
 
 export const slider = [
   {
-    image: "images/blog/blog-post-1.jpg",
-    label:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi ducimus sint iure fuga neque, eum vero qui alias illo esse, perferendis facilis fugiat dolor dicta! Exercitationem illo accusamus magnam error.",
+    image: slide1,
+    label: "",
   },
   {
-    image: "images/blog/blog-post-2.jpg",
-    label:
-      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ex maxime dolore, facilis repellat nam, culpa impedit totam tempora, sit enim beatae doloremque placeat nihil porro iste ab hic unde! ",
+    image: slide2,
+    label: "",
   },
   {
-    image: "images/blog/blog-post-3.jpg",
-    label:
-      " Lorem ipsum dolor sit amet consectetur adipisicing elit. In optio, at explicabo corrupti quos ad, suscipit aperiam perspiciatis et repellendus aut. Magnam maxime culpa qui corrupti laudantium at placeat hic? ",
+    image: slide3,
+    label: "",
   },
   {
-    image: "images/blog/blog-post-4.jpg",
-    label:
-      " Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt alias dolor et, pariatur nostrum inventore quas libero tempore numquam possimus magnam ad facere architecto quidem error quod similique optio quisquam! ",
+    image: slide4,
+    label: "",
   },
   {
-    image: "images/blog/blog-post-5.jpg",
-    label:
-      " Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum architecto rerum exercitationem quasi earum distinctio sit a, animi sequi ut dolores nobis maxime temporibus adipisci eum ipsam cupiditate sunt? Molestias. ",
+    image: slide5,
+    label: "",
+  },
+  {
+    image: slide6,
+    label: "",
+  },
+  {
+    image: slide7,
+    label: "",
   },
 ];
 

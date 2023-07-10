@@ -22,13 +22,6 @@ const HomeComponent = () => {
 
   console.log(infos);
   useEffect(() => {
-    // getAllMenus()
-    //   .then((res) => {
-    //     console.log(res);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
     setSlider(data.slider);
     setInfos(data.info);
     setServices(data.services);
@@ -48,12 +41,13 @@ const HomeComponent = () => {
             swipeable={true}
             infiniteLoop
             autoPlay
+            // stopOnHover
             interval={3000}
             showThumbs={false}
             showStatus={false}
           >
             {slider.map((item: any, index: number) => (
-              <div>
+              <div key={`slide-${index}`}>
                 <img
                   className="animated fadeInUp"
                   onError={imageOnError}
@@ -63,7 +57,9 @@ const HomeComponent = () => {
                   src={item.image}
                   alt="Pepole"
                 />
-                <p className="animated fadeInUp legend">{item.label}</p>
+                {item.label && (
+                  <p className="animated fadeInUp legend">{item.label}</p>
+                )}
               </div>
             ))}
           </Carousel>
