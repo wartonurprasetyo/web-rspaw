@@ -13,7 +13,7 @@ import MaklumatComponent from "./maklumatComponent";
 import VideoComponent from "./videoComponent";
 import WBKFotoComponent from "./WBKFotoComponent";
 import PostComponent from "./postComponent";
-import AdminLayout from "./admin/adminLayout"
+import AdminLayout from "./admin/adminLayout";
 import PostingBerita from "./admin/components/news/postingBerita";
 
 // const HomeComponent = React.lazy(() => import("./homeComponent"));
@@ -95,5 +95,15 @@ const Routes: any = [
     layout: "landing",
     component: <PostComponent />,
   },
+  // {
+  //   path: "/:post",
+  //   layout: "landing",
+  //   component: <PostComponent />,
+  // },
+  // {
+  //   path: "/:post/:id",
+  //   layout: "landing",
+  //   component: <PostComponent />,
+  // },
 ];
 export default Routes;

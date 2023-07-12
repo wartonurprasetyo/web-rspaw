@@ -15,6 +15,11 @@
   --secondary-bg-color-75: #ff8b1fbf;
 }
 
+a.nav-menus.dropdown-toggle::after {
+  left: unset !important;
+  top: unset !important;
+}
+
 .App {
   min-height: calc(60vh);
 }
@@ -36,6 +41,7 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
+  border-radius: .5rem;
 }
 
 .widget-container span {

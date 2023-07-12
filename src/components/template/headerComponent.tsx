@@ -282,7 +282,7 @@ const HeaderComponent = () => {
                         className={`nav-item p-2 dropdown @@${item.parent_url}`}
                       >
                         <a
-                          className="nav-link dropdown-toggle"
+                          className="nav-link dropdown-toggle nav-menus"
                           href="#"
                           id={`dropdown0${index}`}
                           data-toggle="dropdown"
@@ -290,7 +290,7 @@ const HeaderComponent = () => {
                           aria-expanded="false"
                         >
                           {item.parent_label}{" "}
-                          <span className="ion-ios-arrow-down"></span>
+                          {/* <span className="ion-ios-arrow-down"></span> */}
                         </a>
                         <ul
                           className="dropdown-menu"
@@ -301,26 +301,28 @@ const HeaderComponent = () => {
                               itemChild.sub_child &&
                               itemChild.sub_child.length > 0 ? (
                                 <li
-                                  className={`dropdown dropdown-submenu drop${
+                                  className={`dropdown show @@${
+                                    itemChild.child_url
+                                  } dropdown-submenu drop${
                                     itemChild.sub_child.length - 1 == indexChild
                                       ? "left"
                                       : "right"
                                   }`}
                                 >
                                   <a
-                                    className="dropdown-item dropdown-toggle"
-                                    href="#!"
+                                    className="dropdown-item dropdown-toggle nav-menus"
+                                    href="#"
                                     id={`dropdown0${index}0${indexChild}`}
                                     role="button"
                                     data-toggle="dropdown"
                                     aria-haspopup="true"
-                                    aria-expanded="false"
+                                    aria-expanded="true"
                                   >
                                     {itemChild.child_label}
                                   </a>
 
                                   <ul
-                                    className="dropdown-menu"
+                                    className="dropdown-menu show"
                                     aria-labelledby={`dropdown0${index}0${indexChild}`}
                                   >
                                     {itemChild.sub_child?.map(

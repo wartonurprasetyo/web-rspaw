@@ -72,7 +72,7 @@ const HomeComponent = () => {
             {infos.map((info: any) => (
               <div className="col widget">
                 {info.url ? (
-                  <a href={info.url}>
+                  <Link to={info.url}>
                     <div className="block widget-container">
                       <img
                         className="animated fadeInUp"
@@ -83,7 +83,7 @@ const HomeComponent = () => {
                       />
                       <span className="animated fadeInUp">{info.title}</span>
                     </div>
-                  </a>
+                  </Link>
                 ) : (
                   <div className="block widget-container">
                     <img
@@ -110,7 +110,7 @@ const HomeComponent = () => {
               .map((info: any) => (
                 <div className="col widget">
                   {info.url ? (
-                    <a href={info.url}>
+                    <Link to={info.url}>
                       <div className="block ">
                         <img
                           className="animated fadeInUp"
@@ -120,7 +120,7 @@ const HomeComponent = () => {
                           alt=""
                         />
                       </div>
-                    </a>
+                    </Link>
                   ) : (
                     <div className="block ">
                       <img
@@ -145,64 +145,35 @@ const HomeComponent = () => {
             {services
               .filter((item: any) => item.type == "general")
               .map((info: any) => (
-                <div className="col-lg-2 col-md-4 col-sm-6">
-                  <div className="service-item">
-                    <img
-                      // className="animated fadeInUp"
-                      onError={imageOnError}
-                      src={info.img}
-                      style={{
-                        borderRadius: "100%",
-                        width: "100px",
-                        height: "100px",
-                      }}
-                      alt=""
-                    />
-                    <h4 className="animated fadeInUp">{info.title}</h4>
-                    {/* <p>
+                <Link to={info.url} className="col-lg-2 col-md-4 col-sm-6">
+                  <div style={{ userSelect: "none", cursor: "pointer" }}>
+                    <div className="service-item">
+                      <img
+                        // className="animated fadeInUp"
+                        onError={imageOnError}
+                        src={info.img}
+                        style={{
+                          borderRadius: "100%",
+                          width: "100px",
+                          height: "100px",
+                        }}
+                        alt=""
+                      />
+                      <h4 className="animated fadeInUp">{info.title}</h4>
+                      {/* <p>
                       Lorem ipsum dolor sit amet, consectetur adipisicing elit,
                       sed do eiusmod tempor incididunt{" "}
                     </p> */}
+                    </div>
                   </div>
-                </div>
-                // <div className="col widget">
-                //   {info.url ? (
-                //     <a href={info.url}>
-                //       <div className="block widget-container service-widget">
-                //         <img
-                //           className="animated fadeInUp"
-                //           onError={imageOnError}
-                //           src={info.img}
-                //           style={{
-                //             borderRadius: "100%",
-                //           }}
-                //           alt=""
-                //         />
-                //         <span className="animated fadeInUp">{info.title}</span>
-                //       </div>
-                //     </a>
-                //   ) : (
-                //     <div className="block widget-container service-widget">
-                //       <img
-                //         className="animated fadeInUp"
-                //         onError={imageOnError}
-                //         src={info.img}
-                //         style={{
-                //           borderRadius: "100%",
-                //         }}
-                //         alt=""
-                //       />
-                //       <span className="animated fadeInUp">{info.title}</span>
-                //     </div>
-                //   )}
-                // </div>
+                </Link>
               ))}
           </div>
         </div>
       </section>
 
       <section>
-        <div className="container text-center">
+        <div className="container text-center mt-4">
           <h2 className="section-title">Layanan Pengaduan</h2>
           <div className="row">
             {services
@@ -210,11 +181,11 @@ const HomeComponent = () => {
               .map((info: any) => (
                 <div className="col widget">
                   {info.url ? (
-                    <a href={info.url}>
+                    <Link to={info.url}>
                       <div className="block widget-container">
                         <span className="animated fadeInUp">{info.title}</span>
                       </div>
-                    </a>
+                    </Link>
                   ) : (
                     <div className="block widget-container">
                       <span className="animated fadeInUp">{info.title}</span>
@@ -235,7 +206,7 @@ const HomeComponent = () => {
             {newsinfo.map((info: any) => (
               <div className="col-md-4 widget">
                 {info.url ? (
-                  <a href={info.url}>
+                  <Link to={info.url}>
                     <div className="block widget-container news-widget">
                       <img
                         onError={imageOnError}
@@ -259,7 +230,7 @@ const HomeComponent = () => {
                         Read More...
                       </button>
                     </div>
-                  </a>
+                  </Link>
                 ) : (
                   <div className="block widget-container news-widget">
                     <img
@@ -300,7 +271,7 @@ const HomeComponent = () => {
             {pengumuman.map((info: any) => (
               <div className="col-md-4 widget">
                 {info.url ? (
-                  <a href={info.url}>
+                  <Link to={info.url}>
                     <div className="block widget-container news-widget">
                       <img
                         onError={imageOnError}
@@ -324,7 +295,7 @@ const HomeComponent = () => {
                         Read More...
                       </button>
                     </div>
-                  </a>
+                  </Link>
                 ) : (
                   <div className="block widget-container news-widget">
                     <img
@@ -365,7 +336,7 @@ const HomeComponent = () => {
             {artikel.map((info: any) => (
               <div className="col-md-4 widget">
                 {info.url ? (
-                  <a href={info.url}>
+                  <Link to={info.url}>
                     <div className="block widget-container news-widget">
                       <img
                         onError={imageOnError}
@@ -391,7 +362,7 @@ const HomeComponent = () => {
                         </button>
                       </Link>
                     </div>
-                  </a>
+                  </Link>
                 ) : (
                   <div className="block widget-container news-widget">
                     <img
