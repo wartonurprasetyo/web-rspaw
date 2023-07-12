@@ -13,70 +13,87 @@ import MaklumatComponent from "./maklumatComponent";
 import VideoComponent from "./videoComponent";
 import WBKFotoComponent from "./WBKFotoComponent";
 import PostComponent from "./postComponent";
+import AdminLayout from "./admin/adminLayout"
+import PostingBerita from "./admin/components/news/postingBerita";
 
 // const HomeComponent = React.lazy(() => import("./homeComponent"));
 
 const Routes: any = [
   {
+    path: "/web-admin-paw",
+    layout: "admin",
+    component: <AdminLayout />,
+  },
+
+  {
+    path: "/",
+    layout: "landing",
+    component: <HomeComponent />,
+  },
+  {
     path: "/berita-terbaru/:id",
+    layout: "landing",
     component: <BlogComponent />,
   },
   {
     path: "/berita-terbaru",
+    layout: "landing",
     component: <BlogsComponent />,
   },
   {
     path: "/page-kontak",
+    layout: "landing",
     component: <ContactComponent />,
   },
   {
     path: "/page-profil-sejarah",
+    layout: "landing",
     component: <HistoryComponent />,
   },
   {
     path: "/page-lapor",
+    layout: "landing",
     component: <Sp4nComponent />,
   },
   {
     path: "/page-profil-visimisi",
+    layout: "landing",
     component: <VisiMisiComponent />,
   },
   {
     path: "/page-profil-struktur",
+    layout: "landing",
     component: <StrukturComponent />,
   },
   {
     path: "/page-pofil-direksi",
+    layout: "landing",
     component: <DireksiComponent />,
   },
   {
     path: "/page-profil-upaya",
+    layout: "landing",
     component: <UpayaComponent />,
   },
   {
     path: "/page-profil-maklumat",
+    layout: "landing",
     component: <MaklumatComponent />,
   },
   {
     path: "/page-profil-video",
+    layout: "landing",
     component: <VideoComponent />,
   },
   {
     path: "/page-profil-wbk-foto",
+    layout: "landing",
     component: <WBKFotoComponent />,
   },
   {
     path: "/post/:id",
+    layout: "landing",
     component: <PostComponent />,
-  },
-
-  // {
-  //   path: "",
-  //   component: <HomeComponent />,
-  // },
-  {
-    path: "/",
-    component: <HomeComponent />,
   },
 ];
 export default Routes;

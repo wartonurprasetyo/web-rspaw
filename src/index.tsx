@@ -4,7 +4,8 @@ import "./assets/css/style.css";
 import App from "./components/app/App";
 import Admin from "./components/admin/App";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import AdminLayout from "./components/admin/adminLayout";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -12,7 +13,12 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <Switch>
+        <Route path="/web-admin-paw" exact render={(props) => <AdminLayout />} />
+        <Route path="/" exact render={(props) => <App />} />
+        {/* <Redirect from="/" to="/" /> */}
+      </Switch>
+      {/* <App /> */}
     </BrowserRouter>
   </React.StrictMode>
 );
