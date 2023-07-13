@@ -1,6 +1,6 @@
 import moment from "moment"
 import React, { useEffect, useState } from "react"
-import { Button, Col, Form, FormGroup, FormText, Input, Label } from "reactstrap"
+import { Button, Card, CardBody, Col, Form, FormGroup, FormText, Input, Label } from "reactstrap"
 import { addPostNews, getPostById, updatePostNews } from "../../../../services/api_web"
 import { useParams } from "react-router"
 function EditBerita() {
@@ -71,156 +71,161 @@ function EditBerita() {
     }, []);
     return (
         <div>
-            <Form>
-                <FormGroup row>
-                    <Label
-                        for="exampleEmail"
-                        sm={2}
-                    >
-                        Kategori
-                    </Label>
-                    <Col sm={2}>
-                        <Input
-                            value={kategori}
-                            onChange={(e) => {
-                                if (e.target.value == "post") {
-                                    setUrl("/post")
-                                };
-                                setKategori(e.target.value)
-                            }}
-                            placeholder=""
-                            type="select"
+            <Card className="shadow-sm p-3 mb-5 bg-white rounded border-0">
+                <CardBody>
 
+                    <Form>
+                        <FormGroup row>
+                            <Label
+                                for="exampleEmail"
+                                sm={2}
+                            >
+                                Kategori
+                            </Label>
+                            <Col sm={2}>
+                                <Input
+                                    value={kategori}
+                                    onChange={(e) => {
+                                        if (e.target.value == "post") {
+                                            setUrl("/post")
+                                        };
+                                        setKategori(e.target.value)
+                                    }}
+                                    placeholder=""
+                                    type="select"
+
+                                >
+                                    <option disabled>Pilih Kategori</option>
+                                    <option value={"post"}>Berita</option>
+                                    <option value={"page"}>Halaman Statis</option>
+                                </Input>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Label
+                                for="exampleEmail"
+                                sm={2}
+                            >
+                                Author
+                            </Label>
+                            <Col sm={10}>
+                                <Input
+                                    value={author}
+                                    onChange={(e) => setAuthor(e.target.value)}
+                                    placeholder=""
+                                    type="text"
+
+                                />
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Label
+                                for="exampleEmail"
+                                sm={2}
+                            >
+                                Title
+                            </Label>
+                            <Col sm={10}>
+                                <Input
+                                    value={title}
+                                    onChange={(e) => setTitle(e.target.value)}
+                                    placeholder=""
+                                    type="text"
+                                />
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Label
+                                for="exampleEmail"
+                                sm={2}
+                            >
+                                URL
+                            </Label>
+                            <Col sm={10}>
+                                <Input
+                                    value={url}
+                                    onChange={(e) => setUrl(e.target.value)}
+                                    placeholder=""
+                                    type="text"
+
+                                />
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Label
+                                for="exampleEmail"
+                                sm={2}
+                            >
+                                Status
+                            </Label>
+                            <Col sm={2}>
+                                <Input
+                                    value={status}
+                                    onChange={(e) => {
+
+                                        setStatus(e.target.value)
+                                    }}
+                                    placeholder=""
+                                    type="select"
+
+                                >
+                                    <option disabled>Pilih Status</option>
+                                    <option value={"0"}>Draft</option>
+                                    <option value={"1"}>Publish</option>
+                                </Input>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Label
+                                for="examplePassword"
+                                sm={2}
+                            >
+                                Date
+                            </Label>
+                            <Col sm={2}>
+                                <Input
+                                    onChange={(e) => setDate(moment(e.target.value).format("YYYY-MM-DD hh:mm:ss"))}
+                                    type="date"
+                                />
+                            </Col>
+                        </FormGroup>
+
+                        <FormGroup row>
+                            <Label
+                                for="exampleText"
+                                sm={2}
+                            >
+                                Content
+                            </Label>
+                            <Col sm={10}>
+                                <Input
+                                    value={content}
+                                    onChange={(e) => setContent(e.target.value)}
+                                    type="textarea"
+                                    rows="10"
+                                />
+                            </Col>
+                        </FormGroup>
+
+
+                        <FormGroup
+                            check
+                            row
                         >
-                            <option disabled>Pilih Kategori</option>
-                            <option value={"post"}>Berita</option>
-                            <option value={"page"}>Halaman Statis</option>
-                        </Input>
-                    </Col>
-                </FormGroup>
-                <FormGroup row>
-                    <Label
-                        for="exampleEmail"
-                        sm={2}
-                    >
-                        Author
-                    </Label>
-                    <Col sm={10}>
-                        <Input
-                            value={author}
-                            onChange={(e) => setAuthor(e.target.value)}
-                            placeholder=""
-                            type="text"
-
-                        />
-                    </Col>
-                </FormGroup>
-                <FormGroup row>
-                    <Label
-                        for="exampleEmail"
-                        sm={2}
-                    >
-                        Title
-                    </Label>
-                    <Col sm={10}>
-                        <Input
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
-                            placeholder=""
-                            type="text"
-                        />
-                    </Col>
-                </FormGroup>
-                <FormGroup row>
-                    <Label
-                        for="exampleEmail"
-                        sm={2}
-                    >
-                        URL
-                    </Label>
-                    <Col sm={10}>
-                        <Input
-                            value={url}
-                            onChange={(e) => setUrl(e.target.value)}
-                            placeholder=""
-                            type="text"
-
-                        />
-                    </Col>
-                </FormGroup>
-                <FormGroup row>
-                    <Label
-                        for="exampleEmail"
-                        sm={2}
-                    >
-                        Status
-                    </Label>
-                    <Col sm={2}>
-                        <Input
-                            value={status}
-                            onChange={(e) => {
-
-                                setStatus(e.target.value)
-                            }}
-                            placeholder=""
-                            type="select"
-
-                        >
-                            <option disabled>Pilih Status</option>
-                            <option value={"0"}>Draft</option>
-                            <option value={"1"}>Publish</option>
-                        </Input>
-                    </Col>
-                </FormGroup>
-                <FormGroup row>
-                    <Label
-                        for="examplePassword"
-                        sm={2}
-                    >
-                        Date
-                    </Label>
-                    <Col sm={2}>
-                        <Input
-                            onChange={(e) => setDate(moment(e.target.value).format("YYYY-MM-DD hh:mm:ss"))}
-                            type="date"
-                        />
-                    </Col>
-                </FormGroup>
-
-                <FormGroup row>
-                    <Label
-                        for="exampleText"
-                        sm={2}
-                    >
-                        Content
-                    </Label>
-                    <Col sm={10}>
-                        <Input
-                            value={content}
-                            onChange={(e) => setContent(e.target.value)}
-                            type="textarea"
-                            rows="10"
-                        />
-                    </Col>
-                </FormGroup>
-
-
-                <FormGroup
-                    check
-                    row
-                >
-                    <Col
-                        sm={{
-                            offset: 2,
-                            size: 10
-                        }}
-                    >
-                        <Button onClick={() => PostNews()}>
-                            Submit
-                        </Button>
-                    </Col>
-                </FormGroup>
-            </Form>
+                            <Col
+                                sm={{
+                                    offset: 2,
+                                    size: 10
+                                }}
+                            >
+                                <Button onClick={() => PostNews()}>
+                                    Submit
+                                </Button>
+                            </Col>
+                        </FormGroup>
+                    </Form>
+                </CardBody>
+            </Card>
         </div>
     )
 }
