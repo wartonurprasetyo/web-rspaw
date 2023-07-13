@@ -5,6 +5,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Link } from "react-router-dom";
 import { formatDate, imageOnError, trimText } from "../assets/js/__global";
 import * as data from "./fakeData";
+import { getPostByGroup, reqToken } from "../services/api_web";
 // import InstagramEmbed from "react-instagram-embed";
 // import instagramFeed from "react-instagram-feed";
 // import InstagramFeed from "react-ig-feed";
@@ -20,12 +21,35 @@ const HomeComponent = () => {
   const [youtubeUrl, setYoutubeUrl] = useState("");
   const [schedule, setSchedule] = useState<any>({});
 
+  const getPost = async () => {
+    let data = {
+      post_group: "post",
+      post_status: "1",
+    };
+    await reqToken()
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem("token", res.data.Response.data);
+        // token = res.data.Response.data;
+      })
+      .catch((err) => console.log(err));
+    await getPostByGroup(data)
+      .then((resp) => {
+        console.log(resp);
+        setNewsInfo(resp.data.Data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   console.log(infos);
   useEffect(() => {
+    getPost();
     setSlider(data.slider);
     setInfos(data.info);
     setServices(data.services);
-    setNewsInfo(data.newsinfo);
+    // setNewsInfo(data.newsinfo);
     setArtikel(data.newsinfo);
     setPengumuman(data.newsinfo);
     setSchedule(data.schedule);
@@ -203,63 +227,68 @@ const HomeComponent = () => {
             <h2 className="section-title">Berita</h2>
           </Link>
           <div className="row">
-            {newsinfo.map((info: any) => (
-              <div className="col-md-4 widget">
-                {info.url ? (
-                  <Link to={info.url}>
-                    <div className="block widget-container news-widget">
-                      <img
-                        onError={imageOnError}
-                        src={info.image}
-                        className="animated fadeInUp rounded img-fluid"
-                        alt=""
-                      />
-                      <span className="animated fadeInUp date">
-                        {formatDate(info.date)}
-                      </span>
-                      <span className="animated fadeInUp title">
-                        {info.title}
-                      </span>
-                      <span className="animated fadeInUp description">
-                        {info.description &&
-                        trimText(info.description).length > 75
-                          ? trimText(info.description).substring(0, 75) + "..."
-                          : trimText(info.description)}
-                      </span>
-                      <button className="animated fadeInUp btn readmore">
-                        Read More...
-                      </button>
-                    </div>
-                  </Link>
-                ) : (
-                  <div className="block widget-container news-widget">
-                    <img
-                      onError={imageOnError}
-                      src={info.image}
-                      className="animated fadeInUp rounded img-fluid"
-                      alt=""
-                    />
-                    <span className="animated fadeInUp date">
-                      {formatDate(info.date)}
-                    </span>
-                    <span className="animated fadeInUp title">
-                      {info.title}
-                    </span>
-                    <span className="animated fadeInUp description">
-                      {info.description &&
-                      trimText(info.description).length > 75
-                        ? trimText(info.description).substring(0, 75) + "..."
-                        : trimText(info.description)}
-                    </span>
-                    <Link to={`/berita-terbaru/${info.id}`}>
-                      <button className="animated fadeInUp btn readmore">
-                        Read More...
-                      </button>
-                    </Link>
+            {newsinfo.map(
+              (info: any, index: number) =>
+                index < 3 && (
+                  <div className="col-md-4 widget">
+                    {info.post_url ? (
+                      <div className="block widget-container news-widget">
+                        <img
+                          onError={imageOnError}
+                          src={info.post_image}
+                          className="animated fadeInUp rounded img-fluid"
+                          alt=""
+                        />
+                        <span className="animated fadeInUp date">
+                          {formatDate(info.post_date)}
+                        </span>
+                        <span className="animated fadeInUp title">
+                          {info.post_title}
+                        </span>
+                        <span className="animated fadeInUp description">
+                          {info.post_content &&
+                          trimText(info.post_content).length > 75
+                            ? trimText(info.post_content).substring(0, 75) +
+                              "..."
+                            : trimText(info.post_content)}
+                        </span>
+                        <Link to={info.post_url}>
+                          <button className="animated fadeInUp btn readmore">
+                            Read More...
+                          </button>
+                        </Link>
+                      </div>
+                    ) : (
+                      <div className="block widget-container news-widget">
+                        <img
+                          onError={imageOnError}
+                          src={info.image}
+                          className="animated fadeInUp rounded img-fluid"
+                          alt=""
+                        />
+                        <span className="animated fadeInUp date">
+                          {formatDate(info.date)}
+                        </span>
+                        <span className="animated fadeInUp title">
+                          {info.title}
+                        </span>
+                        <span className="animated fadeInUp description">
+                          {info.post_content &&
+                          trimText(info.post_content).length > 75
+                            ? trimText(info.post_content).substring(0, 75) +
+                              "..."
+                            : trimText(info.post_content)}
+                        </span>
+                        <Link to={`/berita-terbaru/${info.id}`}>
+                          <button className="animated fadeInUp btn readmore">
+                            Read More...
+                          </button>
+                        </Link>
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
-            ))}
+                )
+            )}
           </div>
         </div>
       </section>
