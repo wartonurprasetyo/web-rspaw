@@ -1,40 +1,67 @@
 import moment from "moment"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Button, Col, Form, FormGroup, FormText, Input, Label } from "reactstrap"
-import { addPostNews } from "../../../../services/api_web"
-function PostingBerita() {
+import { addPostNews, getPostById, updatePostNews } from "../../../../services/api_web"
+import { useParams } from "react-router"
+function EditBerita() {
 
     const [author, setAuthor] = useState("")
     const [date, setDate] = useState("")
     const [content, setContent] = useState("")
     const [title, setTitle] = useState("")
+    let param: any = useParams()
+
+    const [data, setData]: any = useState()
+
 
     function PostNews() {
         let query = {
-            "post_id": "",
+            "post_id": data.post_id,
             "post_author": author,
             "post_date": date,
             "post_content": "<h3>" + content + "</h3>",
             "post_title": title,
-            "post_status": "1",
-            "post_created": moment().format("YYYY-MM-DD hh:mm:ss"),
+            "post_status": data.post_status,
+            "post_created": data.post_created,
             "post_updated": moment().format("YYYY-MM-DD hh:mm:ss"),
-            "post_group": "post",
-            "post_url": "/post/test-header"
+            "post_group": data.post_group,
+            "post_url": data.post_url
         }
-        addPostNews(query).then(resp => {
+        updatePostNews(query).then(resp => {
             console.log(resp)
             setAuthor("")
             setContent("")
             setTitle("")
-
             window.location.replace("/web-admin-paw")
+
 
         }).catch(err => {
             console.log(err)
 
         })
     }
+    useEffect(() => {
+
+        let query = {
+            post_id: param.id
+        }
+        console.log(param.id);
+
+        getPostById(query).then(resp => {
+            var conten = resp.data.Data.post_content.replaceAll("<h3>", "")
+            var contenall = conten.replaceAll("</h3>", "")
+            console.log(resp.data.Data, contenall);
+            setAuthor(resp.data.Data.post_author)
+            setDate(resp.data.Data.post_date)
+            setContent(contenall)
+            setTitle(resp.data.Data.post_title)
+            setData(resp.data.Data)
+
+        }).catch(err => {
+            console.log(err);
+
+        })
+    }, []);
     return (
         <div>
             <Form>
@@ -122,4 +149,4 @@ function PostingBerita() {
         </div>
     )
 }
-export default PostingBerita
+export default EditBerita

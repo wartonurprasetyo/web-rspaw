@@ -15,6 +15,7 @@ import WBKFotoComponent from "./WBKFotoComponent";
 import PostComponent from "./postComponent";
 import AdminLayout from "./admin/adminLayout";
 import PostingBerita from "./admin/components/news/postingBerita";
+import LoginAdmin from "./admin/login/login";
 
 // const HomeComponent = React.lazy(() => import("./homeComponent"));
 
@@ -24,7 +25,11 @@ const Routes: any = [
     layout: "admin",
     component: <AdminLayout />,
   },
-
+  {
+    path: "/login",
+    layout: "admin",
+    component: <LoginAdmin />,
+  },
   {
     path: "/",
     layout: "landing",

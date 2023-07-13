@@ -5,6 +5,8 @@ import { Switch, Route } from "react-router-dom";
 
 import Topbar from "./Topbar";
 import PostingBerita from "../news/postingBerita";
+import TabelPost from "../news/listPosting";
+import EditBerita from "../news/editBerita";
 
 const Content = ({ sidebarIsOpen, toggleSidebar }) => (
   <Container
@@ -14,7 +16,10 @@ const Content = ({ sidebarIsOpen, toggleSidebar }) => (
     <Topbar toggleSidebar={toggleSidebar} />
     <Switch>
 
-      <Route exact path="/web-admin-paw/news" component={() => <PostingBerita />} />
+      <Route exact path="/web-admin-paw" component={() => <TabelPost />} />
+      <Route exact path="/web-admin-paw/news/add" component={() => <PostingBerita />} />
+      <Route exact path="/web-admin-paw/news/edit/:id" component={() => <EditBerita />} />
+      {/* <Redirect from="/" to="/" /> */}
     </Switch>
   </Container>
 );

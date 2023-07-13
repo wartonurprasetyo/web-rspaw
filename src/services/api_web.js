@@ -159,6 +159,63 @@ export const getPostByGroup = (
 };
 
 
+export const listPostByGroup = (
+  data,
+  client_token = localStorage.getItem("token")
+) => {
+  // console.log("get post");
+  // let data = {
+  //   post_group: "post",
+  //   post_status: "1",
+  // };
+  return new Promise((resolve, reject) => {
+    axios
+      .post(`${baseUrlDev}client/post/group`, data, {
+        headers: {
+          client_uid: `rspaw`,
+          client_key:
+            "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
+          client_token: client_token,
+        },
+      })
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+
+export const loginPage = (
+  data,
+  client_token = localStorage.getItem("token")
+) => {
+  // console.log("get post");
+  // let data = {
+  //   post_group: "post",
+  //   post_status: "1",
+  // };
+  return new Promise((resolve, reject) => {
+    axios
+      .post(`${baseUrlDev}client/adm/login`, data, {
+        headers: {
+          client_uid: `rspaw`,
+          client_key:
+            "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
+          client_token: client_token,
+        },
+      })
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
 export const addPostNews = (
   data,
   client_token = localStorage.getItem("token")
@@ -171,6 +228,61 @@ export const addPostNews = (
   return new Promise((resolve, reject) => {
     axios
       .post(`${baseUrlDev}client/post/insert`, data, {
+        headers: {
+          client_uid: `rspaw`,
+          client_key:
+            "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
+          client_token: client_token,
+        },
+      })
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+export const updatePostNews = (
+  data,
+  client_token = localStorage.getItem("token")
+) => {
+  // console.log("get post");
+  // let data = {
+  //   post_group: "post",
+  //   post_status: "1",
+  // };
+  return new Promise((resolve, reject) => {
+    axios
+      .put(`${baseUrlDev}client/post/update`, data, {
+        headers: {
+          client_uid: `rspaw`,
+          client_key:
+            "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
+          client_token: client_token,
+        },
+      })
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+export const deletePosting = (
+  id,
+  client_token = localStorage.getItem("token")
+) => {
+  console.log(client_token);
+  let data = {
+    post_id: id,
+  };
+  return new Promise((resolve, reject) => {
+    axios
+      .delete(`${baseUrlDev}client/post/delete`, data, {
         headers: {
           client_uid: `rspaw`,
           client_key:

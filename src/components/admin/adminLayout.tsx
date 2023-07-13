@@ -13,7 +13,6 @@ const AdminLayout = () => {
             let token = "";
             await reqToken()
                 .then((res) => {
-                    console.log(res);
                     localStorage.setItem("token", res.data.Response.data);
                     token = res.data.Response.data;
                 })
