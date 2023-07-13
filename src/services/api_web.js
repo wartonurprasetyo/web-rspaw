@@ -276,20 +276,20 @@ export const deletePosting = (
   id,
   client_token = localStorage.getItem("token")
 ) => {
-  console.log(client_token);
-  let data = {
-    post_id: id,
-  };
+
   return new Promise((resolve, reject) => {
     axios
-      .delete(`${baseUrlDev}client/post/delete`, data, {
+      .delete(`${baseUrlDev}client/post/delete`, {
         headers: {
+          'Content-Type': 'application/json',
           client_uid: `rspaw`,
           client_key:
             "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
           client_token: client_token,
         },
-      })
+        data: { post_id: id }
+      },
+      )
       .then((res) => {
         resolve(res);
       })

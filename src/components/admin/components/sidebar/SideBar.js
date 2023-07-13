@@ -32,7 +32,7 @@ const SideBar = ({ isOpen, toggle }) => (
       <Nav vertical className="list-unstyled pb-3">
 
         <NavItem>
-          <NavLink tag={Link} to={"/web-admin-paw/news"} style={{ color: 'white', }} h>
+          <NavLink tag={Link} to={"/web-admin-paw"} style={{ color: 'white', }} h>
             Data Info Dan Berita
           </NavLink>
         </NavItem>

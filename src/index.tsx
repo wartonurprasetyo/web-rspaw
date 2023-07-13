@@ -7,6 +7,8 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import AdminLayout from "./components/admin/adminLayout";
 import LoginAdmin from "./components/admin/login/login";
+import PostingBerita from "./components/admin/components/news/postingBerita";
+import EditBerita from "./components/admin/components/news/editBerita";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -17,6 +19,9 @@ root.render(
       <Switch>
         <Route path="/web-admin-paw" exact render={(props) => <AdminLayout />} />
         <Route path="/web-admin-paw/news" exact render={(props) => <AdminLayout />} />
+
+        <Route exact path="/web-admin-paw/news/add" render={(props) => <AdminLayout />} />
+        <Route exact path="/web-admin-paw/news/edit/:id" render={(props) => <AdminLayout />} />
         <Route path="/login" exact render={(props) => <LoginAdmin />} />
         <Route path="/" exact render={(props) => <App />} />
         {/* <Redirect from="/" to="/" /> */}

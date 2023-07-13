@@ -8,6 +8,9 @@ function PostingBerita() {
     const [date, setDate] = useState("")
     const [content, setContent] = useState("")
     const [title, setTitle] = useState("")
+    const [status, setStatus] = useState("0")
+    const [url, setUrl] = useState("")
+    const [kategori, setKategori] = useState("post")
 
     function PostNews() {
         let query = {
@@ -16,11 +19,11 @@ function PostingBerita() {
             "post_date": date,
             "post_content": "<h3>" + content + "</h3>",
             "post_title": title,
-            "post_status": "1",
+            "post_status": status,
             "post_created": moment().format("YYYY-MM-DD hh:mm:ss"),
             "post_updated": moment().format("YYYY-MM-DD hh:mm:ss"),
-            "post_group": "post",
-            "post_url": "/post/test-header"
+            "post_group": kategori,
+            "post_url": url
         }
         addPostNews(query).then(resp => {
             console.log(resp)
@@ -43,6 +46,32 @@ function PostingBerita() {
                         for="exampleEmail"
                         sm={2}
                     >
+                        Kategori
+                    </Label>
+                    <Col sm={2}>
+                        <Input
+                            value={kategori}
+                            onChange={(e) => {
+                                if (e.target.value == "post") {
+                                    setUrl("/post")
+                                };
+                                setKategori(e.target.value)
+                            }}
+                            placeholder=""
+                            type="select"
+
+                        >
+                            <option disabled>Pilih Kategori</option>
+                            <option value={"post"}>Berita</option>
+                            <option value={"page"}>Halaman Statis</option>
+                        </Input>
+                    </Col>
+                </FormGroup>
+                <FormGroup row>
+                    <Label
+                        for="exampleEmail"
+                        sm={2}
+                    >
                         Author
                     </Label>
                     <Col sm={10}>
@@ -53,6 +82,73 @@ function PostingBerita() {
                             type="text"
 
                         />
+                    </Col>
+                </FormGroup>
+                <FormGroup row>
+                    <Label
+                        for="exampleEmail"
+                        sm={2}
+                    >
+                        Title
+                    </Label>
+                    <Col sm={10}>
+                        <Input
+                            value={title}
+                            onChange={(e) => {
+                                setTitle(e.target.value)
+
+
+
+                            }}
+                            onBlur={(e) => {
+                                var post = url + "/"
+                                var tes = e.target.value.replaceAll(" ", "-").toLowerCase()
+                                setUrl(post + tes)
+                            }}
+                            placeholder=""
+                            type="text"
+                        />
+                    </Col>
+                </FormGroup>
+                <FormGroup row>
+                    <Label
+                        for="exampleEmail"
+                        sm={2}
+                    >
+                        URL
+                    </Label>
+                    <Col sm={10}>
+                        <Input
+                            value={url}
+                            onChange={(e) => setUrl(e.target.value)}
+                            placeholder=""
+                            type="text"
+
+                        />
+                    </Col>
+                </FormGroup>
+                <FormGroup row>
+                    <Label
+                        for="exampleEmail"
+                        sm={2}
+                    >
+                        Status
+                    </Label>
+                    <Col sm={2}>
+                        <Input
+                            value={status}
+                            onChange={(e) => {
+
+                                setStatus(e.target.value)
+                            }}
+                            placeholder=""
+                            type="select"
+
+                        >
+                            <option disabled>Pilih Status</option>
+                            <option value={"0"}>Draft</option>
+                            <option value={"1"}>Publish</option>
+                        </Input>
                     </Col>
                 </FormGroup>
                 <FormGroup row>
@@ -69,22 +165,7 @@ function PostingBerita() {
                         />
                     </Col>
                 </FormGroup>
-                <FormGroup row>
-                    <Label
-                        for="exampleEmail"
-                        sm={2}
-                    >
-                        Title
-                    </Label>
-                    <Col sm={10}>
-                        <Input
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
-                            placeholder=""
-                            type="text"
-                        />
-                    </Col>
-                </FormGroup>
+
                 <FormGroup row>
                     <Label
                         for="exampleText"
@@ -109,11 +190,11 @@ function PostingBerita() {
                 >
                     <Col
                         sm={{
-                            offset: 2,
-                            size: 10
+                            offset: 12,
+                            size: 2
                         }}
                     >
-                        <Button onClick={() => PostNews()}>
+                        <Button className="btn btn-primary" onClick={() => PostNews()}>
                             Submit
                         </Button>
                     </Col>

@@ -28,7 +28,7 @@ const TabelPost = () => {
         }
 
         console.log(value)
-        deletePosting(query).then(resp => {
+        deletePosting(value).then(resp => {
             getData()
         }).catch(err => { console.log(err) })
 
