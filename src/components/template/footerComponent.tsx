@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import * as data from "../fakeData";
 import { Link } from "react-router-dom";
+import { getPostByGroup, reqToken } from "../../services/api_web";
 
 const FooterComponent = () => {
   const [recent, setRecent] = useState<any[]>([]);
@@ -21,9 +22,33 @@ const FooterComponent = () => {
   const [socmed, setSocmed] = useState([...data.socmedFooter]);
 
   const [icons, setIcon] = useState<any>({ ...data.iconsSocmed });
+
+  const getPost = async () => {
+    let data = {
+      post_group: "post",
+      post_status: "1",
+    };
+    await reqToken()
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem("token", res.data.Response.data);
+        // token = res.data.Response.data;
+      })
+      .catch((err) => console.log(err));
+    await getPostByGroup(data)
+      .then((resp) => {
+        console.log(resp);
+        setRecent(resp.data.Data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
-    setRecent(data.newsinfo);
+    getPost();
     setContactUs(data.contactUs);
+    // setNewsInfo(data.newsinfo);
   }, []);
 
   return (
@@ -37,8 +62,8 @@ const FooterComponent = () => {
             <div className="col-lg-4 col-xs-12 recent-news">
               <h3>Berita Terbaru</h3>
               {recent.map((item: any) => (
-                <Link to={`/berita-terbaru/${item.id}`}>
-                  <div className="mb-4 text-left">{item.title}</div>
+                <Link to={`${item.post_url}`}>
+                  <div className="mb-4 text-left">{item.post_title}</div>
                 </Link>
               ))}
             </div>

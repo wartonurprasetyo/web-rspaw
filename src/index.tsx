@@ -17,13 +17,29 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Switch>
-        <Route path="/web-admin-paw" exact render={(props) => <AdminLayout />} />
-        <Route path="/web-admin-paw/news" exact render={(props) => <AdminLayout />} />
+        <Route
+          path="/web-admin-paw"
+          exact
+          render={(props) => <AdminLayout />}
+        />
+        <Route
+          path="/web-admin-paw/news"
+          exact
+          render={(props) => <AdminLayout />}
+        />
 
-        <Route exact path="/web-admin-paw/news/add" render={(props) => <AdminLayout />} />
-        <Route exact path="/web-admin-paw/news/edit/:id" render={(props) => <AdminLayout />} />
+        <Route
+          exact
+          path="/web-admin-paw/news/add"
+          render={(props) => <AdminLayout />}
+        />
+        <Route
+          exact
+          path="/web-admin-paw/news/edit/:id"
+          render={(props) => <AdminLayout />}
+        />
         <Route path="/login" exact render={(props) => <LoginAdmin />} />
-        <Route path="/" exact render={(props) => <App />} />
+        <Route path="/" render={(props) => <App />} />
         {/* <Redirect from="/" to="/" /> */}
       </Switch>
       {/* <App /> */}

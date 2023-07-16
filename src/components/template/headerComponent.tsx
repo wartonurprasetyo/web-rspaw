@@ -364,9 +364,10 @@ const HeaderComponent = () => {
                         <Link
                           className="nav-link"
                           to={`${
-                            item.parent_url == "#"
-                              ? "/post/test-header"
-                              : item.parent_url
+                            // item.parent_url == "#"
+                            //   ? "/post/test-header"
+                            //   : item.parent_url
+                            item.parent_url
                           }`}
                         >
                           {item.parent_label}
