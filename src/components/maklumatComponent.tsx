@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { useParams } from "react-router-dom";
-import * as data from "./fakeData";
+import * as data from "./datas/fakeData";
 import { Parser } from "html-to-react";
 
 import LightGallery from "lightgallery/react";
@@ -23,7 +23,7 @@ const MaklumatComponent = () => {
 
   const params: any = useParams();
   const onInit = () => {
-    console.log("lightGallery has been initialized");
+    // console.log("lightGallery has been initialized");
   };
   useEffect(() => {
     // setvisimisi(data.visimisi);

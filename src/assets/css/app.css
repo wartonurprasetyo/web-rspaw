@@ -15,6 +15,10 @@
   --secondary-bg-color-75: #ff8b1fbf;
 }
 
+/* .custom-spinner {
+  color: var(--main-bg-color) !important;
+} */
+
 a.nav-menus.dropdown-toggle::after {
   left: unset !important;
   top: unset !important;
@@ -339,6 +343,12 @@ a.navlink-socmed {
   margin-bottom: 4rem;
 }
 
+.section-title.section-title-page {
+  /* text-align: center !important; */
+  font-size: 3rem;
+  margin-bottom: 4rem;
+}
+
 .portfolio-item {
   /* width: 30%; */
   padding: .3rem;
@@ -352,4 +362,8 @@ a.navlink-socmed {
   color: var(--secondary-bg-color);
   font-weight: 600;
   text-align: center;
+}
+
+.section.page-section {
+  padding: 30px 0 !important;
 }

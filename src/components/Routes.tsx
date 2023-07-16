@@ -16,6 +16,7 @@ import PostComponent from "./postComponent";
 import AdminLayout from "./admin/adminLayout";
 import PostingBerita from "./admin/components/news/postingBerita";
 import LoginAdmin from "./admin/login/login";
+import PageComponent from "./pageComponent";
 
 // const HomeComponent = React.lazy(() => import("./homeComponent"));
 
@@ -50,36 +51,36 @@ const Routes: any = [
     layout: "landing",
     component: <ContactComponent />,
   },
-  {
-    path: "/page-profil-sejarah",
-    layout: "landing",
-    component: <HistoryComponent />,
-  },
-  {
-    path: "/page-lapor",
-    layout: "landing",
-    component: <Sp4nComponent />,
-  },
-  {
-    path: "/page-profil-visimisi",
-    layout: "landing",
-    component: <VisiMisiComponent />,
-  },
-  {
-    path: "/page-profil-struktur",
-    layout: "landing",
-    component: <StrukturComponent />,
-  },
-  {
-    path: "/page-pofil-direksi",
-    layout: "landing",
-    component: <DireksiComponent />,
-  },
-  {
-    path: "/page-profil-upaya",
-    layout: "landing",
-    component: <UpayaComponent />,
-  },
+  // {
+  //   path: "/page-profil-sejarah",
+  //   layout: "landing",
+  //   component: <HistoryComponent />,
+  // },
+  // {
+  //   path: "/page-lapor",
+  //   layout: "landing",
+  //   component: <Sp4nComponent />,
+  // },
+  // {
+  //   path: "/page-profil-visimisi",
+  //   layout: "landing",
+  //   component: <VisiMisiComponent />,
+  // },
+  // {
+  //   path: "/page-profil-struktur",
+  //   layout: "landing",
+  //   component: <StrukturComponent />,
+  // },
+  // {
+  //   path: "/page-pofil-direksi",
+  //   layout: "landing",
+  //   component: <DireksiComponent />,
+  // },
+  // {
+  //   path: "/page-profil-upaya",
+  //   layout: "landing",
+  //   component: <UpayaComponent />,
+  // },
   {
     path: "/page-profil-maklumat",
     layout: "landing",
@@ -100,11 +101,11 @@ const Routes: any = [
     layout: "landing",
     component: <PostComponent />,
   },
-  // {
-  //   path: "/:post",
-  //   layout: "landing",
-  //   component: <PostComponent />,
-  // },
+  {
+    path: "/:page",
+    layout: "landing",
+    component: <PageComponent />,
+  },
   // {
   //   path: "/:post/:id",
   //   layout: "landing",

@@ -1,10 +1,10 @@
-import layananUnggulanImg from "../assets/images/LAYANAN-UNGGULAN.png";
-import rawatInapImg from "../assets/images/ranap-icon.png";
-import rawatJalanImg from "../assets/images/rajal-icon.png";
-import layananIGDImg from "../assets/images/igd-icon.png";
-import penunjangMedikImg from "../assets/images/penunjang-medik-icon2.png";
-import medicalCheckupImg from "../assets/images/penunjang-medik-icon.png";
-import fasilitasUmumImg from "../assets/images/fasilitas-umum.jpeg";
+import layananUnggulanImg from "../../assets/images/LAYANAN-UNGGULAN.png";
+import rawatInapImg from "../../assets/images/ranap-icon.png";
+import rawatJalanImg from "../../assets/images/rajal-icon.png";
+import layananIGDImg from "../../assets/images/igd-icon.png";
+import penunjangMedikImg from "../../assets/images/penunjang-medik-icon2.png";
+import medicalCheckupImg from "../../assets/images/penunjang-medik-icon.png";
+import fasilitasUmumImg from "../../assets/images/fasilitas-umum.jpeg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebookSquare,
@@ -18,42 +18,42 @@ import {
   faEnvelopeSquare,
 } from "@fortawesome/free-solid-svg-icons";
 
-import imageMaklumatIGD from "../assets/images/standar-pelayanan-IGD.png";
-import imageMaklumatRajal from "../assets/images/standar-pelayanan-RAJAL.png";
-import imageMaklumatRanap from "../assets/images/standar-pelayanan-rawat-inap.png";
-import imageMaklumatRadiologi from "../assets/images/standar-pelayanan-Radiologi-1.png";
-import imageMaklumatLaborat from "../assets/images/standar-pelayanan-Laboratorium.png";
-import imageMaklumatRehab from "../assets/images/standar-pelayanan-rehab-medik.png";
-import imageMaklumatFarmasi from "../assets/images/standar-pelayanan-farmasi.png";
-import imageMaklumatGizi from "../assets/images/standar-pelayanan-farmasi.png";
-import imageMaklumatRumahSakit from "../assets/images/RS-1024x683.png";
-import imageMaklumatIntensif from "../assets/images/intensif-1024x683.png";
-import imageMaklumatIBS from "../assets/images/IBS-1024x683.png";
-import imageMaklumatRekamMedic from "../assets/images/rekam-medik-1024x683.png";
-import imageMaklumatAmbulans from "../assets/images/ambulans-1024x683.png";
-import imageMaklumatJenazah from "../assets/images/JENAZAH-1024x683.png";
-import imageMaklumatKesling from "../assets/images/KESLING-1024x683.png";
-import imageMaklumatPPI from "../assets/images/PPI-1024x683.png";
-import imageMaklumatPembayaran from "../assets/images/maklumat-pembayaran-pihak-3-1024x683.png";
-import imageMaklumatPulang from "../assets/images/maklumat-pasien-pulang-1024x683.png";
-import imageMaklumatLaundry from "../assets/images/LAUNDRY-1024x683.png";
-import imageMaklumatHumas from "../assets/images/maklumat-humas-1024x683.png";
-import wbkGizi from "../assets/images/SOSIALISASI-GIZI-2-1024x797.png";
-import wbkSatpam from "../assets/images/SOSIALISASI-SATPAM-1024x822.png";
-import wbkGudang from "../assets/images/GUDANG-1024x799.png";
-import wbkPerawat from "../assets/images/PERAWAT-1024x734.png";
-import wbkCM from "../assets/images/CM-1024x782.png";
-import wbkIGD from "../assets/images/IGD-2-1024x789.png";
-import wbkFisio from "../assets/images/SOSIALISASI-FISIO-1024x781.png";
-import wbkFarmasi from "../assets/images/FARMASI-2-1024x795.png";
-import wbkKeuangan from "../assets/images/KEUANGAN-1024x770.png";
-import slide1 from "../assets/images/slider/slide-1.png";
-import slide2 from "../assets/images/slider/2.png";
-import slide3 from "../assets/images/slider/3.png";
-import slide4 from "../assets/images/slider/1-6.png";
-import slide5 from "../assets/images/slider/PERAWAT-1024x734.png";
-import slide6 from "../assets/images/slider/slide-admedika-3 (1).png";
-import slide7 from "../assets/images/slider/slide-admedika-3.png";
+import imageMaklumatIGD from "../../assets/images/standar-pelayanan-IGD.png";
+import imageMaklumatRajal from "../../assets/images/standar-pelayanan-RAJAL.png";
+import imageMaklumatRanap from "../../assets/images/standar-pelayanan-rawat-inap.png";
+import imageMaklumatRadiologi from "../../assets/images/standar-pelayanan-Radiologi-1.png";
+import imageMaklumatLaborat from "../../assets/images/standar-pelayanan-Laboratorium.png";
+import imageMaklumatRehab from "../../assets/images/standar-pelayanan-rehab-medik.png";
+import imageMaklumatFarmasi from "../../assets/images/standar-pelayanan-farmasi.png";
+import imageMaklumatGizi from "../../assets/images/standar-pelayanan-farmasi.png";
+import imageMaklumatRumahSakit from "../../assets/images/RS-1024x683.png";
+import imageMaklumatIntensif from "../../assets/images/intensif-1024x683.png";
+import imageMaklumatIBS from "../../assets/images/IBS-1024x683.png";
+import imageMaklumatRekamMedic from "../../assets/images/rekam-medik-1024x683.png";
+import imageMaklumatAmbulans from "../../assets/images/ambulans-1024x683.png";
+import imageMaklumatJenazah from "../../assets/images/JENAZAH-1024x683.png";
+import imageMaklumatKesling from "../../assets/images/KESLING-1024x683.png";
+import imageMaklumatPPI from "../../assets/images/PPI-1024x683.png";
+import imageMaklumatPembayaran from "../../assets/images/maklumat-pembayaran-pihak-3-1024x683.png";
+import imageMaklumatPulang from "../../assets/images/maklumat-pasien-pulang-1024x683.png";
+import imageMaklumatLaundry from "../../assets/images/LAUNDRY-1024x683.png";
+import imageMaklumatHumas from "../../assets/images/maklumat-humas-1024x683.png";
+import wbkGizi from "../../assets/images/SOSIALISASI-GIZI-2-1024x797.png";
+import wbkSatpam from "../../assets/images/SOSIALISASI-SATPAM-1024x822.png";
+import wbkGudang from "../../assets/images/GUDANG-1024x799.png";
+import wbkPerawat from "../../assets/images/PERAWAT-1024x734.png";
+import wbkCM from "../../assets/images/CM-1024x782.png";
+import wbkIGD from "../../assets/images/IGD-2-1024x789.png";
+import wbkFisio from "../../assets/images/SOSIALISASI-FISIO-1024x781.png";
+import wbkFarmasi from "../../assets/images/FARMASI-2-1024x795.png";
+import wbkKeuangan from "../../assets/images/KEUANGAN-1024x770.png";
+import slide1 from "../../assets/images/slider/slide-1.png";
+import slide2 from "../../assets/images/slider/2.png";
+import slide3 from "../../assets/images/slider/3.png";
+import slide4 from "../../assets/images/slider/1-6.png";
+import slide5 from "../../assets/images/slider/PERAWAT-1024x734.png";
+import slide6 from "../../assets/images/slider/slide-admedika-3 (1).png";
+import slide7 from "../../assets/images/slider/slide-admedika-3.png";
 
 export const slider = [
   {

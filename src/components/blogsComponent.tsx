@@ -3,7 +3,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 import { Parser } from "html-to-react";
 import { formatDate, imageOnError, trimText } from "../assets/js/__global";
-import * as data from "./fakeData";
+import * as data from "./datas/fakeData";
 import FooterComponent from "./template/footerComponent";
 import HeaderComponent from "./template/headerComponent";
 import { Link } from "react-router-dom";

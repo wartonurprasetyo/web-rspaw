@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { useParams } from "react-router-dom";
-import * as data from "./fakeData";
+import * as data from "./datas/fakeData";
 
 const ContactComponent = () => {
   // const [newsinfo, setNewsInfo] = useState<any>({});

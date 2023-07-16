@@ -4,7 +4,7 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Link } from "react-router-dom";
 import { formatDate, imageOnError, trimText } from "../assets/js/__global";
-import * as data from "./fakeData";
+import * as data from "./datas/fakeData";
 import { getPostByGroup, reqToken } from "../services/api_web";
 // import InstagramEmbed from "react-instagram-embed";
 // import instagramFeed from "react-instagram-feed";

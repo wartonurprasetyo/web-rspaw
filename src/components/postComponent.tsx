@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { useParams } from "react-router-dom";
 import { formatDate, imageOnError } from "../assets/js/__global";
-import * as data from "./fakeData";
+import * as data from "./datas/fakeData";
 import { getPostByUrl } from "../services/api_web";
 
 const PostComponent = () => {

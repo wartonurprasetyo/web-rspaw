@@ -7,7 +7,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
-import * as data from "../fakeData";
+import * as data from "../datas/fakeData";
 import { Link } from "react-router-dom";
 import { getPostByGroup, reqToken } from "../../services/api_web";
 

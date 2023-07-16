@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { getAllMenus, reqToken } from "../../services/api_web";
 
-const HeaderComponent = () => {
+const HeaderComponent = (props: any) => {
   const [socmed, setSocmed] = useState([
     {
       name: "facebook",
@@ -217,6 +217,7 @@ const HeaderComponent = () => {
         });
     };
     asyncFuntion();
+    // console.log(props);
   }, []);
   return (
     <>
