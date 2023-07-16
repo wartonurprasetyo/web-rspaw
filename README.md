@@ -29,13 +29,15 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `sudo npm run start-server`
+### `npm run start-server`
 
 run app on port 80.\
+use sudo when need admin permission.\
 
 ### `npm run serve`
 
 serve app from `build` folder.\
+use sudo when need admin permission.\
 
 ### `npm run eject`
 
