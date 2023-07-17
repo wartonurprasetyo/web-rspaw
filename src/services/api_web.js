@@ -190,7 +190,7 @@ export const listPostByGroup = (
 
 export const loginPage = (
   data,
-  client_token = localStorage.getItem("token")
+  client_token = ""
 ) => {
   // console.log("get post");
   // let data = {
@@ -199,7 +199,7 @@ export const loginPage = (
   // };
   return new Promise((resolve, reject) => {
     axios
-      .post(`${baseUrlDev}client/adm/login`, data, {
+      .post(`${baseUrlDev}adm/login`, data, {
         headers: {
           client_uid: `rspaw`,
           client_key:
@@ -290,6 +290,35 @@ export const deletePosting = (
         data: { post_id: id }
       },
       )
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+
+export const listSubNav = (
+  data,
+  client_token = localStorage.getItem("token")
+) => {
+  // console.log("get post");
+  // let data = {
+  //   post_group: "post",
+  //   post_status: "1",
+  // };
+  return new Promise((resolve, reject) => {
+    axios
+      .post(`${baseUrlDev}client/nav/children`, data, {
+        headers: {
+          client_uid: `rspaw`,
+          client_key:
+            "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
+          client_token: client_token,
+        },
+      })
       .then((res) => {
         resolve(res);
       })

@@ -1,9 +1,11 @@
 import moment from "moment"
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import { Button, Card, CardBody, Col, Form, FormGroup, FormText, Input, Label } from "reactstrap"
 import { addPostNews } from "../../../../services/api_web"
+import LoadingContext from "../../../../contexts/LoadingContext"
 function PostingBerita() {
 
+    const loading = useContext(LoadingContext)
     const [author, setAuthor] = useState("")
     const [date, setDate] = useState("")
     const [content, setContent] = useState("")
@@ -13,8 +15,8 @@ function PostingBerita() {
     const [kategori, setKategori] = useState("post")
 
     function PostNews() {
+        loading.setLoading(true)
         let query = {
-            "post_id": "",
             "post_author": author,
             "post_date": date,
             "post_content": "<h3>" + content + "</h3>",
@@ -30,12 +32,12 @@ function PostingBerita() {
             setAuthor("")
             setContent("")
             setTitle("")
-
+            loading.setLoading(false)
             window.location.replace("/web-admin-paw")
 
         }).catch(err => {
             console.log(err)
-
+            loading.setLoading(false)
         })
     }
     return (

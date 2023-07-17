@@ -1,64 +1,42 @@
 import { useContext, useEffect, useState } from "react"
 import { Button, Card, CardBody, CardText, CardTitle, Table } from "reactstrap"
-import { deletePosting, getPostByGroup, reqToken } from "../../../../services/api_web";
+import { deletePosting, getAllMenus, getPostByGroup, reqToken } from "../../../../services/api_web";
 import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDeleteLeft, faEdit, faRemove } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import LoadingContext from "../../../../contexts/LoadingContext";
-import { toast } from "react-toastify";
 
-const TabelPost = () => {
+const ListNavigasi = () => {
+    const [data, setData]: any = useState([])
+
     const loading = useContext(LoadingContext)
-    const [data, setData] = useState([{
-        nav_id: "",
-        post_author: "",
-        post_content: "",
-        post_created: "",
-        post_date: "",
-        post_group: "",
-        post_id: "",
-        post_status: "",
-        post_title: "",
-        post_updated: "",
-        post_url: ""
-    }])
-
-    const [clienToken, setClienToken] = useState("")
-    function deletePost(value: any) {
-        let query = {
-            post_id: value
-        }
-
-        console.log(value)
-        deletePosting(value).then(resp => {
-            getData()
-            toast.success("Sukses Menghapus")
-        }).catch(err => {
-            console.log(err)
-            toast.error("Internal serve Error")
-        })
+    function deleteNav(e: any) {
 
     }
     function getData() {
-
-        loading.setLoading(true);
+        loading.setLoading(true)
         let query = {
             post_group: "post",
             post_status: "1"
         }
-        getPostByGroup(query).then(resp => {
-            setData(resp.data.Data)
-
-
-            loading.setLoading(false);
+        getAllMenus().then(resp => {
+            console.log(resp.data.nav, "h")
+            setData(resp.data.nav)
+            loading.setLoading(false)
 
         }).catch(err => {
             console.log(err);
             setData([])
-            loading.setLoading(false);
-            toast.error("Internal serve Error")
+            loading.setLoading(false)
+
         })
+    }
+    function childList(e: any) {
+        return (<>
+            <span>{e}</span><br />
+        </>
+        )
     }
     useEffect(() => {
 
@@ -69,9 +47,9 @@ const TabelPost = () => {
             <Card className="my-2 border-0">
                 <CardBody>
                     <CardTitle tag="h5">
-                        Data Info Dan Berita
+                        Data Menu
                     </CardTitle>
-                    <Link to="/web-admin-paw/news/add" className="btn btn-primary">Tambah</Link>
+                    <Link to="/web-admin-paw/nav/add" className="btn btn-primary">Tambah</Link>
                 </CardBody>
 
             </Card>
@@ -80,17 +58,17 @@ const TabelPost = () => {
                 <Table striped>
                     <thead>
                         <tr>
-                            <th>
+                            <th style={{ maxWidth: 30 }}>
                                 Nomor
                             </th>
                             <th>
-                                Nama Author
+                                Nama
                             </th>
                             <th>
-                                Judul
+                                URL
                             </th>
                             <th>
-                                Tanggal Dibuat
+                                Sub Menu
                             </th>
                             <th>
                                 Aksi
@@ -105,26 +83,33 @@ const TabelPost = () => {
                                 </td>
                             </tr>
                             :
-                            data.map((el, index) => (
+                            data.map((el: any, index: any) => (
                                 <tr key={index}>
-                                    <th scope="row">
+                                    <th scope="row" className="text-center align-middle">
                                         {index + 1}
                                     </th>
-                                    <td>
-                                        {el.post_author}
+                                    <td className="align-middle">
+                                      
+                                        
+                                          {el.parent_label}
+                                       
+                                    </td>
+                                    <td className="align-middle">
+                                        {el.parent_url}
                                     </td>
                                     <td>
-                                        {el.post_title}
+                                        {el?.child?.map((element: any, idx: any) => (<div key={idx}>
+
+                                            - {element.child_label}
+                                        </div>
+                                        ))}
                                     </td>
-                                    <td>
-                                        {moment(el.post_created).format("DD-MMMM-YYYY")}
-                                    </td>
-                                    <td>
+                                    <td className="align-middle">
                                         <Link to={"/web-admin-paw/news/edit/" + el.post_id} className="btn btn-primary ">
 
                                             <FontAwesomeIcon icon={faEdit} />
                                         </Link>
-                                        <Button onClick={() => deletePost(el.post_id)} className="btn btn-danger " style={{ marginLeft: 10 }}>
+                                        <Button onClick={() => deleteNav(el.post_id)} className="btn btn-danger " style={{ marginLeft: 10 }}>
                                             <FontAwesomeIcon icon={faRemove} />
                                         </Button>
                                     </td>
@@ -140,5 +125,4 @@ const TabelPost = () => {
         </>
     )
 }
-
-export default TabelPost;
+export default ListNavigasi;

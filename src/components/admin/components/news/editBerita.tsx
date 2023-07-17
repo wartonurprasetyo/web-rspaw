@@ -1,8 +1,9 @@
 import moment from "moment"
-import React, { useEffect, useState } from "react"
-import { Button, Card, CardBody, Col, Form, FormGroup, FormText, Input, Label } from "reactstrap"
+import React, { useContext, useEffect, useState } from "react"
+import { Button, Card, CardBody, Col, Form, FormGroup, FormText, Input, Label, Toast } from "reactstrap"
 import { addPostNews, getPostById, updatePostNews } from "../../../../services/api_web"
 import { useParams } from "react-router"
+import LoadingContext from "../../../../contexts/LoadingContext"
 function EditBerita() {
 
     const [author, setAuthor] = useState("")
@@ -13,15 +14,18 @@ function EditBerita() {
     const [status, setStatus] = useState("0")
     const [url, setUrl] = useState("")
     const [kategori, setKategori] = useState("post")
+    const [type, setType] = useState(false)
 
     const [data, setData]: any = useState()
 
+    const loading = useContext(LoadingContext)
 
     function PostNews() {
+        loading.setLoading(true)
         let query = {
             "post_id": data.post_id,
             "post_author": author,
-            "post_date": date,
+            "post_date": moment(date).format("YYYY-MM-DD hh:mm:ss"),
             "post_content": "<h3>" + content + "</h3>",
             "post_title": title,
             "post_status": status,
@@ -35,16 +39,18 @@ function EditBerita() {
             setAuthor("")
             setContent("")
             setTitle("")
+            loading.setLoading(false)
             window.location.replace("/web-admin-paw")
 
 
         }).catch(err => {
+            loading.setLoading(false)
             console.log(err)
 
         })
     }
     useEffect(() => {
-
+        loading.setLoading(true)
         let query = {
             post_id: param.id
         }
@@ -55,17 +61,18 @@ function EditBerita() {
             var contenall = conten.replaceAll("</h3>", "")
             console.log(resp.data.Data, contenall);
             setAuthor(resp.data.Data.post_author)
-            setDate(moment(resp.data.Data.post_date).format())
+            setDate(resp.data.Data.post_date)
             setContent(contenall)
             setTitle(resp.data.Data.post_title)
-            setData(resp.data.Data)
             setStatus(resp.data.Data.post_status)
             setUrl(resp.data.Data.post_url)
             setKategori(resp.data.Data.post_group)
-
+            setData(resp.data.Data)
+            loading.setLoading(false)
         }).catch(err => {
             console.log(err);
             window.location.replace("/web-admin-paw")
+
 
         })
     }, []);
@@ -184,8 +191,10 @@ function EditBerita() {
                             </Label>
                             <Col sm={2}>
                                 <Input
-                                    onChange={(e) => setDate(moment(e.target.value).format("YYYY-MM-DD hh:mm:ss"))}
-                                    type="date"
+                                    onClick={() => setType(true)}
+                                    value={date}
+                                    onChange={(e) => setDate(e.target.value)}
+                                    type={type ? "date" : "text"}
                                 />
                             </Col>
                         </FormGroup>
