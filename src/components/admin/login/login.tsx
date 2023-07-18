@@ -1,30 +1,58 @@
 import { useState } from "react";
 import "./login.css"
 import { loginPage } from "../../../services/api_web";
+import Config from "../../../config/Config";
+import axios from "axios";
 
-function LoginAdmin() {
+const LoginAdmin = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-
-    function login() {
-        const query = {
-            uname: username,
-            upswd: password
+    const login = async () => {
+        let headersList = {
+            "Accept": "*/*",
+            "Content-Type": "application/json"
         }
-        loginPage(query).then(respon => {
-            console.log(respon);
+        let bodyContent = JSON.stringify({
+            "uname": username,
+            "upswd": password
+        });
+        let base = Config.BaseUrlDev;
 
-        }).catch(err => {
-            console.log(err);
+        let reqOptions = {
+            url: base + "adm/login",
+            method: "POST",
+            headers: headersList,
+            data: bodyContent,
+        }
+        try {
+            let response = await axios.request(reqOptions);
+            console.log(response.data, "sd");
 
-        })
-    }
+
+        } catch (error) {
+            console.log(error, "sddd");
+
+        }
+
+
+
+
+    };
+
+
 
     return (
         <div className="Auth-form-container">
             <form className="Auth-form">
                 <div className="Auth-form-content">
                     <h3 className="Auth-form-title">Sign In</h3>
+                    <div> <img
+                        width={50}
+                        height={50}
+                        src="../../../images/logo.png"
+                        alt="Logo"
+                    />RS Paru dr. Ario Wirawan Salatiga
+                    </div>
                     <div className="form-group mt-3">
                         <label>Username</label>
                         <input
@@ -36,7 +64,7 @@ function LoginAdmin() {
                         />
                     </div>
                     <div className="form-group mt-3">
-                        <label>Password</label>
+                        <label>Login</label>
                         <input
                             type="password"
                             value={password}

@@ -17,18 +17,18 @@ import AdminLayout from "./admin/adminLayout";
 import PostingBerita from "./admin/components/news/postingBerita";
 import LoginAdmin from "./admin/login/login";
 import PageComponent from "./pageComponent";
+import TabelPost from "./admin/components/news/listPosting";
+import EditBerita from "./admin/components/news/editBerita";
+import ListNavigasi from "./admin/components/nav/listNav";
+import AddNav from "./admin/components/nav/addNav";
 
 // const HomeComponent = React.lazy(() => import("./homeComponent"));
 
 const Routes: any = [
-  {
-    path: "/web-admin-paw",
-    layout: "admin",
-    component: <AdminLayout />,
-  },
+
   {
     path: "/login",
-    layout: "admin",
+    layout: "auth",
     component: <LoginAdmin />,
   },
   {
@@ -95,6 +95,32 @@ const Routes: any = [
     path: "/:id",
     layout: "landing",
     component: <PageComponent />,
+  },
+
+  {
+    path: "/news",
+    layout: "/web-admin-paw",
+    component: <TabelPost />,
+  },
+  {
+    path: "/news/add",
+    layout: "/web-admin-paw",
+    component: <PostingBerita />,
+  },
+  {
+    path: "/news/edit/:id",
+    layout: "/web-admin-paw",
+    component: <EditBerita />,
+  },
+  {
+    path: "/nav",
+    layout: "/web-admin-paw",
+    component: <ListNavigasi />,
+  },
+  {
+    path: "/nav/add",
+    layout: "/web-admin-paw",
+    component: <AddNav />,
   },
   // {
   //   path: "/:post/:id",

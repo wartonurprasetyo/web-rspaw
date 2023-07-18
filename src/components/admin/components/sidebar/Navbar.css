@@ -1,4 +1,14 @@
-.nav-link:hover {
-    color: red;
+.nav-link-custom{
+    color: white;
+
+}
+.nav-link-custom:hover {
+    color: black;
+    background: white;
+    /* Set the desired color for the text on hover */
+}
+.nav-link-custom:active {   
+    color: black;
+    background: white;
     /* Set the desired color for the text on hover */
 }

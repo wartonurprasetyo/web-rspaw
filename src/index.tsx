@@ -9,6 +9,8 @@ import AdminLayout from "./components/admin/adminLayout";
 import LoginAdmin from "./components/admin/login/login";
 import PostingBerita from "./components/admin/components/news/postingBerita";
 import EditBerita from "./components/admin/components/news/editBerita";
+import TabelPost from "./components/admin/components/news/listPosting";
+import Routes from "./components/Routes";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -17,27 +19,25 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Switch>
+        {Routes.map((el:any, ind:any)=>{
+          if(el.layout === "/web-admin-paw"){
+            return(
+              <Route
+              path={el.layout+el.path}
+              exact
+              render={(props) => <AdminLayout menu={el.component}/>}
+            />
+            )
+          }else{
+            return null
+          }
+        })}
         <Route
           path="/web-admin-paw"
           exact
-          render={(props) => <AdminLayout />}
+          render={(props) => <AdminLayout menu={<TabelPost/>}/>}
         />
-        <Route
-          path="/web-admin-paw/news"
-          exact
-          render={(props) => <AdminLayout />}
-        />
-
-        <Route
-          exact
-          path="/web-admin-paw/news/add"
-          render={(props) => <AdminLayout />}
-        />
-        <Route
-          exact
-          path="/web-admin-paw/news/edit/:id"
-          render={(props) => <AdminLayout />}
-        />
+     
         <Route path="/login" exact render={(props) => <LoginAdmin />} />
         <Route path="/" render={(props) => <App />} />
         {/* <Redirect from="/" to="/" /> */}

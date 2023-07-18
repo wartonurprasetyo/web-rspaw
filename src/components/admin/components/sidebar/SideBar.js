@@ -30,17 +30,20 @@ const SideBar = ({ isOpen, toggle }) => (
       </h3>
     </div>
     <div className="side-menu">
-      <Nav vertical className="list-unstyled pb-3">
-        <NavItem className="admin-menu">
-          <NavLink
-            tag={Link}
-            to={"/web-admin-paw"}
-            style={{ color: "white" }}
-            h
-          >
+      <Nav vertical className="">
+
+        <NavItem>
+          <NavLink className="nav-link-custom" tag={Link} to={"/web-admin-paw"}  >
             Data Info Dan Berita
           </NavLink>
         </NavItem>
+
+        <NavItem>
+          <NavLink className="nav-link-custom" tag={Link} to={"/web-admin-paw/nav"}  h>
+            Data Menu
+          </NavLink>
+        </NavItem>
+
       </Nav>
     </div>
   </div>
