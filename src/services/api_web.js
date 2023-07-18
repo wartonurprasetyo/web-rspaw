@@ -3,6 +3,7 @@ import Config from "../config/Config";
 import axios from "axios";
 
 const baseUrlDev = Config.BaseUrlDev;
+const client_key = Config.client_key;
 // console.log("axios", axios);
 
 export const reqToken = () => {
@@ -15,8 +16,7 @@ export const reqToken = () => {
         {
           headers: {
             client_uid: `rspaw`,
-            client_key:
-              "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
+            client_key: client_key,
             client_token: "",
           },
         }
@@ -37,8 +37,7 @@ export const fetchReqToken = () => {
     headers: {
       "Content-Type": "application/json",
       client_uid: `rspaw`,
-      client_key:
-        "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
+      client_key: client_key,
       client_token: "",
     },
     body: JSON.stringify({}),
@@ -62,8 +61,7 @@ export const getAllMenus = (client_token = localStorage.getItem("token")) => {
       .get(`${baseUrlDev}client/nav/all`, {
         headers: {
           client_uid: `rspaw`,
-          client_key:
-            "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
+          client_key: client_key,
           client_token: client_token,
         },
       })
@@ -89,8 +87,7 @@ export const getPostByUrl = (
       .post(`${baseUrlDev}client/post/detailbyurl`, data, {
         headers: {
           client_uid: `rspaw`,
-          client_key:
-            "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
+          client_key: client_key,
           client_token: client_token,
         },
       })
@@ -116,8 +113,7 @@ export const getPostById = (
       .post(`${baseUrlDev}client/post/detailbyid`, data, {
         headers: {
           client_uid: `rspaw`,
-          client_key:
-            "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
+          client_key: client_key,
           client_token: client_token,
         },
       })
@@ -144,8 +140,7 @@ export const getPostByGroup = (
       .post(`${baseUrlDev}client/post/group`, data, {
         headers: {
           client_uid: `rspaw`,
-          client_key:
-            "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
+          client_key: client_key,
           client_token: client_token,
         },
       })
@@ -157,7 +152,6 @@ export const getPostByGroup = (
       });
   });
 };
-
 
 export const listPostByGroup = (
   data,
@@ -173,8 +167,7 @@ export const listPostByGroup = (
       .post(`${baseUrlDev}client/post/group`, data, {
         headers: {
           client_uid: `rspaw`,
-          client_key:
-            "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
+          client_key: client_key,
           client_token: client_token,
         },
       })
@@ -186,7 +179,6 @@ export const listPostByGroup = (
       });
   });
 };
-
 
 export const loginPage = (
   data,
@@ -202,8 +194,7 @@ export const loginPage = (
       .post(`${baseUrlDev}client/adm/login`, data, {
         headers: {
           client_uid: `rspaw`,
-          client_key:
-            "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
+          client_key: client_key,
           client_token: client_token,
         },
       })
@@ -230,8 +221,7 @@ export const addPostNews = (
       .post(`${baseUrlDev}client/post/insert`, data, {
         headers: {
           client_uid: `rspaw`,
-          client_key:
-            "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
+          client_key: client_key,
           client_token: client_token,
         },
       })
@@ -258,8 +248,7 @@ export const updatePostNews = (
       .put(`${baseUrlDev}client/post/update`, data, {
         headers: {
           client_uid: `rspaw`,
-          client_key:
-            "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
+          client_key: client_key,
           client_token: client_token,
         },
       })
@@ -276,20 +265,37 @@ export const deletePosting = (
   id,
   client_token = localStorage.getItem("token")
 ) => {
-
   return new Promise((resolve, reject) => {
     axios
       .delete(`${baseUrlDev}client/post/delete`, {
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
           client_uid: `rspaw`,
-          client_key:
-            "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
+          client_key: client_key,
           client_token: client_token,
         },
-        data: { post_id: id }
-      },
-      )
+        data: { post_id: id },
+      })
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+export const getSlider = (client_token = localStorage.getItem("token")) => {
+  // console.log("get menu");
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`${baseUrlDev}client/slider/select`, {
+        headers: {
+          client_uid: `rspaw`,
+          client_key: client_key,
+          client_token: client_token,
+        },
+      })
       .then((res) => {
         resolve(res);
       })

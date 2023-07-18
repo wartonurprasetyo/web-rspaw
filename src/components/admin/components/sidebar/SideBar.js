@@ -13,30 +13,34 @@ import classNames from "classnames";
 import { Link } from "react-router-dom";
 
 import SubMenu from "./SubMenu";
-import "./Navbar.css"
+import "./Navbar.css";
 
 const SideBar = ({ isOpen, toggle }) => (
-  <div className={classNames("sidebar", { "is-open": isOpen })} style={{ backgroundColor: "#1a9e94" }}>
+  <div
+    className={classNames("sidebar", { "is-open": isOpen })}
+    style={{ backgroundColor: "#1a9e94" }}
+  >
     <div className="sidebar-header">
       <span color="info" onClick={toggle} style={{ color: "#fff" }}>
         &times;
       </span>
-      <h3><img
-        width={50}
-        height={50}
-        src="../../../images/logo.png"
-        alt="Logo"
-      />  RSPAW</h3>
+      <h3>
+        <img width={50} height={50} src="../../../images/logo.png" alt="Logo" />{" "}
+        RSPAW
+      </h3>
     </div>
     <div className="side-menu">
       <Nav vertical className="list-unstyled pb-3">
-
-        <NavItem>
-          <NavLink tag={Link} to={"/web-admin-paw"} style={{ color: 'white', }} h>
+        <NavItem className="admin-menu">
+          <NavLink
+            tag={Link}
+            to={"/web-admin-paw"}
+            style={{ color: "white" }}
+            h
+          >
             Data Info Dan Berita
           </NavLink>
         </NavItem>
-
       </Nav>
     </div>
   </div>

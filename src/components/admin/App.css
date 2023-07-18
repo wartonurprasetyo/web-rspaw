@@ -60,7 +60,7 @@ a:focus {
     background: #6d7fcc;
 }
 
-.nav-item:hover {
+.nav-item.admin-menu:hover {
     color: #73d5d5;
     background: #fff;
 }

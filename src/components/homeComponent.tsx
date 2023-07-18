@@ -5,7 +5,9 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Link } from "react-router-dom";
 import { formatDate, imageOnError, trimText } from "../assets/js/__global";
 import * as data from "./datas/fakeData";
-import { getPostByGroup, reqToken } from "../services/api_web";
+import { getPostByGroup, getSlider, reqToken } from "../services/api_web";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 // import InstagramEmbed from "react-instagram-embed";
 // import instagramFeed from "react-instagram-feed";
 // import InstagramFeed from "react-ig-feed";
@@ -28,32 +30,48 @@ const HomeComponent = () => {
     };
     await reqToken()
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         localStorage.setItem("token", res.data.Response.data);
         // token = res.data.Response.data;
       })
       .catch((err) => console.log(err));
     await getPostByGroup(data)
       .then((resp) => {
-        console.log(resp);
+        // console.log(resp);
         setNewsInfo(resp.data.Data);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
+      });
+  };
+
+  const getSliderData = async () => {
+    await getSlider()
+      .then((resp) => {
+        console.log("slider", resp.data.Data.data);
+        setSlider(resp.data.Data.data);
+      })
+      .catch((err) => {
+        // console.log(err);
       });
   };
 
   console.log(infos);
   useEffect(() => {
-    getPost();
-    setSlider(data.slider);
-    setInfos(data.info);
-    setServices(data.services);
-    // setNewsInfo(data.newsinfo);
-    setArtikel(data.newsinfo);
-    setPengumuman(data.newsinfo);
-    setSchedule(data.schedule);
-    setYoutubeUrl("https://www.youtube.com/embed/NA1BwOpvLX0");
+    const asyncFunction = async () => {
+      await getPost();
+      await getSliderData();
+      // setSlider(data.slider);
+      setInfos(data.info);
+      setServices(data.services);
+      // setNewsInfo(data.newsinfo);
+      setArtikel(data.newsinfo);
+      setPengumuman(data.newsinfo);
+      setSchedule(data.schedule);
+      setYoutubeUrl("https://www.youtube.com/embed/NA1BwOpvLX0");
+    };
+
+    asyncFunction();
   }, []);
   return (
     <>
@@ -66,23 +84,50 @@ const HomeComponent = () => {
             infiniteLoop
             autoPlay
             // stopOnHover
+            renderArrowNext={(onClickHandler, hasNext, label) =>
+              hasNext && (
+                <button
+                  className="control-arrow control-next"
+                  onClick={onClickHandler}
+                  style={{
+                    opacity: "1",
+                  }}
+                ></button>
+              )
+            }
+            renderArrowPrev={(onClickHandler, hasPrev, label) =>
+              hasPrev && (
+                <button
+                  className="control-arrow control-prev"
+                  onClick={onClickHandler}
+                  style={{
+                    opacity: "1",
+                  }}
+                ></button>
+              )
+            }
             interval={3000}
             showThumbs={false}
             showStatus={false}
+            useKeyboardArrows={true}
           >
             {slider.map((item: any, index: number) => (
-              <div key={`slide-${index}`}>
+              <div key={`slide-${item.slider_id}`}>
                 <img
                   className="animated fadeInUp"
                   onError={imageOnError}
                   style={{
                     userSelect: "none",
+                    minHeight: "250px",
+                    maxHeight: "400px",
                   }}
-                  src={item.image}
+                  src={window.location.host + item.slider_src}
                   alt="Pepole"
                 />
-                {item.label && (
-                  <p className="animated fadeInUp legend">{item.label}</p>
+                {item.slider_caption && (
+                  <p className="animated fadeInUp legend">
+                    {item.slider_caption}
+                  </p>
                 )}
               </div>
             ))}

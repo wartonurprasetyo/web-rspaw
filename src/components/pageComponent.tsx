@@ -15,13 +15,16 @@ const PageComponent = () => {
   const loading = useContext(LoadingContext); // get state & function loading
 
   const getDataPage = () => {
-    let id = params.page;
+    let id = params.id;
+    // console.log(params);
     if (!id) return;
-
+    console.log(params);
+    let subid = params.subid;
+    if (subid) id = `${id}-${subid}`;
     let splited = id.split("-");
     let removeValue = ["page", "profil", "pofil", "profile", "pofile"];
     let newId = splited.filter((item: any) => !removeValue.includes(item));
-    // console.log(splited, newId);
+    console.log(splited, newId);
     setContentData("");
     setTitleContentData("");
     setPageTitleContentData("");
@@ -40,7 +43,7 @@ const PageComponent = () => {
 
   useEffect(() => {
     getDataPage();
-  }, [params.page]);
+  }, [params.id]);
   return (
     <>
       {/* <HeaderComponent></HeaderComponent> */}

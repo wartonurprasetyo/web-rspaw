@@ -30,18 +30,20 @@ const FooterComponent = () => {
     };
     await reqToken()
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         localStorage.setItem("token", res.data.Response.data);
         // token = res.data.Response.data;
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        // console.log(err);
+      });
     await getPostByGroup(data)
       .then((resp) => {
-        console.log(resp);
+        // console.log(resp);
         setRecent(resp.data.Data);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 

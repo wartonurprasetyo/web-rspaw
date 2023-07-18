@@ -93,127 +93,26 @@ const HeaderComponent = (props: any) => {
     whatsapp: <FontAwesomeIcon className="fa-2xl" icon={faWhatsappSquare} />,
     youtube: <FontAwesomeIcon className="fa-2xl" icon={faYoutubeSquare} />,
   };
-  const [menus, setMenus] = useState<any[]>([
-    {
-      parent_id: "1",
-      parent_url: "/page-profil",
-      parent_label: "Profil",
-      child: [
-        {
-          child_id: "8",
-          child_url: "/page-profil-sejarah",
-          child_label: "Sejarah",
-          sub_child: null,
-        },
-        {
-          child_id: "9",
-          child_url: "/page-profil-visimisi",
-          child_label: "Visi & Misi",
-          sub_child: null,
-        },
-        {
-          child_id: "10",
-          child_url: "/page-profil-struktur",
-          child_label: "Struktur Organisasi",
-          sub_child: null,
-        },
-        {
-          child_id: "11",
-          child_url: "/page-pofil-direksi",
-          child_label: "Jajaran Direksi",
-          sub_child: null,
-        },
-        {
-          child_id: "12",
-          child_url: "/page-profil-upaya",
-          child_label: "6 Upaya",
-          sub_child: null,
-        },
-        {
-          child_id: "13",
-          child_url: "/page-profil-maklumat",
-          child_label: "Maklumat Pelayanan",
-          sub_child: null,
-        },
-        {
-          child_id: "14",
-          child_url: "/page-profil-wbk",
-          child_label: "WBK",
-          sub_child: [
-            {
-              subchild_id: "16",
-              subchild_url: "/page-profil-wbk-video",
-              subchild_label: "Video WBK",
-            },
-            {
-              subchild_id: "17",
-              subchild_url: "/page-profil-wbk-foto",
-              subchild_label: "Foto Sosialisasi Gratifikasi",
-            },
-          ],
-        },
-        {
-          child_id: "15",
-          child_url: "/page-profil-video",
-          child_label: "Video",
-          sub_child: null,
-        },
-      ],
-    },
-    {
-      parent_id: "2",
-      parent_url: "#",
-      parent_label: "Layanan Kami",
-      child: null,
-    },
-    {
-      parent_id: "3",
-      parent_url: "#",
-      parent_label: "Info Publik",
-      child: null,
-    },
-    {
-      parent_id: "4",
-      parent_url: "/page-kontak",
-      parent_label: "Kontak Kami",
-      child: null,
-    },
-    {
-      parent_id: "5",
-      parent_url: "#",
-      parent_label: "PPID",
-      child: null,
-    },
-    {
-      parent_id: "6",
-      parent_url: "/page-survei",
-      parent_label: "Survei Kepuasan",
-      child: null,
-    },
-    {
-      parent_id: "7",
-      parent_url: "/page-lapor",
-      parent_label: "SP4N Lapor",
-      child: null,
-    },
-  ]);
+  const [menus, setMenus] = useState<any[]>([]);
   useEffect(() => {
     const asyncFuntion = async () => {
       let token = "";
       await reqToken()
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           localStorage.setItem("token", res.data.Response.data);
           token = res.data.Response.data;
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          // console.log(err);
+        });
       await getAllMenus(token)
         .then((res) => {
-          console.log(res);
-          setMenus(res.data.data.nav);
+          // console.log(res.data.nav);
+          setMenus(res.data.nav);
         })
         .catch((err) => {
-          console.log(err);
+          // console.log(err);
         });
     };
     asyncFuntion();
@@ -269,7 +168,7 @@ const HeaderComponent = (props: any) => {
                 data-toggle="collapse"
                 data-target="#myNav"
                 aria-controls="myNav"
-                aria-expanded="false"
+                aria-expanded="true"
                 aria-label="Toggle navigation"
               >
                 <span className="ion-android-menu"></span>
@@ -279,16 +178,28 @@ const HeaderComponent = (props: any) => {
                   {menus.map((item: any, index: number) =>
                     item.child && item.child.length > 0 ? (
                       <li
-                        key={item.parent_url}
-                        className={`nav-item p-2 dropdown @@${item.parent_url}`}
+                        key={
+                          item.parent_url == "#"
+                            ? `/${item.parent_label}`
+                            : item.parent_url
+                        }
+                        className={`nav-item p-2 dropdown @@${
+                          item.parent_url == "#"
+                            ? `/${item.parent_label}`
+                            : item.parent_url
+                        }`}
                       >
                         <a
                           className="nav-link dropdown-toggle nav-menus"
-                          href="#"
+                          href={
+                            item.parent_url == "#"
+                              ? `/${item.parent_label}`
+                              : item.parent_url
+                          }
                           id={`dropdown0${index}`}
                           data-toggle="dropdown"
                           aria-haspopup="true"
-                          aria-expanded="false"
+                          aria-expanded="true"
                         >
                           {item.parent_label}{" "}
                           {/* <span className="ion-ios-arrow-down"></span> */}
@@ -302,8 +213,15 @@ const HeaderComponent = (props: any) => {
                               itemChild.sub_child &&
                               itemChild.sub_child.length > 0 ? (
                                 <li
+                                  key={
+                                    itemChild.child_url == "#"
+                                      ? `/${itemChild.child_label}`
+                                      : itemChild.child_url
+                                  }
                                   className={`dropdown show @@${
-                                    itemChild.child_url
+                                    itemChild.child_url == "#"
+                                      ? `/${itemChild.child_label}`
+                                      : itemChild.child_url
                                   } dropdown-submenu drop${
                                     itemChild.sub_child.length - 1 == indexChild
                                       ? "left"
@@ -312,7 +230,11 @@ const HeaderComponent = (props: any) => {
                                 >
                                   <a
                                     className="dropdown-item dropdown-toggle nav-menus"
-                                    href="#"
+                                    href={
+                                      itemChild.child_url == "#"
+                                        ? `/${itemChild.child_label}`
+                                        : itemChild.child_url
+                                    }
                                     id={`dropdown0${index}0${indexChild}`}
                                     role="button"
                                     data-toggle="dropdown"
@@ -331,10 +253,20 @@ const HeaderComponent = (props: any) => {
                                         itemSubChild: any,
                                         indexSubChild: number
                                       ) => (
-                                        <li key={itemSubChild.subchild_url}>
+                                        <li
+                                          key={
+                                            itemSubChild.subchild_url == "#"
+                                              ? `/${itemSubChild.subchild_url}`
+                                              : itemSubChild.subchild_url
+                                          }
+                                        >
                                           <Link
                                             className="dropdown-item"
-                                            to={`${itemSubChild.subchild_url}`}
+                                            to={
+                                              itemSubChild.subchild_url == "#"
+                                                ? `/${itemSubChild.subchild_url}`
+                                                : itemSubChild.subchild_url
+                                            }
                                           >
                                             {itemSubChild.subchild_label}
                                           </Link>

@@ -6,16 +6,12 @@ import { formatDate, imageOnError, trimText } from "../assets/js/__global";
 import * as data from "./datas/fakeData";
 import FooterComponent from "./template/footerComponent";
 import HeaderComponent from "./template/headerComponent";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getPostByGroup, reqToken } from "../services/api_web";
 
 const BlogsComponent = () => {
-  const [slider, setSlider] = useState<any[]>([]);
-  const [infos, setInfos] = useState<any[]>([]);
-  const [services, setServices] = useState<any[]>([]);
   const [newsinfo, setNewsInfo] = useState<any[]>([]);
-  const [artikel, setArtikel] = useState<any[]>([]);
-  const [pengumuman, setPengumuman] = useState<any[]>([]);
+  const params: any = useParams();
 
   const getPost = async () => {
     let data = {
@@ -41,6 +37,8 @@ const BlogsComponent = () => {
 
   useEffect(() => {
     getPost();
+    console.log(params.category);
+
     // setNewsInfo(data.newsinfo);
   }, []);
   return (
@@ -51,7 +49,7 @@ const BlogsComponent = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="block">
-                <h1>Berita Terbaru</h1>
+                <h1>{params.category}</h1>
                 <p>
                   {/* Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                   Nisi, quibusdam. */}

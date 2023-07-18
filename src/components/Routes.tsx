@@ -37,62 +37,42 @@ const Routes: any = [
     component: <HomeComponent />,
   },
   {
-    path: "/berita-terbaru/:id",
+    path: "/info/berita/:id",
     layout: "landing",
     component: <BlogComponent />,
   },
   {
-    path: "/berita-terbaru",
+    path: "/info/:category",
     layout: "landing",
     component: <BlogsComponent />,
   },
+  // {
+  //   path: "/info/pengumuman",
+  //   layout: "landing",
+  //   component: <BlogsComponent />,
+  // },
+  // {
+  //   path: "/info/artikel",
+  //   layout: "landing",
+  //   component: <BlogsComponent />,
+  // },
   {
-    path: "/page-kontak",
+    path: "/kontak",
     layout: "landing",
     component: <ContactComponent />,
   },
-  // {
-  //   path: "/page-profil-sejarah",
-  //   layout: "landing",
-  //   component: <HistoryComponent />,
-  // },
-  // {
-  //   path: "/page-lapor",
-  //   layout: "landing",
-  //   component: <Sp4nComponent />,
-  // },
-  // {
-  //   path: "/page-profil-visimisi",
-  //   layout: "landing",
-  //   component: <VisiMisiComponent />,
-  // },
-  // {
-  //   path: "/page-profil-struktur",
-  //   layout: "landing",
-  //   component: <StrukturComponent />,
-  // },
-  // {
-  //   path: "/page-pofil-direksi",
-  //   layout: "landing",
-  //   component: <DireksiComponent />,
-  // },
-  // {
-  //   path: "/page-profil-upaya",
-  //   layout: "landing",
-  //   component: <UpayaComponent />,
-  // },
   {
-    path: "/page-profil-maklumat",
+    path: "/profil/maklumat",
     layout: "landing",
     component: <MaklumatComponent />,
   },
   {
-    path: "/page-profil-video",
+    path: "/profil/video",
     layout: "landing",
     component: <VideoComponent />,
   },
   {
-    path: "/page-profil-wbk-foto",
+    path: "/profil/wbk/foto",
     layout: "landing",
     component: <WBKFotoComponent />,
   },
@@ -102,7 +82,17 @@ const Routes: any = [
     component: <PostComponent />,
   },
   {
-    path: "/:page",
+    path: "/profil/:id/:subid",
+    layout: "landing",
+    component: <PageComponent />,
+  },
+  {
+    path: "/profil/:id",
+    layout: "landing",
+    component: <PageComponent />,
+  },
+  {
+    path: "/:id",
     layout: "landing",
     component: <PageComponent />,
   },
