@@ -183,18 +183,15 @@ const HeaderComponent = (props: any) => {
                             ? `/${item.parent_label}`
                             : item.parent_url
                         }
-                        className={`nav-item p-2 dropdown @@${
-                          item.parent_url == "#"
-                            ? `/${item.parent_label}`
-                            : item.parent_url
-                        }`}
+                        className={`nav-item p-2 dropdown @@${`/${item.parent_label}`}`}
                       >
                         <a
                           className="nav-link dropdown-toggle nav-menus"
                           href={
-                            item.parent_url == "#"
-                              ? `/${item.parent_label}`
-                              : item.parent_url
+                            "#"
+                            // item.parent_url == "#"
+                            //   ? `/${item.parent_label}`
+                            //   : item.parent_url
                           }
                           id={`dropdown0${index}`}
                           data-toggle="dropdown"
@@ -213,17 +210,11 @@ const HeaderComponent = (props: any) => {
                               itemChild.sub_child &&
                               itemChild.sub_child.length > 0 ? (
                                 <li
-                                  key={
-                                    itemChild.child_url == "#"
-                                      ? `/${itemChild.child_label}`
-                                      : itemChild.child_url
-                                  }
+                                  key={`${itemChild.child_label}`}
                                   className={`dropdown show @@${
-                                    itemChild.child_url == "#"
-                                      ? `/${itemChild.child_label}`
-                                      : itemChild.child_url
+                                    itemChild.child_label
                                   } dropdown-submenu drop${
-                                    itemChild.sub_child.length - 1 == indexChild
+                                    item.child.length / 2 - 1 < index
                                       ? "left"
                                       : "right"
                                   }`}
@@ -231,9 +222,10 @@ const HeaderComponent = (props: any) => {
                                   <a
                                     className="dropdown-item dropdown-toggle nav-menus"
                                     href={
-                                      itemChild.child_url == "#"
-                                        ? `/${itemChild.child_label}`
-                                        : itemChild.child_url
+                                      "#!"
+                                      // itemChild.child_url == "#"
+                                      //   ? `/${itemChild.child_label}`
+                                      //   : itemChild.child_url
                                     }
                                     id={`dropdown0${index}0${indexChild}`}
                                     role="button"
@@ -254,11 +246,7 @@ const HeaderComponent = (props: any) => {
                                         indexSubChild: number
                                       ) => (
                                         <li
-                                          key={
-                                            itemSubChild.subchild_url == "#"
-                                              ? `/${itemSubChild.subchild_url}`
-                                              : itemSubChild.subchild_url
-                                          }
+                                          key={`${itemSubChild.subchild_label}`}
                                         >
                                           <Link
                                             className="dropdown-item"
