@@ -119,7 +119,7 @@ const HomeComponent = () => {
                   style={{
                     userSelect: "none",
                     minHeight: "250px",
-                    maxHeight: "400px",
+                    maxHeight: "600px",
                   }}
                   src={window.location.host + item.slider_src}
                   alt="Pepole"
