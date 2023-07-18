@@ -42,7 +42,7 @@
   },
   "scripts": {
     "start": "PORT=3006 react-scripts start",
-    "start-server": "HTTPS=true SSL_CRT_FILE=./.cert/cert.pem SSL_KEY_FILE=./.cert/key.pem PORT=80 react-scripts start",
+    "start-server": "HTTPS=true SSL_CRT_FILE=./.cert/rspaw.crt SSL_KEY_FILE=./.cert/rspaw.key PORT=80 react-scripts start",
     "serve": "serve -l 80 -s build/",
     "build": "react-scripts build",
     "test": "react-scripts test",
