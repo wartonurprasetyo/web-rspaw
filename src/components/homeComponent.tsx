@@ -30,20 +30,64 @@ const HomeComponent = () => {
     };
     await reqToken()
       .then((res) => {
-        // console.log(res);
         localStorage.setItem("token", res.data.Response.data);
-        // token = res.data.Response.data;
       })
       .catch((err) => console.log(err));
     await getPostByGroup(data)
       .then((resp) => {
-        // console.log(resp);
         setNewsInfo(resp.data.Data);
       })
-      .catch((err) => {
-        // console.log(err);
-      });
+      .catch((err) => {});
+    await getPostByGroup(data)
+      .then((resp) => {
+        setArtikel(resp.data.Data);
+      })
+      .catch((err) => {});
+    await getPostByGroup(data)
+      .then((resp) => {
+        setPengumuman(resp.data.Data);
+      })
+      .catch((err) => {});
   };
+
+  // const getArtikel = async () => {
+  //   let data = {
+  //     post_group: "post",
+  //     post_status: "1",
+  //   };
+  //   await reqToken()
+  //     .then((res) => {
+  //       localStorage.setItem("token", res.data.Response.data);
+  //     })
+  //     .catch((err) => console.log(err));
+  //   await getPostByGroup(data)
+  //     .then((resp) => {
+  //       setArtikel(resp.data.Data);
+  //     })
+  //     .catch((err) => {});
+  //     await getPostByGroup(data)
+  //       .then((resp) => {
+  //         setPengumuman(resp.data.Data);
+  //       })
+  //       .catch((err) => {});
+  // };
+
+  // const getPengumuman = async () => {
+  //   let data = {
+  //     post_group: "post",
+  //     post_status: "1",
+  //   };
+  //   await reqToken()
+  //     .then((res) => {
+  //       localStorage.setItem("token", res.data.Response.data);
+  //     })
+  //     .catch((err) => console.log(err));
+  //   await getPostByGroup(data)
+  //     .then((resp) => {
+  //       setPengumuman(resp.data.Data);
+  //     })
+  //     .catch((err) => {});
+  // };
 
   const getSliderData = async () => {
     await getSlider()
@@ -51,22 +95,20 @@ const HomeComponent = () => {
         console.log("slider", resp.data.Data.data);
         setSlider(resp.data.Data.data);
       })
-      .catch((err) => {
-        // console.log(err);
-      });
+      .catch((err) => {});
   };
 
   console.log(infos);
   useEffect(() => {
     const asyncFunction = async () => {
       await getPost();
+      // await getArtikel();
+      // await getPengumuman();
       await getSliderData();
-      // setSlider(data.slider);
       setInfos(data.info);
       setServices(data.services);
-      // setNewsInfo(data.newsinfo);
-      setArtikel(data.newsinfo);
-      setPengumuman(data.newsinfo);
+      // setArtikel(data.newsinfo);
+      // setPengumuman(data.newsinfo);
       setSchedule(data.schedule);
       setYoutubeUrl("https://www.youtube.com/embed/NA1BwOpvLX0");
     };
@@ -83,7 +125,6 @@ const HomeComponent = () => {
             swipeable={true}
             infiniteLoop
             autoPlay
-            // stopOnHover
             renderArrowNext={(onClickHandler, hasNext, label) =>
               hasNext && (
                 <button
@@ -141,18 +182,33 @@ const HomeComponent = () => {
             {infos.map((info: any) => (
               <div className="col widget">
                 {info.url ? (
-                  <Link to={info.url}>
-                    <div className="block widget-container">
-                      <img
-                        className="animated fadeInUp"
-                        onError={imageOnError}
-                        width={70}
-                        height={70}
-                        alt=""
-                      />
-                      <span className="animated fadeInUp">{info.title}</span>
-                    </div>
-                  </Link>
+                  info.url?.includes("http") ? (
+                    <a href={info.url} target="_blank">
+                      <div className="block widget-container">
+                        <img
+                          className="animated fadeInUp"
+                          onError={imageOnError}
+                          width={70}
+                          height={70}
+                          alt=""
+                        />
+                        <span className="animated fadeInUp">{info.title}</span>
+                      </div>
+                    </a>
+                  ) : (
+                    <Link to={info.url}>
+                      <div className="block widget-container">
+                        <img
+                          className="animated fadeInUp"
+                          onError={imageOnError}
+                          width={70}
+                          height={70}
+                          alt=""
+                        />
+                        <span className="animated fadeInUp">{info.title}</span>
+                      </div>
+                    </Link>
+                  )
                 ) : (
                   <div className="block widget-container">
                     <img
@@ -218,7 +274,6 @@ const HomeComponent = () => {
                   <div style={{ userSelect: "none", cursor: "pointer" }}>
                     <div className="service-item">
                       <img
-                        // className="animated fadeInUp"
                         onError={imageOnError}
                         src={info.img}
                         style={{
@@ -229,10 +284,6 @@ const HomeComponent = () => {
                         alt=""
                       />
                       <h4 className="animated fadeInUp">{info.title}</h4>
-                      {/* <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididunt{" "}
-                    </p> */}
                     </div>
                   </div>
                 </Link>
@@ -276,61 +327,31 @@ const HomeComponent = () => {
               (info: any, index: number) =>
                 index < 3 && (
                   <div className="col-md-4 widget">
-                    {info.post_url ? (
-                      <div className="block widget-container news-widget">
-                        <img
-                          onError={imageOnError}
-                          src={info.post_image}
-                          className="animated fadeInUp rounded img-fluid"
-                          alt=""
-                        />
-                        <span className="animated fadeInUp date">
-                          {formatDate(info.post_date)}
-                        </span>
-                        <span className="animated fadeInUp title">
-                          {info.post_title}
-                        </span>
-                        <span className="animated fadeInUp description">
-                          {info.post_content &&
-                          trimText(info.post_content).length > 75
-                            ? trimText(info.post_content).substring(0, 75) +
-                              "..."
-                            : trimText(info.post_content)}
-                        </span>
-                        <Link to={info.post_url}>
-                          <button className="animated fadeInUp btn readmore">
-                            Read More...
-                          </button>
-                        </Link>
-                      </div>
-                    ) : (
-                      <div className="block widget-container news-widget">
-                        <img
-                          onError={imageOnError}
-                          src={info.image}
-                          className="animated fadeInUp rounded img-fluid"
-                          alt=""
-                        />
-                        <span className="animated fadeInUp date">
-                          {formatDate(info.date)}
-                        </span>
-                        <span className="animated fadeInUp title">
-                          {info.title}
-                        </span>
-                        <span className="animated fadeInUp description">
-                          {info.post_content &&
-                          trimText(info.post_content).length > 75
-                            ? trimText(info.post_content).substring(0, 75) +
-                              "..."
-                            : trimText(info.post_content)}
-                        </span>
-                        <Link to={`/berita-terbaru/${info.id}`}>
-                          <button className="animated fadeInUp btn readmore">
-                            Read More...
-                          </button>
-                        </Link>
-                      </div>
-                    )}
+                    <div className="block widget-container news-widget">
+                      <img
+                        onError={imageOnError}
+                        src={info.post_image}
+                        className="animated fadeInUp rounded img-fluid"
+                        alt=""
+                      />
+                      <span className="animated fadeInUp date">
+                        {formatDate(info.post_date)}
+                      </span>
+                      <span className="animated fadeInUp title">
+                        {info.post_title}
+                      </span>
+                      <span className="animated fadeInUp description">
+                        {info.post_content &&
+                        trimText(info.post_content).length > 75
+                          ? trimText(info.post_content).substring(0, 75) + "..."
+                          : trimText(info.post_content)}
+                      </span>
+                      <Link to={info.post_url}>
+                        <button className="animated fadeInUp btn readmore">
+                          Read More...
+                        </button>
+                      </Link>
+                    </div>
                   </div>
                 )
             )}
@@ -342,63 +363,38 @@ const HomeComponent = () => {
         <div className="container text-center">
           <h2 className="section-title">Pengumuman</h2>
           <div className="row">
-            {pengumuman.map((info: any) => (
-              <div className="col-md-4 widget">
-                {info.url ? (
-                  <Link to={info.url}>
+            {pengumuman.map(
+              (info: any, index: number) =>
+                index < 3 && (
+                  <div className="col-md-4 widget">
                     <div className="block widget-container news-widget">
                       <img
                         onError={imageOnError}
-                        src={info.image}
+                        src={info.post_image}
                         className="animated fadeInUp rounded img-fluid"
                         alt=""
                       />
                       <span className="animated fadeInUp date">
-                        {formatDate(info.date)}
+                        {formatDate(info.post_date)}
                       </span>
                       <span className="animated fadeInUp title">
-                        {info.title}
+                        {info.post_title}
                       </span>
                       <span className="animated fadeInUp description">
-                        {info.description &&
-                        trimText(info.description).length > 75
-                          ? trimText(info.description).substring(0, 75) + "..."
-                          : trimText(info.description)}
+                        {info.post_content &&
+                        trimText(info.post_content).length > 75
+                          ? trimText(info.post_content).substring(0, 75) + "..."
+                          : trimText(info.post_content)}
                       </span>
-                      <button className="animated fadeInUp btn readmore">
-                        Read More...
-                      </button>
+                      <Link to={info.post_url}>
+                        <button className="animated fadeInUp btn readmore">
+                          Read More...
+                        </button>
+                      </Link>
                     </div>
-                  </Link>
-                ) : (
-                  <div className="block widget-container news-widget">
-                    <img
-                      onError={imageOnError}
-                      src={info.image}
-                      className="animated fadeInUp rounded img-fluid"
-                      alt=""
-                    />
-                    <span className="animated fadeInUp date">
-                      {formatDate(info.date)}
-                    </span>
-                    <span className="animated fadeInUp title">
-                      {info.title}
-                    </span>
-                    <span className="animated fadeInUp description">
-                      {info.description &&
-                      trimText(info.description).length > 75
-                        ? trimText(info.description).substring(0, 75) + "..."
-                        : trimText(info.description)}
-                    </span>
-                    <Link to={`/berita-terbaru/${info.id}`}>
-                      <button className="animated fadeInUp btn readmore">
-                        Read More...
-                      </button>
-                    </Link>
                   </div>
-                )}
-              </div>
-            ))}
+                )
+            )}
           </div>
         </div>
       </section>
@@ -407,65 +403,38 @@ const HomeComponent = () => {
         <div className="container text-center">
           <h2 className="section-title">Artikel</h2>
           <div className="row">
-            {artikel.map((info: any) => (
-              <div className="col-md-4 widget">
-                {info.url ? (
-                  <Link to={info.url}>
+            {artikel.map(
+              (info: any, index: number) =>
+                index < 3 && (
+                  <div className="col-md-4 widget">
                     <div className="block widget-container news-widget">
                       <img
                         onError={imageOnError}
-                        src={info.image}
+                        src={info.post_image}
                         className="animated fadeInUp rounded img-fluid"
                         alt=""
                       />
                       <span className="animated fadeInUp date">
-                        {formatDate(info.date)}
+                        {formatDate(info.post_date)}
                       </span>
                       <span className="animated fadeInUp title">
-                        {info.title}
+                        {info.post_title}
                       </span>
                       <span className="animated fadeInUp description">
-                        {info.description &&
-                        trimText(info.description).length > 75
-                          ? trimText(info.description).substring(0, 75) + "..."
-                          : trimText(info.description)}
+                        {info.post_content &&
+                        trimText(info.post_content).length > 75
+                          ? trimText(info.post_content).substring(0, 75) + "..."
+                          : trimText(info.post_content)}
                       </span>
-                      <Link to={`/berita-terbaru/${info.id}`}>
+                      <Link to={info.post_url}>
                         <button className="animated fadeInUp btn readmore">
                           Read More...
                         </button>
                       </Link>
                     </div>
-                  </Link>
-                ) : (
-                  <div className="block widget-container news-widget">
-                    <img
-                      onError={imageOnError}
-                      src={info.image}
-                      className="animated fadeInUp rounded img-fluid"
-                      alt=""
-                    />
-                    <span className="animated fadeInUp date">
-                      {formatDate(info.date)}
-                    </span>
-                    <span className="animated fadeInUp title">
-                      {info.title}
-                    </span>
-                    <span className="animated fadeInUp description">
-                      {info.description &&
-                      trimText(info.description).length > 75
-                        ? trimText(info.description).substring(0, 75) + "..."
-                        : trimText(info.description)}
-                    </span>
-                    <Link to={`/berita-terbaru/${info.id}`}>
-                      <button className="animated fadeInUp btn readmore">
-                        Read More...
-                      </button>
-                    </Link>
                   </div>
-                )}
-              </div>
-            ))}
+                )
+            )}
           </div>
         </div>
       </section>
@@ -483,8 +452,6 @@ const HomeComponent = () => {
               allowFullScreen
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               title="Profil RS Paru dr. Ario Wirawan Salatiga"
-              // width="640"
-              // height="360"
               src={`${youtubeUrl}?controls=1&amp;rel=0&amp;playsinline=0&amp;modestbranding=0&amp;autoplay=0&amp;enablejsapi=1&amp;origin=https%3A%2F%2Fwww.rspaw.or.id&amp;widgetid=1`}
               id="widget2"
             ></iframe>

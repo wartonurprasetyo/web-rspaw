@@ -25,7 +25,6 @@ import AddNav from "./admin/components/nav/addNav";
 // const HomeComponent = React.lazy(() => import("./homeComponent"));
 
 const Routes: any = [
-
   {
     path: "/login",
     layout: "auth",
@@ -42,20 +41,20 @@ const Routes: any = [
     component: <BlogComponent />,
   },
   {
-    path: "/info/:category",
+    path: "/info/berita",
     layout: "landing",
     component: <BlogsComponent />,
   },
-  // {
-  //   path: "/info/pengumuman",
-  //   layout: "landing",
-  //   component: <BlogsComponent />,
-  // },
-  // {
-  //   path: "/info/artikel",
-  //   layout: "landing",
-  //   component: <BlogsComponent />,
-  // },
+  {
+    path: "/info/pengumuman",
+    layout: "landing",
+    component: <BlogsComponent />,
+  },
+  {
+    path: "/info/artikel",
+    layout: "landing",
+    component: <BlogsComponent />,
+  },
   {
     path: "/kontak",
     layout: "landing",
@@ -82,6 +81,11 @@ const Routes: any = [
     component: <PostComponent />,
   },
   {
+    path: "/post/:id/:subId",
+    layout: "landing",
+    component: <PostComponent />,
+  },
+  {
     path: "/profil/:id/:subid",
     layout: "landing",
     component: <PageComponent />,
@@ -91,12 +95,6 @@ const Routes: any = [
     layout: "landing",
     component: <PageComponent />,
   },
-  {
-    path: "/:id",
-    layout: "landing",
-    component: <PageComponent />,
-  },
-
   {
     path: "/news",
     layout: "/web-admin-paw",
@@ -121,6 +119,21 @@ const Routes: any = [
     path: "/nav/add",
     layout: "/web-admin-paw",
     component: <AddNav />,
+  },
+  {
+    path: "/:id",
+    layout: "landing",
+    component: <PageComponent />,
+  },
+  {
+    path: "/:postId/:id",
+    layout: "landing",
+    component: <PostComponent />,
+  },
+  {
+    path: "/:postId/:id/:subId",
+    layout: "landing",
+    component: <PostComponent />,
   },
   // {
   //   path: "/:post/:id",
