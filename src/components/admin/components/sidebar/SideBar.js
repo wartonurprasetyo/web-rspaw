@@ -39,8 +39,13 @@ const SideBar = ({ isOpen, toggle }) => (
         </NavItem>
 
         <NavItem>
-          <NavLink className="nav-link-custom" tag={Link} to={"/web-admin-paw/nav"}  h>
+          <NavLink className="nav-link-custom" tag={Link} to={"/web-admin-paw/nav"} h>
             Data Menu
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink className="nav-link-custom" tag={Link} to={"/web-admin-paw/slider"} h>
+            Data Slider
           </NavLink>
         </NavItem>
 

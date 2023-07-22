@@ -1,13 +1,13 @@
 import { useContext, useEffect, useState } from "react"
-import { Button, Card, CardBody, CardText, CardTitle, Table } from "reactstrap"
-import { deletePosting, getAllMenus, getPostByGroup, reqToken } from "../../../../services/api_web";
-import moment from "moment";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDeleteLeft, faEdit, faRemove } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
-import LoadingContext from "../../../../contexts/LoadingContext";
+import LoadingContext from "../../../../contexts/LoadingContext"
+import { getListSlider } from "../../../../services/api_web"
+import { Button, Card, CardBody, CardTitle, Table } from "reactstrap"
+import { faEdit, faRemove } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import moment from "moment"
+import { Link } from "react-router-dom"
 
-const ListNavigasi = () => {
+const ListSlider = () => {
     const [data, setData]: any = useState([])
 
     const loading = useContext(LoadingContext)
@@ -16,13 +16,9 @@ const ListNavigasi = () => {
     }
     function getData() {
         loading.setLoading(true)
-        let query = {
-            post_group: "post",
-            post_status: "1"
-        }
-        getAllMenus().then(resp => {
-            console.log(resp.data.nav, "h")
-            setData(resp.data.nav)
+
+        getListSlider().then(resp => {
+            setData(resp.data.Data.data)
             loading.setLoading(false)
 
         }).catch(err => {
@@ -47,9 +43,9 @@ const ListNavigasi = () => {
             <Card className="my-2 border-0">
                 <CardBody>
                     <CardTitle tag="h5">
-                        Data Menu
+                        Data Slider
                     </CardTitle>
-                    <Link to="/web-admin-paw/nav/add" className="btn btn-primary">Tambah</Link>
+                    <Link to="/web-admin-paw/slider/add" className="btn btn-primary">Tambah</Link>
                 </CardBody>
 
             </Card>
@@ -58,17 +54,17 @@ const ListNavigasi = () => {
                 <Table striped>
                     <thead>
                         <tr>
-                            <th style={{ maxWidth: 30 }}>
+                            <th>
                                 Nomor
                             </th>
                             <th>
-                                Nama
+                                Caption
                             </th>
                             <th>
-                                URL
+                                Source
                             </th>
                             <th>
-                                Sub Menu
+                                Status
                             </th>
                             <th>
                                 Aksi
@@ -83,35 +79,26 @@ const ListNavigasi = () => {
                                 </td>
                             </tr>
                             :
-                            data.map((el: any, index: any) => (
+                            data.map((el: any, index: number) => (
                                 <tr key={index}>
-                                    <th scope="row" className="text-center align-middle">
+                                    <th scope="row">
                                         {index + 1}
                                     </th>
-                                    <td className="align-middle">
-
-
-                                        {el.parent_label}
-
-                                    </td>
-                                    <td className="align-middle">
-                                        {el.parent_url}
+                                    <td>
+                                        {el.slider_caption}
                                     </td>
                                     <td>
-                                        {el?.child?.map((element: any, idx: any) => (<div key={idx}>
-
-                                            - {element.child_label}
-                                        </div>
-                                        ))}
+                                        {el.slider_src}
                                     </td>
-                                    <td className="align-middle">
-                                        <Link to={"/web-admin-paw/news/edit/" + el.post_id} className="btn btn-primary ">
+                                    <td>
+                                        {el.slider_status == 1 ? "Publish" : "Draft"}
+                                    </td>
+                                    <td>
+                                        <Link to={"/web-admin-paw/slider/edit/" + el.slider_id} className="btn btn-primary ">
 
                                             <FontAwesomeIcon icon={faEdit} />
                                         </Link>
-                                        <Button onClick={() => deleteNav(el.post_id)} className="btn btn-danger " style={{ marginLeft: 10 }}>
-                                            <FontAwesomeIcon icon={faRemove} />
-                                        </Button>
+
                                     </td>
                                 </tr>
                             ))
@@ -125,4 +112,5 @@ const ListNavigasi = () => {
         </>
     )
 }
-export default ListNavigasi;
+
+export default ListSlider;
