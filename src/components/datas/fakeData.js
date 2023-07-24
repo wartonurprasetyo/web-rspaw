@@ -93,7 +93,7 @@ export const info = [
   { url: "/tarif-pelayanan", title: "tarif layanan" },
   { url: "/eperfect", title: "majalah e-perfect" },
   {
-    url: "http://202.180.30.20:6285/PubRekrutmen.aspx",
+    url: "/pdf/Penerimaan_TTK_Mitra",
     title: "lowongan pekerjaan",
   },
   { url: "", title: "bahan makanan penukar" },

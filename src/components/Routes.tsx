@@ -21,6 +21,7 @@ import TabelPost from "./admin/components/news/listPosting";
 import EditBerita from "./admin/components/news/editBerita";
 import ListNavigasi from "./admin/components/nav/listNav";
 import AddNav from "./admin/components/nav/addNav";
+import PdfComponent from "./pdfComponent";
 
 // const HomeComponent = React.lazy(() => import("./homeComponent"));
 
@@ -94,6 +95,11 @@ const Routes: any = [
     path: "/profil/:id",
     layout: "landing",
     component: <PageComponent />,
+  },
+  {
+    path: "/pdf/:id",
+    layout: "/landing",
+    component: <PdfComponent />,
   },
   {
     path: "/news",

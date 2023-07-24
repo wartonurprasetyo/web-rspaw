@@ -105,13 +105,13 @@ const HomeComponent = () => {
       // await getArtikel();
       // await getPengumuman();
       await getSliderData();
-      setInfos(data.info);
-      setServices(data.services);
-      // setArtikel(data.newsinfo);
-      // setPengumuman(data.newsinfo);
-      setSchedule(data.schedule);
-      setYoutubeUrl("https://www.youtube.com/embed/NA1BwOpvLX0");
     };
+    setInfos(data.info);
+    setServices(data.services);
+    // setArtikel(data.newsinfo);
+    // setPengumuman(data.newsinfo);
+    setSchedule(data.schedule);
+    setYoutubeUrl("https://www.youtube.com/embed/NA1BwOpvLX0");
 
     asyncFunction();
   }, []);
