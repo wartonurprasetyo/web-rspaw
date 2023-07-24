@@ -332,3 +332,144 @@ export const getSlider = (client_token = localStorage.getItem("token")) => {
       });
   });
 };
+
+
+export const getListSlider = (
+  client_token = localStorage.getItem("token")
+) => {
+  // console.log("get post");
+  // let data = {
+  //   post_group: "post",
+  //   post_status: "1",
+  // };
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`${baseUrlDev}client/slider/select`, {
+        headers: {
+          client_uid: `rspaw`,
+          client_key:
+            "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
+          client_token: client_token,
+        },
+      })
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+
+export const getListSliderbyId = (
+  id,
+  client_token = localStorage.getItem("token")
+) => {
+  // console.log("get post");
+  // let data = {
+  //   post_group: "post",
+  //   post_status: "1",
+  // };
+  return new Promise((resolve, reject) => {
+    axios
+      .post(`${baseUrlDev}client/slider/detail`, id, {
+        headers: {
+          client_uid: `rspaw`,
+          client_key:
+            "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
+          client_token: client_token,
+        },
+      })
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+
+export const uploadImage = (
+  data,
+  client_token = localStorage.getItem("token")
+) => {
+  // console.log("get post");
+  // let data = {
+  //   post_group: "post",
+  //   post_status: "1",
+  // };
+  return new Promise((resolve, reject) => {
+    axios
+      .post(`${baseUrlDev}client/fileupload`, data, {
+        headers: {
+          client_uid: `rspaw`,
+          client_key:
+            "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
+          client_token: client_token,
+        },
+      })
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+
+
+export const addSlider = async (
+  data,
+  client_token = localStorage.getItem("token")
+) => {
+  // console.log("get post");
+  // let data = {
+  //   post_group: "post",
+  //   post_status: "1",
+  // };
+  try {
+    return new Promise(async (resolve, reject) => {
+      await axios
+        .post(`${baseUrlDev}client/slider/insert`, data, {
+          headers: {
+            client_uid: `rspaw`,
+            client_key:
+              "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
+            client_token: client_token,
+          },
+        })
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  } catch (error) {
+    console.log(error)
+  }
+
+};
+
+export function updateSlider(data,
+  client_token = localStorage.getItem("token")) {
+  return new Promise((resolve, reject) => {
+    axios
+      .put(`${baseUrlDev}client/slider/update`, data, {
+        headers: {
+          client_uid: `rspaw`,
+          client_key: "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
+          client_token: client_token,
+        },
+      })
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}

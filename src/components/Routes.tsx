@@ -22,6 +22,9 @@ import EditBerita from "./admin/components/news/editBerita";
 import ListNavigasi from "./admin/components/nav/listNav";
 import AddNav from "./admin/components/nav/addNav";
 import PdfComponent from "./pdfComponent";
+import ListSlider from "./admin/components/slider/listSlider";
+import AddSlider from "./admin/components/slider/addSlider";
+import EditSlider from "./admin/components/slider/editSlider";
 
 // const HomeComponent = React.lazy(() => import("./homeComponent"));
 
@@ -125,6 +128,21 @@ const Routes: any = [
     path: "/nav/add",
     layout: "/web-admin-paw",
     component: <AddNav />,
+  },
+  {
+    path: "/slider",
+    layout: "/web-admin-paw",
+    component: <ListSlider />,
+  },
+  {
+    path: "/slider/add",
+    layout: "/web-admin-paw",
+    component: <AddSlider />,
+  },
+  {
+    path: "/slider/edit/:id",
+    layout: "/web-admin-paw",
+    component: <EditSlider />,
   },
   {
     path: "/:id",
