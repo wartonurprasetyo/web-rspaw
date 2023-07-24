@@ -26,13 +26,6 @@ const PdfComponent = () => {
     let id = params.id;
 
     if (!id) return;
-    // console.log(params);
-    // let subid = params.subid;
-    // if (subid) id = `${id}-${subid}`;
-    // let splited = id.split("-");
-    // let removeValue = ["page", "profil", "pofil", "profile", "pofile"];
-    // let newId = splited.filter((item: any) => !removeValue.includes(item));
-    // console.log(splited, newId);
     setContentData("");
     setTitleContentData("");
     setPageTitleContentData("");
@@ -42,16 +35,9 @@ const PdfComponent = () => {
       setPageTitleContentData("Pengumuman");
     }
     loading.setLoading(true);
-    // setTimeout(() => {
-    // }, 900);
     setTimeout(() => {
       loading.setLoading(false);
-      // setContentData(dataPages.content[newId.join("")]);
-      // setTitleContentData(dataPages.title[newId.join("")]);
-      // setPageTitleContentData(dataPages.pageTitle[newId.join("")]);
     }, 1000);
-
-    // get data page by url
   };
 
   useEffect(() => {
