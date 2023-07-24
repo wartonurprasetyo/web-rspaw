@@ -36,8 +36,11 @@ const PdfComponent = () => {
     setContentData("");
     setTitleContentData("");
     setPageTitleContentData("");
-    if (id == "Penerimaan_TTK_Mitra")
+    if (id == "Penerimaan_TTK_Mitra") {
       setContentData("../assets/pdf/Penerimaan_TTK_Mitra.pdf");
+      setTitleContentData("Penerimaan TTK Mitra");
+      setPageTitleContentData("Pengumuman");
+    }
     loading.setLoading(true);
     // setTimeout(() => {
     // }, 900);

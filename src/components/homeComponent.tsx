@@ -4,7 +4,7 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Link } from "react-router-dom";
 import { formatDate, imageOnError, trimText } from "../assets/js/__global";
-import * as data from "./datas/fakeData";
+import * as fakedata from "./datas/fakeData";
 import { getPostByGroup, getSlider, reqToken } from "../services/api_web";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
@@ -45,9 +45,11 @@ const HomeComponent = () => {
       .catch((err) => {});
     await getPostByGroup(data)
       .then((resp) => {
-        setPengumuman(resp.data.Data);
+        setPengumuman([...resp.data.Data, ...fakedata.newsinfo]);
       })
-      .catch((err) => {});
+      .catch((err) => {
+        setPengumuman([...fakedata.newsinfo]);
+      });
   };
 
   // const getArtikel = async () => {
@@ -106,11 +108,11 @@ const HomeComponent = () => {
       // await getPengumuman();
       await getSliderData();
     };
-    setInfos(data.info);
-    setServices(data.services);
-    // setArtikel(data.newsinfo);
-    // setPengumuman(data.newsinfo);
-    setSchedule(data.schedule);
+    setInfos(fakedata.info);
+    setServices(fakedata.services);
+    // setArtikel(fakedata.newsinfo);
+    // setPengumuman(fakedata.newsinfo);
+    setSchedule(fakedata.schedule);
     setYoutubeUrl("https://www.youtube.com/embed/NA1BwOpvLX0");
 
     asyncFunction();
