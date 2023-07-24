@@ -32,7 +32,9 @@ const HomeComponent = () => {
       .then((res) => {
         localStorage.setItem("token", res.data.Response.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        // console.log(err);
+      });
     await getPostByGroup(data)
       .then((resp) => {
         setNewsInfo(resp.data.Data);
@@ -94,13 +96,13 @@ const HomeComponent = () => {
   const getSliderData = async () => {
     await getSlider()
       .then((resp) => {
-        console.log("slider", resp.data.Data.data);
+        // console.log("slider", resp.data.Data.data);
         setSlider(resp.data.Data.data);
       })
       .catch((err) => {});
   };
 
-  console.log(infos);
+  // console.log(infos);
   useEffect(() => {
     const asyncFunction = async () => {
       await getPost();
