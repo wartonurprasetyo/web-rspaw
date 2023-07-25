@@ -12,13 +12,11 @@ export const reqToken = () => {
     axios
       .post(
         `${baseUrlDev}reqtoken`,
-        {},
+        { client_uid: `rspaw`, client_key: client_key },
         {
-          headers: {
-            client_uid: `rspaw`,
-            client_key: client_key,
-            client_token: "",
-          },
+          // headers: {
+          //   client_token: "",
+          // },
         }
       )
       .then((res) => {
