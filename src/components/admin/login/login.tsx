@@ -4,9 +4,11 @@ import { loginPage } from "../../../services/api_web";
 import Config from "../../../config/Config";
 import axios from "axios";
 import LoadingContext from "../../../contexts/LoadingContext"; // import loading
+import { useHistory } from "react-router-dom";
 
 const LoginAdmin = () => {
   const loading = useContext(LoadingContext); // get state & function loading
+  let navigate = useHistory();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -47,7 +49,9 @@ const LoginAdmin = () => {
     loginPage(bodyContent)
       .then((response) => {
         loading.setLoading(false); // change loading state
-        console.log(response.data.data.authToken);
+    
+        localStorage.setItem("rspaw-token",response.data.LoginID);
+        navigate.replace('/web-admin-paw/news')
         // getEmployeeById(response.data.data.userId);
       })
       .catch((err) => {
