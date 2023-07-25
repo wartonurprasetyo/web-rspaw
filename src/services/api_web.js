@@ -4,6 +4,7 @@ import axios from "axios";
 
 const baseUrlDev = check();
 const client_key = Config.client_key;
+const client_uid = Config.client_uid;
 // console.log("axios", axios);
 
 export const reqToken = () => {
