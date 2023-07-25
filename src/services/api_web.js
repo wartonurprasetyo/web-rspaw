@@ -193,8 +193,8 @@ export const loginPage = (
     axios
       .post(`${baseUrlDev}adm/login`, data, {
         headers: {
-          client_uid: `rspaw`,
-          client_key: client_key,
+          // client_uid: `rspaw`,
+          // client_key: client_key,
           client_token: client_token,
         },
       })
