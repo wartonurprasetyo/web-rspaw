@@ -43,7 +43,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "PORT=3006 react-scripts start",
+    "start": "PORT=8080 react-scripts start",
     "start-server": "HTTPS=TRUE PORT=80 react-scripts start",
     "serve": "serve -l 80 -s build/",
     "build": "react-scripts build",
