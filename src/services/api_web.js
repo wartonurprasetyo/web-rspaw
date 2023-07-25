@@ -216,14 +216,24 @@ export const addPostNews = (
   //   post_group: "post",
   //   post_status: "1",
   // };
+  let dataBody = {
+    auth: {
+      client_uid: `rspaw`,
+      client_key: client_key,
+      client_token: client_token,
+    },
+    ...data
+
+  }
+
   return new Promise((resolve, reject) => {
     axios
-      .post(`${baseUrlDev}client/post/insert`, data, {
-        headers: {
-          client_uid: `rspaw`,
-          client_key: client_key,
-          client_token: client_token,
-        },
+      .post(`${baseUrlDev}client/post/insert`, dataBody, {
+        // headers: {
+        //   client_uid: `rspaw`,
+        //   client_key: client_key,
+        //   client_token: client_token,
+        // },
       })
       .then((res) => {
         resolve(res);
@@ -243,14 +253,23 @@ export const updatePostNews = (
   //   post_group: "post",
   //   post_status: "1",
   // };
+  let dataBody = {
+    auth: {
+      client_uid: `rspaw`,
+      client_key: client_key,
+      client_token: client_token,
+    },
+    ...data
+
+  }
   return new Promise((resolve, reject) => {
     axios
-      .put(`${baseUrlDev}client/post/update`, data, {
-        headers: {
-          client_uid: `rspaw`,
-          client_key: client_key,
-          client_token: client_token,
-        },
+      .put(`${baseUrlDev}client/post/update`, dataBody, {
+        // headers: {
+        //   client_uid: `rspaw`,
+        //   client_key: client_key,
+        //   client_token: client_token,
+        // },
       })
       .then((res) => {
         resolve(res);
@@ -265,16 +284,25 @@ export const deletePosting = (
   id,
   client_token = localStorage.getItem("token")
 ) => {
+  let dataBody = {
+    auth: {
+      client_uid: `rspaw`,
+      client_key: client_key,
+      client_token: client_token,
+    },
+    post_id: id
+
+  }
   return new Promise((resolve, reject) => {
     axios
-      .delete(`${baseUrlDev}client/post/delete`, {
-        headers: {
-          "Content-Type": "application/json",
-          client_uid: `rspaw`,
-          client_key: client_key,
-          client_token: client_token,
-        },
-        data: { post_id: id },
+      .delete(`${baseUrlDev}client/post/delete`, dataBody, {
+        // headers: {
+        //   "Content-Type": "application/json",
+        //   client_uid: `rspaw`,
+        //   client_key: client_key,
+        //   client_token: client_token,
+        // },
+        // data: { post_id: id },
       })
       .then((res) => {
         resolve(res);
@@ -295,14 +323,23 @@ export const listSubNav = (
   //   post_group: "post",
   //   post_status: "1",
   // };
+  let dataBody = {
+    auth: {
+      client_uid: `rspaw`,
+      client_key: client_key,
+      client_token: client_token,
+    },
+    ...data
+
+  }
   return new Promise((resolve, reject) => {
     axios
       .post(`${baseUrlDev}client/nav/children`, data, {
-        headers: {
-          client_uid: `rspaw`,
-          client_key: client_key,
-          client_token: client_token,
-        },
+        // headers: {
+        //   client_uid: `rspaw`,
+        //   client_key: client_key,
+        //   client_token: client_token,
+        // },
       })
       .then((res) => {
         resolve(res);
@@ -342,15 +379,23 @@ export const getListSlider = (
   //   post_group: "post",
   //   post_status: "1",
   // };
+  let dataBody = {
+    auth: {
+      client_uid: `rspaw`,
+      client_key: client_key,
+      client_token: client_token,
+    },
+
+  }
   return new Promise((resolve, reject) => {
     axios
-      .get(`${baseUrlDev}client/slider/select`, {
-        headers: {
-          client_uid: `rspaw`,
-          client_key:
-            "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
-          client_token: client_token,
-        },
+      .get(`${baseUrlDev}client/slider/select`, dataBody, {
+        // headers: {
+        //   client_uid: `rspaw`,
+        //   client_key:
+        //     "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
+        //   client_token: client_token,
+        // },
       })
       .then((res) => {
         resolve(res);
@@ -371,14 +416,23 @@ export const getListSliderbyId = (
   //   post_group: "post",
   //   post_status: "1",
   // };
+  let dataBody = {
+    auth: {
+      client_uid: `rspaw`,
+      client_key: client_key,
+      client_token: client_token,
+    },
+    ...id
+
+  }
   return new Promise((resolve, reject) => {
     axios
-      .post(`${baseUrlDev}client/slider/detail`, id, {
+      .post(`${baseUrlDev}client/slider/detail`, dataBody, {
         headers: {
-          client_uid: `rspaw`,
-          client_key:
-            "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
-          client_token: client_token,
+          // client_uid: `rspaw`,
+          // client_key:
+          //   "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
+          // client_token: client_token,
         },
       })
       .then((res) => {
@@ -400,15 +454,24 @@ export const uploadImage = (
   //   post_group: "post",
   //   post_status: "1",
   // };
+  let dataBody = {
+    auth: {
+      client_uid: `rspaw`,
+      client_key: client_key,
+      client_token: client_token,
+    },
+    ...data
+
+  }
   return new Promise((resolve, reject) => {
     axios
-      .post(`${baseUrlDev}client/fileupload`, data, {
-        headers: {
-          client_uid: `rspaw`,
-          client_key:
-            "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
-          client_token: client_token,
-        },
+      .post(`${baseUrlDev}client/fileupload`, dataBody, {
+        // headers: {
+        //   client_uid: `rspaw`,
+        //   client_key:
+        //     "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
+        //   client_token: client_token,
+        // },
       })
       .then((res) => {
         resolve(res);
@@ -430,16 +493,25 @@ export const addSlider = async (
   //   post_group: "post",
   //   post_status: "1",
   // };
+  let dataBody = {
+    auth: {
+      client_uid: `rspaw`,
+      client_key: client_key,
+      client_token: client_token,
+    },
+    ...data
+
+  }
   try {
     return new Promise(async (resolve, reject) => {
       await axios
-        .post(`${baseUrlDev}client/slider/insert`, data, {
-          headers: {
-            client_uid: `rspaw`,
-            client_key:
-              "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
-            client_token: client_token,
-          },
+        .post(`${baseUrlDev}client/slider/insert`, dataBody, {
+          // headers: {
+          //   client_uid: `rspaw`,
+          //   client_key:
+          //     "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
+          //   client_token: client_token,
+          // },
         })
         .then((res) => {
           resolve(res);
@@ -456,14 +528,23 @@ export const addSlider = async (
 
 export function updateSlider(data,
   client_token = localStorage.getItem("token")) {
+  let dataBody = {
+    auth: {
+      client_uid: `rspaw`,
+      client_key: client_key,
+      client_token: client_token,
+    },
+    ...data
+
+  }
   return new Promise((resolve, reject) => {
     axios
-      .put(`${baseUrlDev}client/slider/update`, data, {
-        headers: {
-          client_uid: `rspaw`,
-          client_key: "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
-          client_token: client_token,
-        },
+      .put(`${baseUrlDev}client/slider/update`, dataBody, {
+        // headers: {
+        //   client_uid: `rspaw`,
+        //   client_key: "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
+        //   client_token: client_token,
+        // },
       })
       .then((res) => {
         resolve(res);
