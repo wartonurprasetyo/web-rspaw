@@ -5,20 +5,19 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
+import LoadingOverlay from "react-loading-overlay-ts";
 import {
   Route,
   BrowserRouter as Router,
   Switch,
   useLocation,
 } from "react-router-dom";
-import { fetchReqToken, reqToken } from "../../services/api_web";
+import { ScaleLoader } from "react-spinners";
+import LoadingContext from "../../contexts/LoadingContext";
 import Routes from "../Routes";
 import * as data from "../datas/fakeData";
 import FooterComponent from "../template/footerComponent";
 import HeaderComponent from "../template/headerComponent";
-import LoadingOverlay from "react-loading-overlay-ts";
-import LoadingContext from "../../contexts/LoadingContext";
-import { ScaleLoader } from "react-spinners";
 
 function App() {
   const [loading, setLoading] = useState<any>(false);
@@ -33,7 +32,7 @@ function App() {
   useEffect(() => {
     setContactUs(data.contactUs);
   }, []);
-
+  console.log(process.env.NODE_ENV);
   useEffect(() => {
     // console.log(window.location.pathname);
   }, [window.location.pathname]);

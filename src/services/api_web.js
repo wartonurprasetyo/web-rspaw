@@ -1,8 +1,8 @@
 // import _ from "lodash";
-import Config from "../config/Config";
+import Config, { check } from "../config/Config";
 import axios from "axios";
 
-const baseUrlDev = Config.BaseUrlDev;
+const baseUrlDev = check();
 const client_key = Config.client_key;
 // console.log("axios", axios);
 
@@ -21,30 +21,6 @@ export const reqToken = () => {
           },
         }
       )
-      .then((res) => {
-        resolve(res);
-      })
-      .catch((err) => {
-        reject(err);
-      });
-  });
-};
-
-export const fetchReqToken = () => {
-  // console.log("get menu");
-  const requestOptions = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      client_uid: `rspaw`,
-      client_key: client_key,
-      client_token: "",
-    },
-    body: JSON.stringify({}),
-  };
-
-  return new Promise((resolve, reject) => {
-    fetch(`${baseUrlDev}reqtoken`, requestOptions)
       .then((res) => {
         resolve(res);
       })
@@ -180,10 +156,7 @@ export const listPostByGroup = (
   });
 };
 
-export const loginPage = (
-  data,
-  client_token = ""
-) => {
+export const loginPage = (data, client_token = "") => {
   // console.log("get post");
   // let data = {
   //   post_group: "post",
@@ -285,7 +258,6 @@ export const deletePosting = (
   });
 };
 
-
 export const listSubNav = (
   data,
   client_token = localStorage.getItem("token")
@@ -333,10 +305,7 @@ export const getSlider = (client_token = localStorage.getItem("token")) => {
   });
 };
 
-
-export const getListSlider = (
-  client_token = localStorage.getItem("token")
-) => {
+export const getListSlider = (client_token = localStorage.getItem("token")) => {
   // console.log("get post");
   // let data = {
   //   post_group: "post",
@@ -360,7 +329,6 @@ export const getListSlider = (
       });
   });
 };
-
 
 export const getListSliderbyId = (
   id,
@@ -390,7 +358,6 @@ export const getListSliderbyId = (
   });
 };
 
-
 export const uploadImage = (
   data,
   client_token = localStorage.getItem("token")
@@ -418,8 +385,6 @@ export const uploadImage = (
       });
   });
 };
-
-
 
 export const addSlider = async (
   data,
@@ -449,19 +414,21 @@ export const addSlider = async (
         });
     });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-
 };
 
-export function updateSlider(data,
-  client_token = localStorage.getItem("token")) {
+export function updateSlider(
+  data,
+  client_token = localStorage.getItem("token")
+) {
   return new Promise((resolve, reject) => {
     axios
       .put(`${baseUrlDev}client/slider/update`, data, {
         headers: {
           client_uid: `rspaw`,
-          client_key: "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
+          client_key:
+            "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
           client_token: client_token,
         },
       })
