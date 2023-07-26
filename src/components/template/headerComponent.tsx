@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { getAllMenus, reqToken } from "../../services/api_web";
+import _ from "lodash";
 
 const HeaderComponent = (props: any) => {
   const [socmed, setSocmed] = useState([
@@ -109,7 +110,7 @@ const HeaderComponent = (props: any) => {
       await getAllMenus(token)
         .then((res) => {
           // console.log(res.data.nav);
-          setMenus(res.data.nav);
+          setMenus(_.sortBy(res.data.nav, ["parent_id"]));
         })
         .catch((err) => {
           // console.log(err);
