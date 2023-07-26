@@ -11,17 +11,13 @@ export const reqToken = () => {
   // console.log("get menu");
   return new Promise((resolve, reject) => {
     axios
-      .post(
-        `${baseUrlDev}reqtoken`,
-        {},
-        {
-          headers: {
-            "X-User": `rspaw`,
-            "X-Key ": client_key,
-            "X-Token": "",
-          },
-        }
-      )
+      .get(`${baseUrlDev}reqtoken`, {
+        headers: {
+          "X-User": `rspaw`,
+          "X-Key ": client_key,
+          "X-Token": "",
+        },
+      })
       .then((res) => {
         resolve(res);
       })
