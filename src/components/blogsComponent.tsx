@@ -1,17 +1,14 @@
 import { useEffect, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
-import { Parser } from "html-to-react";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { formatDate, imageOnError, trimText } from "../assets/js/__global";
-import * as data from "./datas/fakeData";
-import FooterComponent from "./template/footerComponent";
-import HeaderComponent from "./template/headerComponent";
-import { Link, useParams } from "react-router-dom";
 import { getPostByGroup, reqToken } from "../services/api_web";
+import * as fakedata from "./datas/fakeData";
 
 const BlogsComponent = () => {
   const [newsinfo, setNewsInfo] = useState<any[]>([]);
   const params: any = useParams();
+  const location: any = useHistory();
 
   const getPost = async () => {
     let data = {
@@ -28,7 +25,18 @@ const BlogsComponent = () => {
     await getPostByGroup(data)
       .then((resp) => {
         console.log(resp);
-        setNewsInfo(resp.data.Data);
+        let datas = [];
+        if (location.location.pathname == "/info/pengumuman")
+          datas = fakedata.newsinfo;
+        setNewsInfo([
+          ...datas,
+          ...resp.data.Data.map((item: any) => {
+            return {
+              ...item,
+              toUrl: `${location.location.pathname}/${item.post_id}`,
+            };
+          }),
+        ]);
       })
       .catch((err) => {
         console.log(err);
@@ -36,6 +44,8 @@ const BlogsComponent = () => {
   };
 
   useEffect(() => {
+    console.log(location.location.pathname);
+
     getPost();
     console.log(params.category);
 
@@ -70,7 +80,7 @@ const BlogsComponent = () => {
                     <a href={`${item.post_url}`}>
                       <img
                         className="img-fluid blog-image"
-                        src={item.post_image}
+                        src={item.post_image || "-"}
                         onError={imageOnError}
                         alt=""
                       />
@@ -99,7 +109,7 @@ const BlogsComponent = () => {
                         ? trimText(item.post_content).substring(0, 250) + "..."
                         : trimText(item.post_content)}
                     </p>
-                    <Link to={`${item.post_url}`} className="btn btn-main">
+                    <Link to={`${item.toUrl}`} className="btn btn-main">
                       Read More
                     </Link>
                   </div>
@@ -107,36 +117,6 @@ const BlogsComponent = () => {
               </div>
             ))}
           </div>
-
-          {/* <nav aria-label="Page navigation example">
-            <ul className="pagination post-pagination justify-content-center">
-              <li className="page-item">
-                <a className="page-link" href="blog-grid.html">
-                  Prev
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="blog-grid.html">
-                  1
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="blog-grid.html">
-                  2
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="blog-grid.html">
-                  3
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="blog-grid.html">
-                  Next
-                </a>
-              </li>
-            </ul>
-          </nav> */}
         </div>
       </div>
       {/* <FooterComponent></FooterComponent> */}

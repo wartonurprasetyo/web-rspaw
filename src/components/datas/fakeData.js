@@ -178,7 +178,7 @@ export const services = [
 export const newsinfo = [
   {
     post_title: "Penerimaan TTK Mitra",
-    post_content: ` `,
+    post_content: ``,
     // author: "Humas RSPAW",
     post_date: new Date("07/24/2023"),
     post_image: "-",

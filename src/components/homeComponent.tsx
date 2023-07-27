@@ -47,7 +47,7 @@ const HomeComponent = () => {
       .catch((err) => {});
     await getPostByGroup(data)
       .then((resp) => {
-        setPengumuman([...resp.data.Data, ...fakedata.newsinfo]);
+        setPengumuman([...fakedata.newsinfo, ...resp.data.Data]);
       })
       .catch((err) => {
         setPengumuman([...fakedata.newsinfo]);
@@ -334,7 +334,7 @@ const HomeComponent = () => {
                     <div className="block widget-container news-widget">
                       <img
                         onError={imageOnError}
-                        src={info.post_image}
+                        src={info.post_image || "-"}
                         className="animated fadeInUp rounded img-fluid"
                         alt=""
                       />
@@ -374,7 +374,7 @@ const HomeComponent = () => {
                     <div className="block widget-container news-widget">
                       <img
                         onError={imageOnError}
-                        src={info.post_image}
+                        src={info.post_image || "-"}
                         className="animated fadeInUp rounded img-fluid"
                         alt=""
                       />
@@ -414,7 +414,7 @@ const HomeComponent = () => {
                     <div className="block widget-container news-widget">
                       <img
                         onError={imageOnError}
-                        src={info.post_image}
+                        src={info.post_image || "-"}
                         className="animated fadeInUp rounded img-fluid"
                         alt=""
                       />

@@ -43,11 +43,6 @@ const Routes: any = [
     component: <HomeComponent />,
   },
   // {
-  //   path: "/info/berita/:id",
-  //   layout: "landing",
-  //   component: <BlogComponent />,
-  // },
-  // {
   //   path: "/info/berita/:id/:subId",
   //   layout: "landing",
   //   component: <BlogComponent />,
@@ -58,14 +53,29 @@ const Routes: any = [
   //   component: <BlogComponent />,
   // },
   {
+    path: "/info/berita/:id",
+    layout: "landing",
+    component: <BlogComponent />,
+  },
+  {
     path: "/info/berita",
     layout: "landing",
     component: <BlogsComponent />,
   },
   {
+    path: "/info/pengumuman/:id",
+    layout: "landing",
+    component: <BlogComponent />,
+  },
+  {
     path: "/info/pengumuman",
     layout: "landing",
     component: <BlogsComponent />,
+  },
+  {
+    path: "/info/artikel/:id",
+    layout: "landing",
+    component: <BlogComponent />,
   },
   {
     path: "/info/artikel",
