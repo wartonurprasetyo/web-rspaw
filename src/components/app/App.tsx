@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import LoadingOverlay from "react-loading-overlay-ts";
 import {
   Route,
-  HashRouter as Router,
+  BrowserRouter as Router,
   Switch,
   useLocation,
 } from "react-router-dom";
