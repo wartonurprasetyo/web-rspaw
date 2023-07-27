@@ -27,11 +27,9 @@ const BlogsComponent = () => {
         console.log(resp);
         let datas = [];
         if (location.location.pathname == "/info/pengumuman")
-          datas = [
-            fakedata.newsinfo.map((item: any) => {
-              return { ...item, toUrl: item.post_url };
-            }),
-          ];
+          datas = fakedata.newsinfo.map((item: any) => {
+            return { ...item, toUrl: item.post_url };
+          });
         setNewsInfo([
           ...datas,
           ...resp.data.Data.map((item: any) => {
