@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Card, CardHeader, CardTitle, CardBody, Form, Row, Col, FormGroup, Label, Input } from "reactstrap";
+import { Card, CardHeader, CardTitle, CardBody, Form, Row, Col, FormGroup, Label, Input, Button } from "reactstrap";
 import { addSlider, uploadImage } from "../../../../services/api_web";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router";
@@ -71,15 +71,15 @@ const AddSlider = () => {
 
         });
     };
-    function saveSlider() {
+    function saveSlider(e) {
         var srcc = fileName.replaceAll(" ", "-")
-        let query = {
-            "slider_src": "/path/image/" + fileName,
+        let bodyContent = JSON.stringify({
+            "slider_src": e,
             "slider_caption": caption,
             "slider_number": "1",
             "slider_status": status
-        }
-        addSlider(query).then(resp => {
+        })
+        addSlider(bodyContent, localStorage.getItem("token")).then(resp => {
             toast.success("Succes")
             history.push("/web-admin-paw/slider")
         }).catch(err => {
@@ -89,18 +89,19 @@ const AddSlider = () => {
         )
     }
     const validImage = () => {
-        saveSlider()
-        let query =
-        {
+        // saveSlider()
+        let file64 = image.replaceAll("data:image/jpeg;base64,", "")
+        console.log(file64)
+
+        let bodyContent = JSON.stringify({
             "filename": fileName,
-            "filebasenampat": image
+            "filebasenampat": file64
 
-        }
-        // uploadImage(query).then(response => {
-        //     console.log(response);
-
-        // }).catch(err => console.log(err,)
-        // )
+        })
+        uploadImage(bodyContent, localStorage.getItem("token")).then(response => {
+            saveSlider(response.data.Filepath)
+        }).catch(err => console.log(err,)
+        )
     }
     return (
         <>
@@ -162,16 +163,15 @@ const AddSlider = () => {
 
                             {/* Image preview */}
                             {image && (
-                                <div>
-                                    <h2>Image Preview</h2>
+                                <div className="mt-4">
                                     <img src={image} alt="Preview" style={{ maxWidth: '300px' }} />
                                 </div>
                             )}
                         </Row>
                         <Col className="d-flex justify-content-end" >
-                            <button onClick={validImage} className="btn btn-primary">
+                            <Button onClick={validImage} color="primary">
                                 Tambah
-                            </button>
+                            </Button>
                         </Col>
                     </Form>
                 </CardBody>

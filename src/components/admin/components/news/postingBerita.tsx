@@ -12,11 +12,12 @@ function PostingBerita() {
     const [title, setTitle] = useState("")
     const [status, setStatus] = useState("0")
     const [url, setUrl] = useState("")
-    const [kategori, setKategori] = useState("post")
+    const [kategori, setKategori] = useState("")
 
     function PostNews() {
         loading.setLoading(true)
         let query = {
+            "post_id": "",
             "post_author": author,
             "post_date": date,
             "post_content": "<h3>" + content + "</h3>",
@@ -53,7 +54,7 @@ function PostingBerita() {
                             >
                                 Kategori
                             </Label>
-                            <Col sm={2}>
+                            <Col sm={4}>
                                 <Input
                                     value={kategori}
                                     onChange={(e) => {
@@ -66,7 +67,7 @@ function PostingBerita() {
                                     type="select"
 
                                 >
-                                    <option disabled>Pilih Kategori</option>
+                                    <option value="" disabled>Pilih Kategori</option>
                                     <option value={"post"}>Berita</option>
                                     <option value={"page"}>Halaman Statis</option>
                                 </Input>
@@ -139,7 +140,7 @@ function PostingBerita() {
                             >
                                 Status
                             </Label>
-                            <Col sm={2}>
+                            <Col sm={4}>
                                 <Input
                                     value={status}
                                     onChange={(e) => {
@@ -150,7 +151,7 @@ function PostingBerita() {
                                     type="select"
 
                                 >
-                                    <option disabled>Pilih Status</option>
+                                    <option value="" disabled>Pilih Status</option>
                                     <option value={"0"}>Draft</option>
                                     <option value={"1"}>Publish</option>
                                 </Input>
@@ -163,7 +164,7 @@ function PostingBerita() {
                             >
                                 Date
                             </Label>
-                            <Col sm={2}>
+                            <Col sm={4}>
                                 <Input
                                     onChange={(e) => setDate(moment(e.target.value).format("YYYY-MM-DD hh:mm:ss"))}
                                     type="date"
@@ -189,21 +190,12 @@ function PostingBerita() {
                         </FormGroup>
 
 
-                        <FormGroup
-                            check
-                            row
-                        >
-                            <Col
-                                sm={{
-                                    offset: 12,
-                                    size: 2
-                                }}
-                            >
-                                <Button className="btn btn-primary" onClick={() => PostNews()}>
-                                    Submit
-                                </Button>
-                            </Col>
-                        </FormGroup>
+                        <Col className="d-flex justify-content-end" >
+
+                            <button onClick={() => PostNews()} className="btn btn-primary">
+                                Tambah
+                            </button>
+                        </Col>
                     </Form>
                 </CardBody>
             </Card>

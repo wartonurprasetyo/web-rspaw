@@ -1,0 +1,5 @@
+.main-block {
+    width: calc(100vw - 200px);
+    left: 14%;
+    position: relative;
+}

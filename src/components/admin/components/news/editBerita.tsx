@@ -2,7 +2,7 @@ import moment from "moment"
 import React, { useContext, useEffect, useState } from "react"
 import { Button, Card, CardBody, Col, Form, FormGroup, FormText, Input, Label, Toast } from "reactstrap"
 import { addPostNews, getPostById, updatePostNews } from "../../../../services/api_web"
-import { useParams } from "react-router"
+import { useHistory, useParams } from "react-router"
 import LoadingContext from "../../../../contexts/LoadingContext"
 function EditBerita() {
 
@@ -17,6 +17,7 @@ function EditBerita() {
     const [type, setType] = useState(false)
 
     const [data, setData]: any = useState()
+    const history = useHistory()
 
     const loading = useContext(LoadingContext)
 
@@ -89,7 +90,7 @@ function EditBerita() {
                             >
                                 Kategori
                             </Label>
-                            <Col sm={2}>
+                            <Col sm={4}>
                                 <Input
                                     value={kategori}
                                     onChange={(e) => {
@@ -165,7 +166,7 @@ function EditBerita() {
                             >
                                 Status
                             </Label>
-                            <Col sm={2}>
+                            <Col sm={4}>
                                 <Input
                                     value={status}
                                     onChange={(e) => {
@@ -189,10 +190,10 @@ function EditBerita() {
                             >
                                 Date
                             </Label>
-                            <Col sm={2}>
+                            <Col sm={4}>
                                 <Input
                                     onClick={() => setType(true)}
-                                    value={date}
+                                    value={moment(date).format("DD MMMM YYYY")}
                                     onChange={(e) => setDate(e.target.value)}
                                     type={type ? "date" : "text"}
                                 />
@@ -215,23 +216,18 @@ function EditBerita() {
                                 />
                             </Col>
                         </FormGroup>
+                        <Col className="d-flex justify-content-end" >
+
+                            <Button color="primary" onClick={() => PostNews()} >
+                                Update
+                            </Button>
+                            <Button color="danger" onClick={() => history.goBack()} >
+                                Kembali
+                            </Button>
+                        </Col>
 
 
-                        <FormGroup
-                            check
-                            row
-                        >
-                            <Col
-                                sm={{
-                                    offset: 2,
-                                    size: 10
-                                }}
-                            >
-                                <Button onClick={() => PostNews()}>
-                                    Submit
-                                </Button>
-                            </Col>
-                        </FormGroup>
+
                     </Form>
                 </CardBody>
             </Card>

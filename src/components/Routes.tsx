@@ -25,6 +25,9 @@ import PdfComponent from "./pdfComponent";
 import ListSlider from "./admin/components/slider/listSlider";
 import AddSlider from "./admin/components/slider/addSlider";
 import EditSlider from "./admin/components/slider/editSlider";
+import ListPage from "./admin/components/page/listPage";
+import AddPage from "./admin/components/page/addPage";
+import EditPage from "./admin/components/page/editPage";
 
 // const HomeComponent = React.lazy(() => import("./homeComponent"));
 
@@ -158,6 +161,21 @@ const Routes: any = [
     path: "/:postId/:id/:subId",
     layout: "landing",
     component: <PostComponent />,
+  },
+  {
+    path: "/page",
+    layout: "/web-admin-paw",
+    component: <ListPage />,
+  },
+  {
+    path: "/page/add",
+    layout: "/web-admin-paw",
+    component: <AddPage />,
+  },
+  {
+    path: "/page/edit/:id",
+    layout: "/web-admin-paw",
+    component: <EditPage />,
   },
   // {
   //   path: "/:post/:id",

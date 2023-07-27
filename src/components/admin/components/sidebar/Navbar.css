@@ -1,14 +1,20 @@
-.nav-link-custom{
+.nav-link-custom {
     color: white;
 
 }
+
 .nav-link-custom:hover {
     color: black;
     background: white;
     /* Set the desired color for the text on hover */
 }
-.nav-link-custom:active {   
+
+.nav-link-custom:active {
     color: black;
     background: white;
     /* Set the desired color for the text on hover */
+}
+
+.sidebar-container {
+    height: 100%;
 }
