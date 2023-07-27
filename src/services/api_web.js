@@ -153,7 +153,7 @@ export const listPostByGroup = (
   });
 };
 
-export const loginPage = (data, client_token = "") => {
+export const loginPage = (data, client_token) => {
   // console.log("get post");
   // let data = {
   //   post_group: "post",
@@ -161,7 +161,7 @@ export const loginPage = (data, client_token = "") => {
   // };
   return new Promise((resolve, reject) => {
     axios
-      .post(`${baseUrlDev}adm/login`, data, {
+      .post(`${baseUrlDev}client/adm/login`, data, {
         headers: {
           "X-User": `rspaw`,
           "X-Key ": client_key,
@@ -186,6 +186,16 @@ export const addPostNews = (
   //   post_group: "post",
   //   post_status: "1",
   // };
+  let dataBody = {
+    auth: {
+      client_uid: `rspaw`,
+      client_key: client_key,
+      client_token: client_token,
+    },
+    ...data
+
+  }
+
   return new Promise((resolve, reject) => {
     axios
       .post(`${baseUrlDev}client/post/insert`, data, {
@@ -213,9 +223,18 @@ export const updatePostNews = (
   //   post_group: "post",
   //   post_status: "1",
   // };
+  let dataBody = {
+    auth: {
+      client_uid: `rspaw`,
+      client_key: client_key,
+      client_token: client_token,
+    },
+    ...data
+
+  }
   return new Promise((resolve, reject) => {
     axios
-      .put(`${baseUrlDev}client/post/update`, data, {
+      .post(`${baseUrlDev}client/post/update`, data, {
         headers: {
           "X-User": `rspaw`,
           "X-Key ": client_key,
@@ -235,16 +254,25 @@ export const deletePosting = (
   id,
   client_token = localStorage.getItem("token")
 ) => {
+  let dataBody = {
+    auth: {
+      client_uid: `rspaw`,
+      client_key: client_key,
+      client_token: client_token,
+    },
+    post_id: id
+
+  }
   return new Promise((resolve, reject) => {
     axios
-      .delete(`${baseUrlDev}client/post/delete`, {
-        headers: {
-          "Content-Type": "application/json",
-          client_uid: `rspaw`,
-          client_key: client_key,
-          client_token: client_token,
-        },
-        data: { post_id: id },
+      .delete(`${baseUrlDev}client/post/delete`, dataBody, {
+        // headers: {
+        //   "Content-Type": "application/json",
+        //   client_uid: `rspaw`,
+        //   client_key: client_key,
+        //   client_token: client_token,
+        // },
+        // data: { post_id: id },
       })
       .then((res) => {
         resolve(res);
@@ -264,6 +292,15 @@ export const listSubNav = (
   //   post_group: "post",
   //   post_status: "1",
   // };
+  let dataBody = {
+    auth: {
+      client_uid: `rspaw`,
+      client_key: client_key,
+      client_token: client_token,
+    },
+    ...data
+
+  }
   return new Promise((resolve, reject) => {
     axios
       .post(`${baseUrlDev}client/nav/children`, data, {
@@ -308,6 +345,14 @@ export const getListSlider = (client_token = localStorage.getItem("token")) => {
   //   post_group: "post",
   //   post_status: "1",
   // };
+  let dataBody = {
+    auth: {
+      client_uid: `rspaw`,
+      client_key: client_key,
+      client_token: client_token,
+    },
+
+  }
   return new Promise((resolve, reject) => {
     axios
       .get(`${baseUrlDev}client/slider/select`, {
@@ -335,9 +380,18 @@ export const getListSliderbyId = (
   //   post_group: "post",
   //   post_status: "1",
   // };
+  let dataBody = {
+    auth: {
+      client_uid: `rspaw`,
+      client_key: client_key,
+      client_token: client_token,
+    },
+    ...id
+
+  }
   return new Promise((resolve, reject) => {
     axios
-      .post(`${baseUrlDev}client/slider/detail`, id, {
+      .post(`${baseUrlDev}client/slider/detail`, dataBody, {
         headers: {
           "X-User": `rspaw`,
           "X-Key ": client_key,
@@ -355,13 +409,14 @@ export const getListSliderbyId = (
 
 export const uploadImage = (
   data,
-  client_token = localStorage.getItem("token")
+  client_token
 ) => {
   // console.log("get post");
   // let data = {
   //   post_group: "post",
   //   post_status: "1",
   // };
+
   return new Promise((resolve, reject) => {
     axios
       .post(`${baseUrlDev}client/fileupload`, data, {
@@ -382,23 +437,31 @@ export const uploadImage = (
 
 export const addSlider = async (
   data,
-  client_token = localStorage.getItem("token")
+  client_token
 ) => {
   // console.log("get post");
   // let data = {
   //   post_group: "post",
   //   post_status: "1",
   // };
+  let dataBody = {
+    auth: {
+      client_uid: `rspaw`,
+      client_key: client_key,
+      client_token: client_token,
+    },
+    ...data
+
+  }
   try {
     return new Promise(async (resolve, reject) => {
       await axios
         .post(`${baseUrlDev}client/slider/insert`, data, {
           headers: {
-            client_uid: `rspaw`,
-            client_key:
-              "9d3b5bc28d45a4a1180ab98b23f8685e6e79f250be7b7b1be0feaecb2b06fb57",
-            client_token: client_token,
-          },
+            "X-User": `rspaw`,
+            "X-Key ": client_key,
+            "X-Token": client_token,
+          }
         })
         .then((res) => {
           resolve(res);
@@ -433,3 +496,153 @@ export function updateSlider(
       });
   });
 }
+
+
+export const getAllPage = (client_token = localStorage.getItem("token")) => {
+  // console.log("get menu");
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`${baseUrlDev}client/page/select`, {
+        headers: {
+          "X-User": `rspaw`,
+          "X-Key ": client_key,
+          "X-Token": client_token,
+        },
+      })
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+export const getAllNavParent = (client_token = localStorage.getItem("token")) => {
+  // console.log("get menu");
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`${baseUrlDev}client/nav/parent`, {
+        headers: {
+          "X-User": `rspaw`,
+          "X-Key ": client_key,
+          "X-Token": client_token,
+        },
+      })
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+
+export const addPage = (
+  data,
+  client_token
+) => {
+  // console.log("get post");
+  // let data = {
+  //   post_group: "post",
+  //   post_status: "1",
+  // };
+  return new Promise((resolve, reject) => {
+    axios
+      .post(`${baseUrlDev}client/page/insert`, data, {
+
+        headers: {
+          "X-User": `rspaw`,
+          "X-Key ": client_key,
+          "X-Token": client_token,
+        },
+      })
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+
+export const getPageById = (
+  data,
+  client_token = localStorage.getItem("token")
+) => {
+  // console.log("get post");
+  // let data = {
+  //   post_id: "1",
+  // };
+  return new Promise((resolve, reject) => {
+    axios
+      .post(`${baseUrlDev}client/page/detail`, data, {
+        headers: {
+          "X-User": `rspaw`,
+          "X-Key ": client_key,
+          "X-Token": client_token,
+        },
+      })
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+
+export const updatePage = (
+  data,
+  client_token
+) => {
+  // console.log("get post");
+  // let data = {
+  //   post_group: "post",
+  //   post_status: "1",
+  // };
+  return new Promise((resolve, reject) => {
+    axios
+      .post(`${baseUrlDev}client/page/update`, data, {
+
+        headers: {
+          "X-User": `rspaw`,
+          "X-Key ": client_key,
+          "X-Token": client_token,
+        },
+      })
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+
+export const deletePage = (
+  id,
+  client_token
+) => {
+
+  return new Promise((resolve, reject) => {
+    axios
+      .post(`${baseUrlDev}client/page/delete`, id, {
+        headers: {
+          "X-User": `rspaw`,
+          "X-Key ": client_key,
+          "X-Token": client_token,
+        },
+      })
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};

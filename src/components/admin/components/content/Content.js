@@ -9,17 +9,19 @@ import TabelPost from "../news/listPosting";
 import EditBerita from "../news/editBerita";
 import ListNav from "../nav/listNav";
 import AddNav from "../nav/addNav";
+import "./Content.css"
 
 const Content = ({ sidebarIsOpen, toggleSidebar, menuLayout }) => (
   <Container
     fluid
     className={classNames("content", { "is-open": sidebarIsOpen })}
+    style={{ position: "relative", marginLeft: 250 }}
   >
     <Topbar toggleSidebar={toggleSidebar} />
     <Switch>
       <Suspense>
-     {menuLayout}
-{/* 
+        {menuLayout}
+        {/* 
         <Route exact path="/web-admin-paw/news" component={() => <TabelPost />} />
         <Route exact path="/web-admin-paw/news/add" component={() => <PostingBerita />} />
         <Route exact path="/web-admin-paw/news/edit/:id" component={() => <EditBerita />} />

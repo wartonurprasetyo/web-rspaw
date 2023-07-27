@@ -1,4 +1,4 @@
-import { HashRouter, Redirect, Route, BrowserRouter as Router, Switch, useLocation } from "react-router-dom";
+import { HashRouter, Redirect, Route, BrowserRouter as Router, Switch, useHistory, useLocation } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
@@ -15,21 +15,21 @@ import classNames from "classnames";
 import { Col, Container, Row } from "reactstrap";
 import Topbar from "./components/content/Topbar";
 import SideBar from "./components/sidebar/SideBar";
-const AdminLayout = (menu:any) => {
+const AdminLayout = (menu: any) => {
     const [loading, setLoading] = useState<any>(false);
     const changeLoadingState = (payload: boolean) => {
         setLoading(payload);
     };
-
+    const history = useHistory()
     const mainContent = useRef(null);
 
     const location = useLocation();
 
-    const getRoutes = (routes:any) => {
-        return routes.map((prop:any, key:any) => {
+    const getRoutes = (routes: any) => {
+        return routes.map((prop: any, key: any) => {
             if (prop.layout === "/web-admin-paw") {
                 if (prop.collapsed) {
-                    return prop.child.map((el:any, subkey:any) => (
+                    return prop.child.map((el: any, subkey: any) => (
                         <Route
                             exact
                             path={el.layout + el.path}
@@ -54,17 +54,22 @@ const AdminLayout = (menu:any) => {
         });
     };
     useEffect(() => {
-        const asyncFuntion = async () => {
-            let token = "";
-            await reqToken()
-                .then((res) => {
-                    localStorage.setItem("token", res.data.Response.data);
-                    token = res.data.Response.data;
-                })
-                .catch((err) => console.log(err));
+        let a = localStorage.getItem("rspaw-token")
 
-        };
-        asyncFuntion();
+        // const asyncFuntion = async () => {
+        //     let token = "";
+        //     await reqToken()
+        //         .then((res) => {
+        //             localStorage.setItem("token", res.data.Response.data);
+        //             token = res.data.Response.data;
+        //         })
+        //         .catch((err) => console.log(err));
+
+        // };
+        // asyncFuntion();
+        if (!a) {
+            history.push("/login")
+        }
     }, []);
     const [sidebarIsOpen, setSidebarOpen] = useState(true);
     const toggleSidebar = () => setSidebarOpen(!sidebarIsOpen);

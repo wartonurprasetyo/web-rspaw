@@ -1,6 +1,71 @@
+import { useContext, useEffect, useState } from "react";
 import { Button, Card, CardBody, CardHeader, CardTitle, Col, Form, FormGroup, Input, Label, Row } from "reactstrap";
-
+import { getAllMenus, listSubNav } from "../../../../services/api_web";
+import LoadingContext from "../../../../contexts/LoadingContext";
 function AddNav() {
+    const loading = useContext(LoadingContext)
+    const [data, setData] = useState<any>()
+    const [listParen, setListParen] = useState([{
+        label: "",
+        value: ""
+    }])
+    const [listChild, setListChild] = useState([{
+        label: "",
+        value: ""
+    }])
+    const getDataListParent = () => {
+        loading.setLoading(true)
+        getAllMenus().then((response) => {
+            var a: any[] = []
+            response.data.nav.forEach((element: any) => {
+                a.push({
+                    label: element.parent_label,
+                    value: element.parent_id
+                })
+            });
+            setListParen(a)
+
+            loading.setLoading(false)
+
+        }).catch((err) => {
+            loading.setLoading(false)
+        });
+    }
+    const getDataListChild = (e: any) => {
+        let query = {
+            "nav_parent_id": e
+        }
+        loading.setLoading(true)
+        listSubNav(query).then((response) => {
+            var a: any[] = []
+            console.log(response);
+
+            response.data.Data.forEach((element: any) => {
+                a.push({
+                    label: element.nav_label,
+                    value: element.nav_id
+                })
+            });
+            setListChild(a)
+
+            loading.setLoading(false)
+
+        }).catch((err) => {
+            loading.setLoading(false)
+        });
+    }
+
+    const changeData = (e: any, type: any) => {
+        setData((prev: any) => ({ ...prev, [type]: e }));
+    };
+    const updateData = () => {
+        console.log(data);
+
+    }
+
+    useEffect(() => {
+        getDataListParent()
+    }, [])
     return (<>
         <Card>
             <CardHeader>
@@ -20,8 +85,17 @@ function AddNav() {
                                 <Input
                                     placeholder="Select Parent"
                                     type="select"
+                                    value={data?.parent_id}
+                                    onChange={(e) => {
+                                        getDataListChild(e.target.value)
+                                        changeData(e.target.value, "parent_id")
+                                    }}
                                 >
                                     <option value="" disabled>Select Parent</option>
+                                    {listParen.map((el: any, ind: any) => (
+                                        <option value={el?.value} key={ind} >{el?.label}</option>
+                                    )
+                                    )}
                                 </Input>
                             </FormGroup>
                         </Col>
@@ -31,10 +105,19 @@ function AddNav() {
                                     Child
                                 </Label>
                                 <Input
+                                    disabled={listChild[0].value == "" ? true : false}
                                     placeholder="Select Parent"
                                     type="select"
+                                    onChange={(e) => {
+                                        getDataListChild(e.target.value)
+                                        changeData(e.target.value, "parent_id")
+                                    }}
                                 >
                                     <option value="" disabled>Select Child</option>
+                                    {listChild.map((el: any, ind: any) => (
+                                        <option value={el?.value} key={ind} >{el?.label}</option>
+                                    )
+                                    )}
                                 </Input>
                             </FormGroup>
                         </Col>
@@ -58,15 +141,7 @@ function AddNav() {
                             placeholder="Input URL"
                         />
                     </FormGroup>
-                    <FormGroup>
-                        <Label >
-                            Isi Postingan
-                        </Label>
-                        <Input
-                            type="textarea"
-                            placeholder="Input URL"
-                        />
-                    </FormGroup>
+
                     <Row>
                         <Col md={6}>
                             <FormGroup>
@@ -77,7 +152,9 @@ function AddNav() {
                                     placeholder="Select "
                                     type="select"
                                 >
-                                    <option value="" disabled>Select Parent</option>
+                                    <option value="" disabled>Select Status</option>
+                                    <option value="1" disabled>Publish</option>
+                                    <option value="0" disabled>Draft</option>
                                 </Input>
                             </FormGroup>
                         </Col>

@@ -5,7 +5,7 @@ import { Button, Card, CardBody, CardTitle, Table } from "reactstrap"
 import { faEdit, faRemove } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import moment from "moment"
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 
 const ListSlider = () => {
     const [data, setData]: any = useState([])
@@ -14,6 +14,7 @@ const ListSlider = () => {
     function deleteNav(e: any) {
 
     }
+    const history = useHistory()
     function getData() {
         loading.setLoading(true)
 
@@ -25,6 +26,7 @@ const ListSlider = () => {
             console.log(err);
             setData([])
             loading.setLoading(false)
+            history.push('/login')
 
         })
     }

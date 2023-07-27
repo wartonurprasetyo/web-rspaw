@@ -1,45 +1,52 @@
 import { useContext, useEffect, useState } from "react"
-import { Button, Card, CardBody, CardText, CardTitle, Table } from "reactstrap"
-import { deletePosting, getAllMenus, getPostByGroup, reqToken } from "../../../../services/api_web";
-import moment from "moment";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDeleteLeft, faEdit, faRemove } from "@fortawesome/free-solid-svg-icons";
-import { Link, useHistory } from "react-router-dom";
-import LoadingContext from "../../../../contexts/LoadingContext";
+import LoadingContext from "../../../../contexts/LoadingContext"
+import { useHistory } from "react-router"
+import { deletePage, getAllPage } from "../../../../services/api_web"
+import { faEdit, faRemove } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { Link } from "react-router-dom"
+import { Card, CardBody, CardTitle, Table, Button } from "reactstrap"
+import { toast } from "react-toastify"
 
-const ListNavigasi = () => {
+const ListPage = () => {
     const [data, setData]: any = useState([])
 
     const loading = useContext(LoadingContext)
-    function deleteNav(e: any) {
+    function deleteNav(e: any, nav: any) {
+        // loading.setLoading(true)
+        let bodyContent = JSON.stringify({
+            "post_id": e,
+            "nav_id": nav
+        }
+
+        )
+
+        deletePage(bodyContent, localStorage.getItem("token")).then(resp => {
+            getData()
+            toast.success("Sukses Menghapus")
+        }).catch(err => {
+            console.log(err)
+            toast.error("Internal serve Error")
+        })
 
     }
     const history = useHistory()
     function getData() {
         loading.setLoading(true)
-        let query = {
-            post_group: "post",
-            post_status: "1"
-        }
-        getAllMenus().then(resp => {
-            console.log(resp.data.nav, "h")
-            setData(resp.data.nav)
+
+        getAllPage().then(resp => {
+            setData(resp.data.Data)
             loading.setLoading(false)
 
         }).catch(err => {
             console.log(err);
             setData([])
-            history.push("/login")
             loading.setLoading(false)
+            history.push('/login')
 
         })
     }
-    function childList(e: any) {
-        return (<>
-            <span>{e}</span><br />
-        </>
-        )
-    }
+
     useEffect(() => {
 
         getData()
@@ -49,9 +56,9 @@ const ListNavigasi = () => {
             <Card className="my-2 border-0">
                 <CardBody>
                     <CardTitle tag="h5">
-                        Data Menu
+                        Data Page
                     </CardTitle>
-                    <Link to="/web-admin-paw/nav/add" className="btn btn-primary">Tambah</Link>
+                    <Link to="/web-admin-paw/page/add" className="btn btn-primary">Tambah</Link>
                 </CardBody>
 
             </Card>
@@ -64,13 +71,19 @@ const ListNavigasi = () => {
                                 No
                             </th>
                             <th>
-                                Nama
+                                Judul
                             </th>
                             <th>
                                 URL
                             </th>
                             <th>
-                                Sub Menu
+                                Status
+                            </th>
+                            <th>
+                                Author
+                            </th>
+                            <th>
+                                No Navigasi
                             </th>
                             <th>
                                 Aksi
@@ -91,27 +104,26 @@ const ListNavigasi = () => {
                                         {index + 1}
                                     </th>
                                     <td className="align-middle">
-
-
-                                        {el.parent_label}
-
+                                        {el.post_title}
                                     </td>
                                     <td className="align-middle">
-                                        {el.parent_url}
+                                        {el.post_url}
                                     </td>
                                     <td>
-                                        {el?.child?.map((element: any, idx: any) => (<div key={idx}>
-
-                                            - {element.child_label}
-                                        </div>
-                                        ))}
+                                        {el.post_status === "1" ? "Publish" : "Draft"}
                                     </td>
                                     <td className="align-middle">
-                                        <Link to={"/web-admin-paw/news/edit/" + el.post_id} className="btn btn-primary ">
+                                        {el.post_author}
+                                    </td>
+                                    <td className="align-middle">
+                                        {el.nav_number}
+                                    </td>
+                                    <td className="align-middle">
+                                        <Link to={"/web-admin-paw/page/edit/" + el.post_id} className="btn btn-primary ">
 
                                             <FontAwesomeIcon icon={faEdit} />
                                         </Link>
-                                        <Button onClick={() => deleteNav(el.post_id)} className="btn btn-danger " style={{ marginLeft: 10 }}>
+                                        <Button onClick={() => deleteNav(el.post_id, el.nav_id)} className="btn btn-danger " style={{ marginLeft: 10 }}>
                                             <FontAwesomeIcon icon={faRemove} />
                                         </Button>
                                     </td>
@@ -127,4 +139,4 @@ const ListNavigasi = () => {
         </>
     )
 }
-export default ListNavigasi;
+export default ListPage;

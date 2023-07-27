@@ -4,7 +4,7 @@ import { deletePosting, getPostByGroup, reqToken } from "../../../../services/ap
 import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDeleteLeft, faEdit, faRemove } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import LoadingContext from "../../../../contexts/LoadingContext";
 import { toast } from "react-toastify";
 
@@ -24,6 +24,7 @@ const TabelPost = () => {
         post_url: ""
     }])
 
+    const history = useHistory()
     const [clienToken, setClienToken] = useState("")
     function deletePost(value: any) {
         let query = {
@@ -58,6 +59,7 @@ const TabelPost = () => {
             setData([])
             loading.setLoading(false);
             toast.error("Internal serve Error")
+            history.push("/login")
         })
     }
     useEffect(() => {
