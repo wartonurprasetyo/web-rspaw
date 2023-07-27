@@ -2,8 +2,10 @@ module.exports = {
   apps: [
     {
       name: "web-rspaw",
-      script: "npm",
-      args: "run-script start",
+      // script: "npm",
+      // args: "run-script start",
+      script: "serve",
+      args: "build 8080 --spa",
       watch: true,
       autorestart: true,
       env: {
