@@ -21,6 +21,8 @@ const PostComponent = () => {
     let url = "/post";
     if (params.id) url = `${url}/${params.id}`;
     if (params.subId) url = `${url}/${params.subId}`;
+    if (params.childId) url = `${url}/${params.childId}`;
+    if (params.subChildId) url = `${url}/${params.subChildId}`;
     let newData = {
       post_url: `${pathUrl.location.pathname}`,
       // post_url: `${url}`,
