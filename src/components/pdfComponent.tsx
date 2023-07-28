@@ -8,6 +8,7 @@ import LoadingContext from "../contexts/LoadingContext"; // import loading
 
 import PDFViewer from "pdf-viewer-reactjs";
 import Penerimaan_TTK_Mitra from "../assets/pdf/Penerimaan_TTK_Mitra.pdf";
+import Hasil_Seleksi_TTK_Mitra_2023 from "../assets/pdf/Hasil_Seleksi_TTK_Mitra_2023.pdf";
 import { Document, Page, pdfjs } from "react-pdf";
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.js",
@@ -30,12 +31,12 @@ const PdfComponent = () => {
     setTitleContentData("");
     setPageTitleContentData("");
     if (id == "Penerimaan_TTK_Mitra") {
-      setContentData("../assets/pdf/Penerimaan_TTK_Mitra.pdf");
+      setContentData(Penerimaan_TTK_Mitra);
       setTitleContentData("Penerimaan TTK Mitra");
       setPageTitleContentData("Pengumuman");
     }
     if (id == "Hasil_Seleksi_TTK_Mitra_2023") {
-      setContentData("../assets/pdf/Hasil_Seleksi_TTK_Mitra_2023.pdf");
+      setContentData(Hasil_Seleksi_TTK_Mitra_2023);
       setTitleContentData("Hasil Seleksi TTK Mitra 2023");
       setPageTitleContentData("Pengumuman");
     }
