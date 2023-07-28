@@ -73,7 +73,7 @@ const PdfComponent = () => {
                   {titleContent}
                 </h2>
                 <embed
-                  src={Penerimaan_TTK_Mitra}
+                  src={dataContent}
                   width="100%"
                   height="800"
                   type="application/pdf"
