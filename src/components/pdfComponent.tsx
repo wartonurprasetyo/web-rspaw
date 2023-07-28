@@ -34,7 +34,7 @@ const PdfComponent = () => {
       setTitleContentData("Penerimaan TTK Mitra");
       setPageTitleContentData("Pengumuman");
     }
-    if (id == "Penerimaan_TTK_Mitra") {
+    if (id == "Hasil_Seleksi_TTK_Mitra_2023") {
       setContentData("../assets/pdf/Hasil_Seleksi_TTK_Mitra_2023.pdf");
       setTitleContentData("Hasil Seleksi TTK Mitra 2023");
       setPageTitleContentData("Pengumuman");
