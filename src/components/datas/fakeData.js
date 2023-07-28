@@ -177,6 +177,18 @@ export const services = [
 
 export const newsinfo = [
   {
+    post_title: "Hasil Seleksi TTK Mitra 2023",
+    post_content: ``,
+    // author: "Humas RSPAW",
+    post_date: new Date("07/28/2023"),
+    post_image: "-",
+    post_group: "post",
+    post_status: "1",
+    // type: "news",
+    // id: "news1",
+    post_url: "/pdf/Hasil_Seleksi_TTK_Mitra_2023",
+  },
+  {
     post_title: "Penerimaan TTK Mitra",
     post_content: ``,
     // author: "Humas RSPAW",
@@ -188,6 +200,7 @@ export const newsinfo = [
     // id: "news1",
     post_url: "/pdf/Penerimaan_TTK_Mitra",
   },
+
   // {
   //   title:
   //     "Kemenkes Meminta Dokter dan Tenaga Kesehatan Tidak Meninggalkan Pelayanan Pasien",
