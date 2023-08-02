@@ -1,10 +1,12 @@
 import moment from "moment"
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import { Card, CardBody, Form, FormGroup, Label, Col, Input, Row, Button, CardTitle } from "reactstrap"
 import LoadingContext from "../../../../contexts/LoadingContext"
-import { addPage, addPostNews, getAllNavParent, listSubNav } from "../../../../services/api_web"
+import { addPage, addPostNews, getAllNavParent, listSubNav, uploadImage } from "../../../../services/api_web"
 import { useHistory } from "react-router"
 import { toast } from "react-toastify"
+import ReactQuill from "react-quill"
+import 'react-quill/dist/quill.snow.css';
 
 const AddPage = () => {
     const loading = useContext(LoadingContext)
@@ -16,6 +18,8 @@ const AddPage = () => {
     const [url, setUrl] = useState("")
     const [kategori, setKategori] = useState("")
 
+    const [filePath, setFilePath] = useState("")
+
     const [navChildId, setNavChildId] = useState("")
     const [navId, setNavId] = useState("")
     const [navNumber, setNavNumber] = useState("")
@@ -25,6 +29,40 @@ const AddPage = () => {
 
     const [data, setData]: any = useState([])
 
+    const [image, setImage] = useState<any>(null);
+    const [fileName, setFileName] = useState<any>();
+    const [text, setText] = useState('');
+    const [imagePreview, setImagePreview] = useState(null);
+
+    const modules = {
+        toolbar: [
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+            [{ 'font': [] }],
+            ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+            [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
+            ['link', 'image', 'video'],
+            ['clean'],
+        ],
+    };
+    const formats = [
+        'header',
+        'font',
+        'bold', 'italic', 'underline', 'strike', 'blockquote',
+        'list', 'bullet', 'indent',
+        'link', 'image', 'video'
+    ];
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onloadend = () => {
+            setImagePreview(reader.result);
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    };
     function deleteNav(e: any) {
 
     }
@@ -97,36 +135,154 @@ const AddPage = () => {
         });
     }
 
+    const validImage = (e) => {
+        // saveSlider()
+        let file64 = e.replaceAll("data:image/jpeg;base64,", "")
+        console.log(file64)
+
+        let bodyContent = JSON.stringify({
+            "filename": fileName,
+            "filebasenampat": e
+
+        })
+        uploadImage(bodyContent, localStorage.getItem("token")).then(response => {
+            setFilePath(response.data.Filepath)
+        }).catch(err => console.log(err,)
+        )
+    }
     const postData = () => {
         // loading.setLoading(true)
-        let bodyContent = JSON.stringify({
-            "post_author": author,
-            "post_date": date,
-            "post_content": "<h3>" + content + "</h3>",
-            "post_title": title,
-            "post_status": status,
-            "post_created": moment().format("YYYY-MM-DD hh:mm:ss"),
-            "post_updated": moment().format("YYYY-MM-DD hh:mm:ss"),
-            "post_group": kategori,
-            "post_url": url,
-            "nav_parent_id": navParentId,
-            "nav_child_id": navChildId
+        if (quillRef.current) {
+            const editor = quillRef.current.getEditor();
+            const quillDelta = editor.getContents();
+            const imageTags = quillDelta.ops.filter((op) => op.insert && op.insert.image);
+
+            const imageUrls = imageTags.map((op) => {
+                const imageUrl = op.insert.image;
+                return typeof imageUrl === 'string' ? imageUrl : imageUrl.src;
+            });
+            let cek = imageUrls[0].replaceAll("data:image/jpeg;base64,", "")
+            let bodyContent = JSON.stringify({
+                "filename": title + ".jpeg",
+                "filebasenampat": cek
+
+            })
+            uploadImage(bodyContent, localStorage.getItem("token")).then(response => {
+                setFilePath(response.data.Filepath)
+                let bodyContent = JSON.stringify({
+                    "post_author": author,
+                    "post_date": date,
+                    "post_content": text,
+                    "post_title": title,
+                    "post_status": status,
+                    "post_created": moment().format("YYYY-MM-DD hh:mm:ss"),
+                    "post_updated": moment().format("YYYY-MM-DD hh:mm:ss"),
+                    "post_group": kategori,
+                    "post_url": url,
+                    "nav_parent_id": navParentId,
+                    "nav_child_id": navChildId
+                }
+
+                )
+
+
+                addPage(bodyContent, localStorage.getItem("token")).then((res) => {
+                    console.log(res);
+                    toast.success("Sukses")
+                    history.goBack()
+
+                }).catch((err) => {
+                    console.log(err);
+                    toast.error("Gagal")
+
+                });
+            }).catch(err => console.log(err,)
+            )
         }
 
-        )
-
-
-        addPage(bodyContent, localStorage.getItem("token")).then((response) => {
-            console.log(response);
-            toast.success("Sukses")
-            history.goBack()
-
-        }).catch((err) => {
-            console.log(err);
-            toast.error("Gagal")
-
-        });
     }
+
+    const quillRef = useRef<ReactQuill>(null);
+
+
+    const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+
+        const file = event.target.files?.[0];
+        console.log(file);
+        setFileName(file?.name)
+
+        let a = ""
+
+        if (file) {
+            try {
+                convertToBase64(file)
+                    .then((base64String: any) => {
+                        setImage(base64String)
+                        a = base64String
+                    })
+                    .catch((error) => console.error('Error converting to base64:', error));
+            } catch (error) {
+                console.error('Error reading image:', error);
+            }
+        }
+        let bodyContent = JSON.stringify({
+            "filename": fileName,
+            "filebasenampat": a
+
+        })
+        // Simulate image upload request using a placeholder URL
+        // Replace this with your actual API endpoint for image uploading
+        uploadImage(bodyContent, localStorage.getItem("token")).then((data) => {
+            const imageUrl = data.url; // The uploaded image URL from the server
+            const range = quillRef.current.getEditor().getSelection();
+            quillRef.current.getEditor().insertEmbed(range.index, 'image', imageUrl);
+        })
+            .catch((error) => {
+                console.error('Error uploading image', error);
+            });
+    };
+
+
+
+    const handleImagePreview = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        console.log(file);
+        setFileName(file?.name)
+
+
+        if (file) {
+            try {
+                convertToBase64(file)
+                    .then((base64String: any) => {
+                        setImage(base64String)
+                        postData()
+                    })
+                    .catch((error) => console.error('Error converting to base64:', error));
+            } catch (error) {
+                console.error('Error reading image:', error);
+            }
+        }
+    };
+
+    const convertToBase64 = (file: any) => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+
+            reader.onloadend = () => {
+                if (typeof reader.result === 'string') {
+                    resolve(reader.result);
+                } else {
+                    reject(new Error('Failed to convert image to base64.'));
+                }
+            };
+
+            reader.onerror = () => {
+                reject(new Error('Error converting image to base64.'));
+            };
+
+            reader.readAsDataURL(file);
+        });
+    };
 
 
     useEffect(() => {
@@ -330,6 +486,21 @@ const AddPage = () => {
 
                             </Col>
                         </Row>
+                        {/* <Row>
+                            <FormGroup>
+                                <Label >
+                                    Upload Image
+                                </Label>
+                                <Input type="file" onChange={handleImagePreview} accept="image/*" />
+
+                                {image && (
+                                    <div className="mt-4">
+                                        <img src={image} alt="Preview" style={{ maxWidth: '300px' }} />
+                                    </div>
+                                )}
+                            </FormGroup>
+
+                        </Row>
                         <Row>
 
                             <FormGroup >
@@ -348,10 +519,20 @@ const AddPage = () => {
                                 />
 
                             </FormGroup>
+                        </Row> */}
+                        <Row>
+                            <ReactQuill value={text} onChange={setText}
+                                ref={quillRef}
+                                modules={modules}
+                                formats={formats}
+                                placeholder="Compose your text..."
+                                style={{ height: '200%' }} />
+
+
                         </Row>
 
 
-                        <Col className="d-flex justify-content-end" >
+                        <Col className="d-flex justify-content-end mt-4" >
 
                             <Button color="primary" onClick={() => postData()} className="btn btn-primary">
                                 Tambah
