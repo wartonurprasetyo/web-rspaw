@@ -159,6 +159,9 @@ const AddSlider = () => {
 
                         </Row>
                         <Row>
+                            <Label >
+                                Upload Immage
+                            </Label>
                             <Input type="file" o onChange={handleImagePreview} accept="image/*" />
 
                             {/* Image preview */}

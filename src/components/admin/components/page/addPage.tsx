@@ -2,7 +2,7 @@ import moment from "moment"
 import { useContext, useEffect, useState } from "react"
 import { Card, CardBody, Form, FormGroup, Label, Col, Input, Row, Button, CardTitle } from "reactstrap"
 import LoadingContext from "../../../../contexts/LoadingContext"
-import { addPage, addPostNews, getAllNavParent, listSubNav } from "../../../../services/api_web"
+import { addPage, addPostNews, getAllNavParent, listSubNav, uploadImage } from "../../../../services/api_web"
 import { useHistory } from "react-router"
 import { toast } from "react-toastify"
 
@@ -16,6 +16,8 @@ const AddPage = () => {
     const [url, setUrl] = useState("")
     const [kategori, setKategori] = useState("")
 
+    const [filePath, setFilePath] = useState("")
+
     const [navChildId, setNavChildId] = useState("")
     const [navId, setNavId] = useState("")
     const [navNumber, setNavNumber] = useState("")
@@ -24,6 +26,9 @@ const AddPage = () => {
     const [urlParent, setUrlParent] = useState("")
 
     const [data, setData]: any = useState([])
+
+    const [image, setImage] = useState<any>(null);
+    const [fileName, setFileName] = useState<any>();
 
     function deleteNav(e: any) {
 
@@ -97,12 +102,27 @@ const AddPage = () => {
         });
     }
 
+    const validImage = (e) => {
+        // saveSlider()
+        let file64 = e.replaceAll("data:image/jpeg;base64,", "")
+        console.log(file64)
+
+        let bodyContent = JSON.stringify({
+            "filename": fileName,
+            "filebasenampat": e
+
+        })
+        uploadImage(bodyContent, localStorage.getItem("token")).then(response => {
+            setFilePath(response.data.Filepath)
+        }).catch(err => console.log(err,)
+        )
+    }
     const postData = () => {
         // loading.setLoading(true)
         let bodyContent = JSON.stringify({
             "post_author": author,
             "post_date": date,
-            "post_content": "<h3>" + content + "</h3>",
+            "post_content": `<h3> ${content}  <img src="${filePath}" alt="" title="">  </h3>`,
             "post_title": title,
             "post_status": status,
             "post_created": moment().format("YYYY-MM-DD hh:mm:ss"),
@@ -127,6 +147,45 @@ const AddPage = () => {
 
         });
     }
+    const handleImagePreview = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        console.log(file);
+        setFileName(file?.name)
+
+
+        if (file) {
+            try {
+                convertToBase64(file)
+                    .then((base64String: any) => {
+                        setImage(base64String)
+                        validImage(base64String)
+                    })
+                    .catch((error) => console.error('Error converting to base64:', error));
+            } catch (error) {
+                console.error('Error reading image:', error);
+            }
+        }
+    };
+
+    const convertToBase64 = (file: any) => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+
+            reader.onloadend = () => {
+                if (typeof reader.result === 'string') {
+                    resolve(reader.result);
+                } else {
+                    reject(new Error('Failed to convert image to base64.'));
+                }
+            };
+
+            reader.onerror = () => {
+                reject(new Error('Error converting image to base64.'));
+            };
+
+            reader.readAsDataURL(file);
+        });
+    };
 
 
     useEffect(() => {
@@ -329,6 +388,22 @@ const AddPage = () => {
                                 </FormGroup>
 
                             </Col>
+                        </Row>
+                        <Row>
+                            <FormGroup>
+                                <Label >
+                                    Upload Image
+                                </Label>
+                                <Input type="file" onChange={handleImagePreview} accept="image/*" />
+
+                                {/* Image preview */}
+                                {image && (
+                                    <div className="mt-4">
+                                        <img src={image} alt="Preview" style={{ maxWidth: '300px' }} />
+                                    </div>
+                                )}
+                            </FormGroup>
+
                         </Row>
                         <Row>
 
