@@ -61,7 +61,7 @@ const AddPage = () => {
         { list: "bullet" },
         { indent: "-1" },
         { indent: "+1" },
-        { align: [] },
+        // { align: [] },
       ],
       ["link", "image", "video"],
       ["clean"],
