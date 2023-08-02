@@ -1,10 +1,13 @@
 import moment from "moment"
-import { useContext, useState, useEffect } from "react"
+import { useContext, useState, useEffect, useRef } from "react"
 import { useHistory, useParams } from "react-router"
 import { Card, CardBody, Form, Row, Col, FormGroup, Label, Input, Button, CardTitle } from "reactstrap"
 import LoadingContext from "../../../../contexts/LoadingContext"
 import { addPage, getAllNavParent, getPageById, listSubNav, updatePage, uploadImage } from "../../../../services/api_web"
 import { toast } from "react-toastify"
+import ReactQuill from "react-quill"
+import 'react-quill/dist/quill.snow.css';
+
 
 const EditPage = () => {
     const loading = useContext(LoadingContext)
@@ -29,7 +32,7 @@ const EditPage = () => {
     const [data, setData]: any = useState([])
     const [image, setImage] = useState<any>(null);
     const [fileName, setFileName] = useState<any>();
-
+    const quillRef = useRef<ReactQuill>(null);
     const [filePath, setFilePath] = useState("")
     const handleImagePreview = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
@@ -101,6 +104,24 @@ const EditPage = () => {
         value: "",
         url: ""
     }])
+
+    const modules = {
+        toolbar: [
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+            [{ 'font': [] }],
+            ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+            [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
+            ['link', 'image', 'video'],
+            ['clean'],
+        ],
+    };
+    const formats = [
+        'header',
+        'font',
+        'bold', 'italic', 'underline', 'strike', 'blockquote',
+        'list', 'bullet', 'indent',
+        'link', 'image', 'video'
+    ];
     const getDataListParent = () => {
         loading.setLoading(true)
         getAllNavParent().then((response) => {
@@ -159,37 +180,59 @@ const EditPage = () => {
     }
 
     const postData = () => {
-        // loading.setLoading(true)
-        let bodyContent = JSON.stringify({
-            "post_id": param.id,
-            "post_author": author,
-            "post_date": date,
-            "post_content": "<h3>" + content + "</h3>",
-            "post_title": title,
-            "post_status": status,
-            "post_created": moment().format("YYYY-MM-DD hh:mm:ss"),
-            "post_updated": moment().format("YYYY-MM-DD hh:mm:ss"),
-            "post_group": kategori,
-            "post_url": url,
-            "nav_parent_id": navParentId,
-            "nav_child_id": navChildId,
-            "nav_id": navId,
-            "nav_number": navNumber
+        if (quillRef.current) {
+            const editor = quillRef.current.getEditor();
+            const quillDelta = editor.getContents();
+            const imageTags = quillDelta.ops.filter((op) => op.insert && op.insert.image);
+
+            const imageUrls = imageTags.map((op) => {
+                const imageUrl = op.insert.image;
+                return typeof imageUrl === 'string' ? imageUrl : imageUrl.src;
+            });
+            let cek = imageUrls[0].replaceAll("data:image/jpeg;base64,", "")
+            let bodyContent = JSON.stringify({
+                "filename": title + ".jpeg",
+                "filebasenampat": cek
+
+            })
+            uploadImage(bodyContent, localStorage.getItem("token")).then(response => {
+                setFilePath(response.data.Filepath)
+                let bodyContent = JSON.stringify({
+                    "post_id": param.id,
+                    "post_author": author,
+                    "post_date": date,
+                    "post_content": content,
+                    "post_title": title,
+                    "post_status": status,
+                    "post_created": moment().format("YYYY-MM-DD hh:mm:ss"),
+                    "post_updated": moment().format("YYYY-MM-DD hh:mm:ss"),
+                    "post_group": kategori,
+                    "post_url": url,
+                    "nav_parent_id": navParentId,
+                    "nav_child_id": navChildId,
+                    "nav_id": navId,
+                    "nav_number": navNumber
+                }
+
+                )
+
+
+                updatePage(bodyContent, localStorage.getItem("token")).then((response) => {
+                    console.log(response);
+                    history.goBack()
+                    toast.success("Sukses")
+
+                }).catch((err) => {
+                    console.log(err);
+                    toast.error("Gagal")
+
+                });
+
+            }).catch(err => console.log(err,)
+            )
         }
+        // loading.setLoading(true)
 
-        )
-
-
-        updatePage(bodyContent, localStorage.getItem("token")).then((response) => {
-            console.log(response);
-            history.goBack()
-            toast.success("Sukses")
-
-        }).catch((err) => {
-            console.log(err);
-            toast.error("Gagal")
-
-        });
     }
 
 
@@ -208,7 +251,7 @@ const EditPage = () => {
             console.log(resp.data.Data, contenall);
             setAuthor(resp.data.Data.post_author)
             setDate(resp.data.Data.post_date)
-            setContent(contenall)
+            setContent(resp.data.Data.post_content)
             setTitle(resp.data.Data.post_title)
             setStatus(resp.data.Data.post_status)
             setUrl(resp.data.Data.post_url)
@@ -438,7 +481,7 @@ const EditPage = () => {
                                 )}
                             </FormGroup>
                         </Row>
-                        <Row>
+                        {/* <Row>
 
                             <FormGroup >
                                 <Label
@@ -456,15 +499,26 @@ const EditPage = () => {
                                 />
 
                             </FormGroup>
+                        </Row> */}
+                        <Row>
+                            <ReactQuill value={content} onChange={setContent}
+                                ref={quillRef}
+                                modules={modules}
+                                formats={formats}
+                                placeholder="Compose your text..."
+                                style={{ height: '200%' }} />
+
+
                         </Row>
 
 
-                        <Col className="d-flex justify-content-end" >
 
-                            <Button color="primary" onClick={() => postData()} className="btn btn-primary">
+                        <Col className="d-flex justify-content-end mt-4 " >
+
+                            <Button color="primary" onClick={() => postData()} className=" m-1">
                                 Update
                             </Button>
-                            <Button color="danger" onClick={() => history.goBack()} >
+                            <Button color="danger" onClick={() => history.goBack()} className="m-1">
                                 Kembali
                             </Button>
                         </Col>
