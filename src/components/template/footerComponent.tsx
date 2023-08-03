@@ -1,15 +1,7 @@
-import {
-  faFacebookSquare,
-  faInstagramSquare,
-  faTwitterSquare,
-  faWhatsappSquare,
-  faYoutubeSquare,
-} from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
-import * as data from "../datas/fakeData";
 import { Link } from "react-router-dom";
 import { getPostByGroup, reqToken } from "../../services/api_web";
+import * as data from "../datas/fakeData";
 
 const FooterComponent = () => {
   const [recent, setRecent] = useState<any[]>([]);

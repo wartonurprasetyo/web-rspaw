@@ -3,9 +3,9 @@ import { useContext, useEffect, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { useHistory, useParams } from "react-router-dom";
 import { formatDate, imageOnError } from "../assets/js/__global";
-import * as data from "./datas/fakeData";
 import LoadingContext from "../contexts/LoadingContext"; // import loading
 import { getPostById } from "../services/api_web";
+import * as data from "./datas/fakeData";
 
 const BlogComponent = () => {
   const loading = useContext(LoadingContext); // get state & function loading

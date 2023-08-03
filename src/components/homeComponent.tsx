@@ -189,39 +189,43 @@ const HomeComponent = () => {
                   info.url?.includes("http") ? (
                     <a href={info.url} target="_blank">
                       <div className="block widget-container">
-                        <img
+                        {info.icon}
+                        {/* <img
+                        src=""
                           className="animated fadeInUp"
                           onError={imageOnError}
                           width={70}
                           height={70}
                           alt=""
-                        />
+                        /> */}
                         <span className="animated fadeInUp">{info.title}</span>
                       </div>
                     </a>
                   ) : (
                     <Link to={info.url}>
                       <div className="block widget-container">
-                        <img
+                        {info.icon}
+                        {/* <img
                           className="animated fadeInUp"
                           onError={imageOnError}
                           width={70}
                           height={70}
                           alt=""
-                        />
+                        /> */}
                         <span className="animated fadeInUp">{info.title}</span>
                       </div>
                     </Link>
                   )
                 ) : (
                   <div className="block widget-container">
-                    <img
+                    {info.icon}
+                    {/* <img
                       className="animated fadeInUp"
                       onError={imageOnError}
                       width={70}
                       height={70}
                       alt=""
-                    />
+                    /> */}
                     <span className="animated fadeInUp">{info.title}</span>
                   </div>
                 )}
@@ -307,11 +311,13 @@ const HomeComponent = () => {
                   {info.url ? (
                     <Link to={info.url}>
                       <div className="block widget-container">
+                        {info.icon}
                         <span className="animated fadeInUp">{info.title}</span>
                       </div>
                     </Link>
                   ) : (
                     <div className="block widget-container">
+                      {info.icon}
                       <span className="animated fadeInUp">{info.title}</span>
                     </div>
                   )}

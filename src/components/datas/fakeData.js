@@ -14,8 +14,20 @@ import {
   faYoutubeSquare,
 } from "@fortawesome/free-brands-svg-icons";
 import {
+  faBed,
+  faBookMedical,
+  faBowlFood,
+  faBriefcase,
+  faBullhorn,
+  faCalendar,
+  faCalendarCheck,
+  faCheckDouble,
   faEnvelope,
   faEnvelopeSquare,
+  faHandshakeSlash,
+  faPhoneFlip,
+  faRupiahSign,
+  faTowerCell,
 } from "@fortawesome/free-solid-svg-icons";
 
 import imageMaklumatIGD from "../../assets/images/standar-pelayanan-IGD.png";
@@ -88,19 +100,76 @@ export const slider = [
 ];
 
 export const info = [
-  { url: "https://daftaronline.rspaw.or.id/", title: "daftar online" },
-  { url: "/layanan/jadwal-dokter", title: "jadwal dokter" },
+  {
+    url: "https://daftaronline.rspaw.or.id/",
+    title: "daftar online",
+    icon: (
+      <FontAwesomeIcon
+        className="fa-xl animated fadeInUp"
+        icon={faCalendar}
+      ></FontAwesomeIcon>
+    ),
+  },
+  {
+    url: "/layanan/jadwal-dokter",
+    title: "jadwal dokter",
+    icon: (
+      <FontAwesomeIcon
+        className="fa-xl animated fadeInUp"
+        icon={faCalendarCheck}
+      ></FontAwesomeIcon>
+    ),
+  },
   {
     url: "https://daftaronline.rspaw.or.id/?page=infott",
     title: "info tempat tidur",
+    icon: (
+      <FontAwesomeIcon
+        className="fa-xl animated fadeInUp"
+        icon={faBed}
+      ></FontAwesomeIcon>
+    ),
   },
-  { url: "/tarif-pelayanan", title: "tarif layanan" },
-  { url: "/eperfect", title: "majalah e-perfect" },
+  {
+    url: "/tarif-pelayanan",
+    title: "tarif layanan",
+    icon: (
+      <FontAwesomeIcon
+        className="fa-xl animated fadeInUp"
+        icon={faRupiahSign}
+      ></FontAwesomeIcon>
+    ),
+  },
+  {
+    url: "/eperfect",
+    title: "majalah e-perfect",
+    icon: (
+      <FontAwesomeIcon
+        className="fa-xl animated fadeInUp"
+        icon={faBookMedical}
+      ></FontAwesomeIcon>
+    ),
+  },
   {
     url: "https://forms.gle/EEitccyxm3GPZA3w8",
     title: "lowongan pekerjaan",
+    icon: (
+      <FontAwesomeIcon
+        className="fa-xl animated fadeInUp"
+        icon={faBriefcase}
+      ></FontAwesomeIcon>
+    ),
   },
-  { url: "", title: "bahan makanan penukar" },
+  {
+    url: "",
+    title: "bahan makanan penukar",
+    icon: (
+      <FontAwesomeIcon
+        className="fa-xl animated fadeInUp"
+        icon={faBowlFood}
+      ></FontAwesomeIcon>
+    ),
+  },
 ];
 
 export const services = [
@@ -152,30 +221,60 @@ export const services = [
     url: "/spi/penyalahgunaan-wewenang-pegawai-rspaw",
     img: fasilitasUmumImg,
     type: "complaint",
+    icon: (
+      <FontAwesomeIcon
+        className="fa-xl animated fadeInUp"
+        icon={faHandshakeSlash}
+      ></FontAwesomeIcon>
+    ),
   },
   {
     title: "Layanan Pengaduan",
     url: "/layanan-pengaduan",
     img: fasilitasUmumImg,
     type: "complaint",
+    icon: (
+      <FontAwesomeIcon
+        className="fa-xl animated fadeInUp"
+        icon={faPhoneFlip}
+      ></FontAwesomeIcon>
+    ),
   },
   {
     title: "Survey Kepuasan Pelanggan",
     url: "/survey-kepuasan-pelanggan",
     img: fasilitasUmumImg,
     type: "complaint",
+    icon: (
+      <FontAwesomeIcon
+        className="fa-xl animated fadeInUp"
+        icon={faCheckDouble}
+      ></FontAwesomeIcon>
+    ),
   },
   {
     title: "Wishtle Blowing System",
     url: "/spi/wbs-rspaw",
     img: fasilitasUmumImg,
     type: "complaint",
+    icon: (
+      <FontAwesomeIcon
+        className="fa-xl animated fadeInUp"
+        icon={faTowerCell}
+      ></FontAwesomeIcon>
+    ),
   },
   {
     title: "SP4N Lapor",
     url: "/sistem-pengelolaan-pengaduan-pelayanan-publik-nasional-sp4n-layanan-aspirasi-dan-pengaduan-online-rakyat-lapor",
     img: fasilitasUmumImg,
     type: "complaint",
+    icon: (
+      <FontAwesomeIcon
+        className="fa-xl animated fadeInUp"
+        icon={faBullhorn}
+      ></FontAwesomeIcon>
+    ),
   },
 ];
 
@@ -280,12 +379,42 @@ export const socmed = [
 ];
 
 export const iconsSocmed = {
-  facebook: <FontAwesomeIcon className="fa-xl" icon={faFacebookSquare} />,
-  twitter: <FontAwesomeIcon className="fa-xl" icon={faTwitterSquare} />,
-  instagram: <FontAwesomeIcon className="fa-xl" icon={faInstagramSquare} />,
-  whatsapp: <FontAwesomeIcon className="fa-xl" icon={faWhatsappSquare} />,
-  youtube: <FontAwesomeIcon className="fa-xl" icon={faYoutubeSquare} />,
-  email: <FontAwesomeIcon className="fa-xl" icon={faEnvelopeSquare} />,
+  facebook: (
+    <FontAwesomeIcon
+      className="fa-xl animated fadeInUp"
+      icon={faFacebookSquare}
+    />
+  ),
+  twitter: (
+    <FontAwesomeIcon
+      className="fa-xl animated fadeInUp"
+      icon={faTwitterSquare}
+    />
+  ),
+  instagram: (
+    <FontAwesomeIcon
+      className="fa-xl animated fadeInUp"
+      icon={faInstagramSquare}
+    />
+  ),
+  whatsapp: (
+    <FontAwesomeIcon
+      className="fa-xl animated fadeInUp"
+      icon={faWhatsappSquare}
+    />
+  ),
+  youtube: (
+    <FontAwesomeIcon
+      className="fa-xl animated fadeInUp"
+      icon={faYoutubeSquare}
+    />
+  ),
+  email: (
+    <FontAwesomeIcon
+      className="fa-xl animated fadeInUp"
+      icon={faEnvelopeSquare}
+    />
+  ),
 };
 
 export const history =
