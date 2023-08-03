@@ -466,21 +466,21 @@ const EditPage = () => {
 
                             </Col>
                         </Row>
-                        <Row>
+                        {/* <Row>
                             <FormGroup>
                                 <Label >
                                     Upload Image
                                 </Label>
                                 <Input type="file" onChange={handleImagePreview} accept="image/*" />
 
-                                {/* Image preview */}
+
                                 {image && (
                                     <div className="mt-4">
                                         <img src={image} alt="Preview" style={{ maxWidth: '300px' }} />
                                     </div>
                                 )}
                             </FormGroup>
-                        </Row>
+                        </Row> */}
                         {/* <Row>
 
                             <FormGroup >
