@@ -80,7 +80,33 @@ function PostingBerita() {
                     console.log(err)
                     loading.setLoading(false)
                 })
-            }).catch(err => console.log(err,)
+            }).catch(err => {
+                console.log(err,)
+                let query = {
+                    "post_id": "",
+                    "post_author": author,
+                    "post_date": date,
+                    "post_content": text,
+                    "post_title": title,
+                    "post_status": status,
+                    "post_created": moment().format("YYYY-MM-DD hh:mm:ss"),
+                    "post_updated": moment().format("YYYY-MM-DD hh:mm:ss"),
+                    "post_group": kategori,
+                    "post_url": url
+                }
+                addPostNews(query).then(resp => {
+                    console.log(resp)
+                    setAuthor("")
+                    setContent("")
+                    setTitle("")
+                    loading.setLoading(false)
+                    history.goBack()
+
+                }).catch(err => {
+                    console.log(err)
+                    loading.setLoading(false)
+                })
+            }
             )
         }
 

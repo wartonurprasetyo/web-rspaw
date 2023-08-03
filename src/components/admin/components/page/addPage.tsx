@@ -169,7 +169,7 @@ const AddPage = () => {
             })
             uploadImage(bodyContent, localStorage.getItem("token")).then(response => {
                 setFilePath(response.data.Filepath)
-                let bodyContent = JSON.stringify({
+                let bodyContent2 = JSON.stringify({
                     "post_author": author,
                     "post_date": date,
                     "post_content": text,
@@ -186,7 +186,7 @@ const AddPage = () => {
                 )
 
 
-                addPage(bodyContent, localStorage.getItem("token")).then((res) => {
+                addPage(bodyContent2, localStorage.getItem("token")).then((res) => {
                     console.log(res);
                     toast.success("Sukses")
                     history.goBack()
@@ -196,7 +196,37 @@ const AddPage = () => {
                     toast.error("Gagal")
 
                 });
-            }).catch(err => console.log(err,)
+            }).catch(err => {
+                console.log(err)
+                let bodyContent2 = JSON.stringify({
+                    "post_author": author,
+                    "post_date": date,
+                    "post_content": text,
+                    "post_title": title,
+                    "post_status": status,
+                    "post_created": moment().format("YYYY-MM-DD hh:mm:ss"),
+                    "post_updated": moment().format("YYYY-MM-DD hh:mm:ss"),
+                    "post_group": kategori,
+                    "post_url": url,
+                    "nav_parent_id": navParentId,
+                    "nav_child_id": navChildId
+                }
+
+                )
+
+
+                addPage(bodyContent2, localStorage.getItem("token")).then((res) => {
+                    console.log(res);
+                    toast.success("Sukses")
+                    history.goBack()
+
+                }).catch((err) => {
+                    console.log(err);
+                    toast.error("Gagal")
+
+                });
+            }
+
             )
         }
 

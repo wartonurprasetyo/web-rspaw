@@ -197,7 +197,7 @@ const EditPage = () => {
             })
             uploadImage(bodyContent, localStorage.getItem("token")).then(response => {
                 setFilePath(response.data.Filepath)
-                let bodyContent = JSON.stringify({
+                let bodyContent2 = JSON.stringify({
                     "post_id": param.id,
                     "post_author": author,
                     "post_date": date,
@@ -217,7 +217,7 @@ const EditPage = () => {
                 )
 
 
-                updatePage(bodyContent, localStorage.getItem("token")).then((response) => {
+                updatePage(bodyContent2, localStorage.getItem("token")).then((response) => {
                     console.log(response);
                     history.goBack()
                     toast.success("Sukses")
@@ -228,7 +228,39 @@ const EditPage = () => {
 
                 });
 
-            }).catch(err => console.log(err,)
+            }).catch(err => {
+                console.log(err)
+                let bodyContent2 = JSON.stringify({
+                    "post_id": param.id,
+                    "post_author": author,
+                    "post_date": date,
+                    "post_content": content,
+                    "post_title": title,
+                    "post_status": status,
+                    "post_created": moment().format("YYYY-MM-DD hh:mm:ss"),
+                    "post_updated": moment().format("YYYY-MM-DD hh:mm:ss"),
+                    "post_group": kategori,
+                    "post_url": url,
+                    "nav_parent_id": navParentId,
+                    "nav_child_id": navChildId,
+                    "nav_id": navId,
+                    "nav_number": navNumber
+                }
+
+                )
+
+
+                updatePage(bodyContent2, localStorage.getItem("token")).then((response) => {
+                    console.log(response);
+                    history.goBack()
+                    toast.success("Sukses")
+
+                }).catch((err) => {
+                    console.log(err);
+                    toast.error("Gagal")
+
+                });
+            }
             )
         }
         // loading.setLoading(true)

@@ -87,7 +87,36 @@ function EditBerita() {
 
                 })
 
-            }).catch(err => console.log(err,)
+            }).catch(err => {
+                console.log(err,)
+                let query = {
+                    "post_id": data.post_id,
+                    "post_author": author,
+                    "post_date": moment(date).format("YYYY-MM-DD hh:mm:ss"),
+                    "post_content": content,
+                    "post_title": title,
+                    "post_status": status,
+                    "post_created": data.post_created,
+                    "post_updated": moment().format("YYYY-MM-DD hh:mm:ss"),
+                    "post_group": kategori,
+                    "post_url": url
+                }
+                updatePostNews(query).then(resp => {
+                    console.log(resp)
+                    setAuthor("")
+                    setContent("")
+                    setTitle("")
+                    loading.setLoading(false)
+                    window.location.replace("/web-admin-paw")
+
+
+                }).catch(err => {
+                    loading.setLoading(false)
+                    console.log(err)
+
+                })
+            }
+
             )
         }
 
