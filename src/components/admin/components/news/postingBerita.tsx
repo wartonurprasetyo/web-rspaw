@@ -1,8 +1,11 @@
 import moment from "moment"
-import React, { useContext, useState } from "react"
-import { Button, Card, CardBody, Col, Form, FormGroup, FormText, Input, Label } from "reactstrap"
-import { addPostNews } from "../../../../services/api_web"
+import React, { useContext, useRef, useState } from "react"
+import { Button, Card, CardBody, Col, Form, FormGroup, FormText, Input, Label, Row } from "reactstrap"
+import { addPostNews, uploadImage } from "../../../../services/api_web"
 import LoadingContext from "../../../../contexts/LoadingContext"
+import ReactQuill from "react-quill"
+import { useHistory } from "react-router"
+import 'react-quill/dist/quill.snow.css';
 function PostingBerita() {
 
     const loading = useContext(LoadingContext)
@@ -12,34 +15,75 @@ function PostingBerita() {
     const [title, setTitle] = useState("")
     const [status, setStatus] = useState("0")
     const [url, setUrl] = useState("")
+    const history = useHistory()
     const [kategori, setKategori] = useState("")
+    const [text, setText] = useState('');
+    const [imagePreview, setImagePreview] = useState(null);
 
+    const quillRef = useRef<ReactQuill>(null);
+    const modules = {
+        toolbar: [
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+            [{ 'font': [] }],
+            ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+            [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
+            ['link', 'image', 'video'],
+            ['clean'],
+        ],
+    };
+    const formats = [
+        'header',
+        'font',
+        'bold', 'italic', 'underline', 'strike', 'blockquote',
+        'list', 'bullet', 'indent',
+        'link', 'image', 'video'
+    ];
     function PostNews() {
         loading.setLoading(true)
-        let query = {
-            "post_id": "",
-            "post_author": author,
-            "post_date": date,
-            "post_content": "<h3>" + content + "</h3>",
-            "post_title": title,
-            "post_status": status,
-            "post_created": moment().format("YYYY-MM-DD hh:mm:ss"),
-            "post_updated": moment().format("YYYY-MM-DD hh:mm:ss"),
-            "post_group": kategori,
-            "post_url": url
-        }
-        addPostNews(query).then(resp => {
-            console.log(resp)
-            setAuthor("")
-            setContent("")
-            setTitle("")
-            loading.setLoading(false)
-            window.location.replace("/web-admin-paw")
+        if (quillRef.current) {
+            const editor = quillRef.current.getEditor();
+            const quillDelta = editor.getContents();
+            const imageTags = quillDelta.ops.filter((op) => op.insert && op.insert.image);
 
-        }).catch(err => {
-            console.log(err)
-            loading.setLoading(false)
-        })
+            const imageUrls = imageTags.map((op) => {
+                const imageUrl = op.insert.image;
+                return typeof imageUrl === 'string' ? imageUrl : imageUrl.src;
+            });
+            let cek = imageUrls[0].replaceAll("data:image/jpeg;base64,", "")
+            let bodyContent = JSON.stringify({
+                "filename": title + ".jpeg",
+                "filebasenampat": cek
+
+            })
+            uploadImage(bodyContent, localStorage.getItem("token")).then(response => {
+                let query = {
+                    "post_id": "",
+                    "post_author": author,
+                    "post_date": date,
+                    "post_content": text,
+                    "post_title": title,
+                    "post_status": status,
+                    "post_created": moment().format("YYYY-MM-DD hh:mm:ss"),
+                    "post_updated": moment().format("YYYY-MM-DD hh:mm:ss"),
+                    "post_group": kategori,
+                    "post_url": url
+                }
+                addPostNews(query).then(resp => {
+                    console.log(resp)
+                    setAuthor("")
+                    setContent("")
+                    setTitle("")
+                    loading.setLoading(false)
+                    history.goBack()
+
+                }).catch(err => {
+                    console.log(err)
+                    loading.setLoading(false)
+                })
+            }).catch(err => console.log(err,)
+            )
+        }
+
     }
     return (
         <div>
@@ -172,31 +216,28 @@ function PostingBerita() {
                             </Col>
                         </FormGroup>
 
-                        <FormGroup row>
-                            <Label
-                                for="exampleText"
-                                sm={2}
-                            >
-                                Content
-                            </Label>
-                            <Col sm={10}>
-                                <Input
-                                    value={content}
-                                    onChange={(e) => setContent(e.target.value)}
-                                    type="textarea"
-                                    rows="10"
-                                />
-                            </Col>
+                        <FormGroup >
+                            <Label>Content</Label>
+                            <ReactQuill value={text} onChange={setText}
+                                ref={quillRef}
+                                modules={modules}
+                                formats={formats}
+                                placeholder="Compose your text..."
+                                style={{ height: '200%' }} />
+
+
+
                         </FormGroup>
 
 
-                        <Col className="d-flex justify-content-end" >
 
-                            <button onClick={() => PostNews()} className="btn btn-primary">
-                                Tambah
-                            </button>
-                        </Col>
                     </Form>
+                    <Col className="d-flex justify-content-end mt-4" >
+
+                        <Button color="primary" onClick={() => PostNews()} className="btn btn-primary">
+                            Tambah
+                        </Button>
+                    </Col>
                 </CardBody>
             </Card>
         </div>

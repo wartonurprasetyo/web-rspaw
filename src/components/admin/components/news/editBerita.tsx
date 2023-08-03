@@ -1,9 +1,12 @@
 import moment from "moment"
-import React, { useContext, useEffect, useState } from "react"
-import { Button, Card, CardBody, Col, Form, FormGroup, FormText, Input, Label, Toast } from "reactstrap"
-import { addPostNews, getPostById, updatePostNews } from "../../../../services/api_web"
+import React, { useContext, useEffect, useRef, useState } from "react"
+import { Button, Card, CardBody, Col, Form, FormGroup, FormText, Input, Label, Row, Toast } from "reactstrap"
+import { addPostNews, getPostById, updatePostNews, uploadImage } from "../../../../services/api_web"
 import { useHistory, useParams } from "react-router"
 import LoadingContext from "../../../../contexts/LoadingContext"
+import ReactQuill from "react-quill"
+import 'react-quill/dist/quill.snow.css';
+
 function EditBerita() {
 
     const [author, setAuthor] = useState("")
@@ -18,37 +21,76 @@ function EditBerita() {
 
     const [data, setData]: any = useState()
     const history = useHistory()
-
+    const [fileName, setFileName] = useState<any>();
+    const quillRef = useRef<ReactQuill>(null);
     const loading = useContext(LoadingContext)
 
+    const modules = {
+        toolbar: [
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+            [{ 'font': [] }],
+            ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+            [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
+            ['link', 'image', 'video'],
+            ['clean'],
+        ],
+    };
+    const formats = [
+        'header',
+        'font',
+        'bold', 'italic', 'underline', 'strike', 'blockquote',
+        'list', 'bullet', 'indent',
+        'link', 'image', 'video'
+    ];
     function PostNews() {
         loading.setLoading(true)
-        let query = {
-            "post_id": data.post_id,
-            "post_author": author,
-            "post_date": moment(date).format("YYYY-MM-DD hh:mm:ss"),
-            "post_content": "<h3>" + content + "</h3>",
-            "post_title": title,
-            "post_status": status,
-            "post_created": data.post_created,
-            "post_updated": moment().format("YYYY-MM-DD hh:mm:ss"),
-            "post_group": kategori,
-            "post_url": url
+        if (quillRef.current) {
+            const editor = quillRef.current.getEditor();
+            const quillDelta = editor.getContents();
+            const imageTags = quillDelta.ops.filter((op) => op.insert && op.insert.image);
+
+            const imageUrls = imageTags.map((op) => {
+                const imageUrl = op.insert.image;
+                return typeof imageUrl === 'string' ? imageUrl : imageUrl.src;
+            });
+            let cek = imageUrls[0].replaceAll("data:image/jpeg;base64,", "")
+            let bodyContent = JSON.stringify({
+                "filename": title + ".jpeg",
+                "filebasenampat": cek
+
+            })
+            uploadImage(bodyContent, localStorage.getItem("token")).then(response => {
+                let query = {
+                    "post_id": data.post_id,
+                    "post_author": author,
+                    "post_date": moment(date).format("YYYY-MM-DD hh:mm:ss"),
+                    "post_content": content,
+                    "post_title": title,
+                    "post_status": status,
+                    "post_created": data.post_created,
+                    "post_updated": moment().format("YYYY-MM-DD hh:mm:ss"),
+                    "post_group": kategori,
+                    "post_url": url
+                }
+                updatePostNews(query).then(resp => {
+                    console.log(resp)
+                    setAuthor("")
+                    setContent("")
+                    setTitle("")
+                    loading.setLoading(false)
+                    window.location.replace("/web-admin-paw")
+
+
+                }).catch(err => {
+                    loading.setLoading(false)
+                    console.log(err)
+
+                })
+
+            }).catch(err => console.log(err,)
+            )
         }
-        updatePostNews(query).then(resp => {
-            console.log(resp)
-            setAuthor("")
-            setContent("")
-            setTitle("")
-            loading.setLoading(false)
-            window.location.replace("/web-admin-paw")
 
-
-        }).catch(err => {
-            loading.setLoading(false)
-            console.log(err)
-
-        })
     }
     useEffect(() => {
         loading.setLoading(true)
@@ -63,7 +105,7 @@ function EditBerita() {
             console.log(resp.data.Data, contenall);
             setAuthor(resp.data.Data.post_author)
             setDate(resp.data.Data.post_date)
-            setContent(contenall)
+            setContent(resp.data.Data.post_content)
             setTitle(resp.data.Data.post_title)
             setStatus(resp.data.Data.post_status)
             setUrl(resp.data.Data.post_url)
@@ -200,28 +242,25 @@ function EditBerita() {
                             </Col>
                         </FormGroup>
 
-                        <FormGroup row>
-                            <Label
-                                for="exampleText"
-                                sm={2}
-                            >
-                                Content
-                            </Label>
-                            <Col sm={10}>
-                                <Input
-                                    value={content}
-                                    onChange={(e) => setContent(e.target.value)}
-                                    type="textarea"
-                                    rows="10"
-                                />
-                            </Col>
-                        </FormGroup>
-                        <Col className="d-flex justify-content-end" >
+                        <Row >
+                            <Label>Content</Label>
+                            <ReactQuill value={content} onChange={setContent}
+                                ref={quillRef}
+                                modules={modules}
+                                formats={formats}
+                                placeholder="Compose your text..."
+                                style={{ height: '200%' }} />
 
-                            <Button color="primary" onClick={() => PostNews()} >
+
+
+
+                        </Row>
+                        <Col className="d-flex justify-content-end mt-4" >
+
+                            <Button color="primary" className="m-2" onClick={() => PostNews()} >
                                 Update
                             </Button>
-                            <Button color="danger" onClick={() => history.goBack()} >
+                            <Button color="danger" className="m-2" onClick={() => history.goBack()} >
                                 Kembali
                             </Button>
                         </Col>
