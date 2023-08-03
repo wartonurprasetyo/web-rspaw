@@ -160,15 +160,15 @@ const HomeComponent = () => {
               <div key={`slide-${item.slider_id}`}>
                 <img
                   className="animated fadeInUp"
-                  onError={imageOnError}
+                  // onError={imageOnError}
                   style={{
                     userSelect: "none",
                     minHeight: "250px",
                     maxHeight: "600px",
                   }}
                   src={
-                    window.location.host +
-                    item.slider_src?.replaceAll("/home/simrs", "")
+                    "https://rspaw.or.id" +
+                    item.slider_src?.replaceAll("/home/simrs", "/static/media")
                   }
                   alt="Pepole"
                 />
