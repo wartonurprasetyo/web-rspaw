@@ -61,7 +61,7 @@ const PageComponent = () => {
       </section>
 
       <section className="section page-section">
-        <div className="container">
+        <div className="container text-center">
           <div className="row align-items-center">
             <div className="col-12 mt-5 mt-lg-0">
               <div className="pl-0 pl-lg-4">
