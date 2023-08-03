@@ -88,8 +88,11 @@ export const slider = [
 
 export const info = [
   { url: "https://daftaronline.rspaw.or.id/", title: "daftar online" },
-  { url: "/jadwal-dokter", title: "jadwal dokter" },
-  { url: "/info-tempat-tidur-online", title: "info tempat tidur" },
+  { url: "/layanan/jadwal-dokter", title: "jadwal dokter" },
+  {
+    url: "https://daftaronline.rspaw.or.id/?page=infott",
+    title: "info tempat tidur",
+  },
   { url: "/tarif-pelayanan", title: "tarif layanan" },
   { url: "/eperfect", title: "majalah e-perfect" },
   {

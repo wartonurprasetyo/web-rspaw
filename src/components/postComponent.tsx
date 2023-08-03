@@ -18,11 +18,11 @@ const PostComponent = () => {
   useEffect(() => {
     console.log(pathUrl.location.pathname);
 
-    let url = "/post";
-    if (params.id) url = `${url}/${params.id}`;
-    if (params.subId) url = `${url}/${params.subId}`;
-    if (params.childId) url = `${url}/${params.childId}`;
-    if (params.subChildId) url = `${url}/${params.subChildId}`;
+    // let url = "/post";
+    // if (params.id) url = `${url}/${params.id}`;
+    // if (params.subId) url = `${url}/${params.subId}`;
+    // if (params.childId) url = `${url}/${params.childId}`;
+    // if (params.subChildId) url = `${url}/${params.subChildId}`;
     let newData = {
       post_url: `${pathUrl.location.pathname}`,
       // post_url: `${url}`,
@@ -41,7 +41,7 @@ const PostComponent = () => {
         console.log(err);
       });
     // console.log(data.dataPost.find((item) => item.id == params.id));
-  }, [params]);
+  }, [pathUrl.location.pathname]);
   return (
     <>
       <section className="page-wrapper">
@@ -83,7 +83,14 @@ const PostComponent = () => {
                       alt=""
                     />
                   </div>
-                  <div className="post-content post-excerpt">
+                  <div
+                    className="post-content post-excerpt"
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                    }}
+                  >
                     {Parser().parse(dataPost.post_content)}
                   </div>
                 </div>
