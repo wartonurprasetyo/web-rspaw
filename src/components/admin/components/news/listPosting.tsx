@@ -27,12 +27,10 @@ const TabelPost = () => {
     const history = useHistory()
     const [clienToken, setClienToken] = useState("")
     function deletePost(value: any) {
-        let query = {
-            post_id: value
-        }
-
-        console.log(value)
-        deletePosting(value).then(resp => {
+        let bodyContent = JSON.stringify({
+            "post_id": value
+        })
+        deletePosting(bodyContent).then(resp => {
             getData()
             toast.success("Sukses Menghapus")
         }).catch(err => {
