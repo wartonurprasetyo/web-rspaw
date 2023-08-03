@@ -260,7 +260,7 @@ export const deletePosting = (
   }
   return new Promise((resolve, reject) => {
     axios
-      .post(`${baseUrlDev}client/post/delete`, dataBody, {
+      .post(`${baseUrlDev}client/post/delete`, id, {
         headers: {
           "X-User": `rspaw`,
           "X-Key ": client_key,

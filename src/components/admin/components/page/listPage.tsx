@@ -91,7 +91,7 @@ const ListPage = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {data.length == 0 ?
+                        {!data ? 
                             <tr >
                                 <td className="text-center" colSpan={5}>
                                     Data Tidak Ditemukan
