@@ -166,7 +166,10 @@ const HomeComponent = () => {
                     minHeight: "250px",
                     maxHeight: "600px",
                   }}
-                  src={window.location.host + item.slider_src}
+                  src={
+                    window.location.host +
+                    item.slider_src?.replaceAll("/home/simrs", "")
+                  }
                   alt="Pepole"
                 />
                 {item.slider_caption && (

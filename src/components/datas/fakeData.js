@@ -60,12 +60,12 @@ import wbkFisio from "../../assets/images/SOSIALISASI-FISIO-1024x781.png";
 import wbkFarmasi from "../../assets/images/FARMASI-2-1024x795.png";
 import wbkKeuangan from "../../assets/images/KEUANGAN-1024x770.png";
 import slide1 from "../../assets/images/slider/slide-1.png";
-import slide2 from "../../assets/images/slider/2.png";
-import slide3 from "../../assets/images/slider/3.png";
-import slide4 from "../../assets/images/slider/1-6.png";
-import slide5 from "../../assets/images/slider/PERAWAT-1024x734.png";
-import slide6 from "../../assets/images/slider/slide-admedika-3 (1).png";
-import slide7 from "../../assets/images/slider/slide-admedika-3.png";
+import slide2 from "../../assets/images/slider/slider-2.png";
+import slide3 from "../../assets/images/slider/slider-3.png";
+import slide4 from "../../assets/images/slider/slider-4.png";
+import slide5 from "../../assets/images/slider/slider-5.png";
+import slide6 from "../../assets/images/slider/slider-6.png";
+import slide7 from "../../assets/images/slider/slider-7.png";
 import visimisiImage from "../../assets/images/2020/04/poster2-820x1024.png";
 
 export const slider = [
