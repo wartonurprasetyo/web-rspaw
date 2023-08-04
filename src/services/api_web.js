@@ -192,9 +192,8 @@ export const addPostNews = (
       client_key: client_key,
       client_token: client_token,
     },
-    ...data
-
-  }
+    ...data,
+  };
 
   return new Promise((resolve, reject) => {
     axios
@@ -229,9 +228,8 @@ export const updatePostNews = (
       client_key: client_key,
       client_token: client_token,
     },
-    ...data
-
-  }
+    ...data,
+  };
   return new Promise((resolve, reject) => {
     axios
       .post(`${baseUrlDev}client/post/update`, data, {
@@ -255,9 +253,8 @@ export const deletePosting = (
   client_token = localStorage.getItem("token")
 ) => {
   let dataBody = {
-    post_id: id
-
-  }
+    post_id: id,
+  };
   return new Promise((resolve, reject) => {
     axios
       .post(`${baseUrlDev}client/post/delete`, id, {
@@ -291,9 +288,8 @@ export const listSubNav = (
       client_key: client_key,
       client_token: client_token,
     },
-    ...data
-
-  }
+    ...data,
+  };
   return new Promise((resolve, reject) => {
     axios
       .post(`${baseUrlDev}client/nav/children`, data, {
@@ -344,8 +340,7 @@ export const getListSlider = (client_token = localStorage.getItem("token")) => {
       client_key: client_key,
       client_token: client_token,
     },
-
-  }
+  };
   return new Promise((resolve, reject) => {
     axios
       .get(`${baseUrlDev}client/slider/select`, {
@@ -379,9 +374,8 @@ export const getListSliderbyId = (
       client_key: client_key,
       client_token: client_token,
     },
-    ...id
-
-  }
+    ...id,
+  };
   return new Promise((resolve, reject) => {
     axios
       .post(`${baseUrlDev}client/slider/detail`, dataBody, {
@@ -400,10 +394,7 @@ export const getListSliderbyId = (
   });
 };
 
-export const uploadImage = (
-  data,
-  client_token
-) => {
+export const uploadImage = (data, client_token) => {
   // console.log("get post");
   // let data = {
   //   post_group: "post",
@@ -428,10 +419,7 @@ export const uploadImage = (
   });
 };
 
-export const addSlider = async (
-  data,
-  client_token
-) => {
+export const addSlider = async (data, client_token) => {
   // console.log("get post");
   // let data = {
   //   post_group: "post",
@@ -443,9 +431,8 @@ export const addSlider = async (
       client_key: client_key,
       client_token: client_token,
     },
-    ...data
-
-  }
+    ...data,
+  };
   try {
     return new Promise(async (resolve, reject) => {
       await axios
@@ -454,7 +441,7 @@ export const addSlider = async (
             "X-User": `rspaw`,
             "X-Key ": client_key,
             "X-Token": client_token,
-          }
+          },
         })
         .then((res) => {
           resolve(res);
@@ -490,6 +477,27 @@ export function updateSlider(
   });
 }
 
+export function deleteSlider(
+  data,
+  client_token = localStorage.getItem("token")
+) {
+  return new Promise((resolve, reject) => {
+    axios
+      .post(`${baseUrlDev}client/slider/delete`, data, {
+        headers: {
+          "X-User": `rspaw`,
+          "X-Key ": client_key,
+          "X-Token": client_token,
+        },
+      })
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
 
 export const getAllPage = (client_token = localStorage.getItem("token")) => {
   // console.log("get menu");
@@ -511,7 +519,9 @@ export const getAllPage = (client_token = localStorage.getItem("token")) => {
   });
 };
 
-export const getAllNavParent = (client_token = localStorage.getItem("token")) => {
+export const getAllNavParent = (
+  client_token = localStorage.getItem("token")
+) => {
   // console.log("get menu");
   return new Promise((resolve, reject) => {
     axios
@@ -531,11 +541,7 @@ export const getAllNavParent = (client_token = localStorage.getItem("token")) =>
   });
 };
 
-
-export const addPage = (
-  data,
-  client_token
-) => {
+export const addPage = (data, client_token) => {
   // console.log("get post");
   // let data = {
   //   post_group: "post",
@@ -544,7 +550,6 @@ export const addPage = (
   return new Promise((resolve, reject) => {
     axios
       .post(`${baseUrlDev}client/page/insert`, data, {
-
         headers: {
           "X-User": `rspaw`,
           "X-Key ": client_key,
@@ -559,7 +564,6 @@ export const addPage = (
       });
   });
 };
-
 
 export const getPageById = (
   data,
@@ -587,11 +591,7 @@ export const getPageById = (
   });
 };
 
-
-export const updatePage = (
-  data,
-  client_token
-) => {
+export const updatePage = (data, client_token) => {
   // console.log("get post");
   // let data = {
   //   post_group: "post",
@@ -600,7 +600,6 @@ export const updatePage = (
   return new Promise((resolve, reject) => {
     axios
       .post(`${baseUrlDev}client/page/update`, data, {
-
         headers: {
           "X-User": `rspaw`,
           "X-Key ": client_key,
@@ -616,12 +615,7 @@ export const updatePage = (
   });
 };
 
-
-export const deletePage = (
-  id,
-  client_token
-) => {
-
+export const deletePage = (id, client_token) => {
   return new Promise((resolve, reject) => {
     axios
       .post(`${baseUrlDev}client/page/delete`, id, {
