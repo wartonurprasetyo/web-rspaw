@@ -5,10 +5,7 @@ export const formatDate = (date, format = "DD MMMM YYYY") => {
 };
 
 export const trimText = (text) => {
-  //   let splitedText = text.
-  //     .split("</p>")
-  //     .map((item) => item.replaceAll('"', "").replaceAll("<p>", ""));
-  // return splitedText.length > 1 ? splitedText[0] : "";
+  if (!text) return "";
   let splitedText = text.replace(/<(.|\n)*?>/g, "");
   return splitedText;
 };

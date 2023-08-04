@@ -42,6 +42,16 @@ const Routes: any = [
     layout: "landing",
     component: <HomeComponent />,
   },
+  // {
+  //   path: "/info/berita/:id/:subId",
+  //   layout: "landing",
+  //   component: <BlogComponent />,
+  // },
+  // {
+  //   path: "/info/berita/:id/:subId/:childId",
+  //   layout: "landing",
+  //   component: <BlogComponent />,
+  // },
   {
     path: "/info/berita/:id",
     layout: "landing",
@@ -53,9 +63,19 @@ const Routes: any = [
     component: <BlogsComponent />,
   },
   {
+    path: "/info/pengumuman/:id",
+    layout: "landing",
+    component: <BlogComponent />,
+  },
+  {
     path: "/info/pengumuman",
     layout: "landing",
     component: <BlogsComponent />,
+  },
+  {
+    path: "/info/artikel/:id",
+    layout: "landing",
+    component: <BlogComponent />,
   },
   {
     path: "/info/artikel",
@@ -154,6 +174,21 @@ const Routes: any = [
   },
   {
     path: "/:postId/:id",
+    layout: "landing",
+    component: <PostComponent />,
+  },
+  {
+    path: "/:postId/:id/:subId",
+    layout: "landing",
+    component: <PostComponent />,
+  },
+  {
+    path: "/:postId/:id/:subId/:childId",
+    layout: "landing",
+    component: <PostComponent />,
+  },
+  {
+    path: "/:postId/:id/:subId/:childId/:subChildId",
     layout: "landing",
     component: <PostComponent />,
   },

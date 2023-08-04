@@ -351,7 +351,7 @@ const EditPage = () => {
 
                                             listChild.forEach(ele => {
                                                 if (ele.value === e.target.value) {
-                                                    setUrl(urlParent + ele.url)
+                                                    setUrl(urlParent !='#'? urlParent + ele.url:ele.url);
                                                 }
                                             });
                                         }}

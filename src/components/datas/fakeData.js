@@ -14,8 +14,20 @@ import {
   faYoutubeSquare,
 } from "@fortawesome/free-brands-svg-icons";
 import {
+  faBed,
+  faBookMedical,
+  faBowlFood,
+  faBriefcase,
+  faBullhorn,
+  faCalendar,
+  faCalendarCheck,
+  faCheckDouble,
   faEnvelope,
   faEnvelopeSquare,
+  faHandshakeSlash,
+  faPhoneFlip,
+  faRupiahSign,
+  faTowerCell,
 } from "@fortawesome/free-solid-svg-icons";
 
 import imageMaklumatIGD from "../../assets/images/standar-pelayanan-IGD.png";
@@ -48,12 +60,13 @@ import wbkFisio from "../../assets/images/SOSIALISASI-FISIO-1024x781.png";
 import wbkFarmasi from "../../assets/images/FARMASI-2-1024x795.png";
 import wbkKeuangan from "../../assets/images/KEUANGAN-1024x770.png";
 import slide1 from "../../assets/images/slider/slide-1.png";
-import slide2 from "../../assets/images/slider/2.png";
-import slide3 from "../../assets/images/slider/3.png";
-import slide4 from "../../assets/images/slider/1-6.png";
-import slide5 from "../../assets/images/slider/PERAWAT-1024x734.png";
-import slide6 from "../../assets/images/slider/slide-admedika-3 (1).png";
-import slide7 from "../../assets/images/slider/slide-admedika-3.png";
+import slide2 from "../../assets/images/slider/slider-2.png";
+import slide3 from "../../assets/images/slider/slider-3.png";
+import slide4 from "../../assets/images/slider/slider-4.png";
+import slide5 from "../../assets/images/slider/slider-5.png";
+import slide6 from "../../assets/images/slider/slider-6.png";
+import slide7 from "../../assets/images/slider/slider-7.png";
+import visimisiImage from "../../assets/images/2020/04/poster2-820x1024.png";
 
 export const slider = [
   {
@@ -87,16 +100,76 @@ export const slider = [
 ];
 
 export const info = [
-  { url: "https://daftaronline.rspaw.or.id/", title: "daftar online" },
-  { url: "/jadwal-dokter", title: "jadwal dokter" },
-  { url: "/info-tempat-tidur-online", title: "info tempat tidur" },
-  { url: "/tarif-pelayanan", title: "tarif layanan" },
-  { url: "/eperfect", title: "majalah e-perfect" },
+  {
+    url: "https://daftaronline.rspaw.or.id/",
+    title: "daftar online",
+    icon: (
+      <FontAwesomeIcon
+        className="fa-xl animated fadeInUp"
+        icon={faCalendar}
+      ></FontAwesomeIcon>
+    ),
+  },
+  {
+    url: "/layanan/jadwal-dokter",
+    title: "jadwal dokter",
+    icon: (
+      <FontAwesomeIcon
+        className="fa-xl animated fadeInUp"
+        icon={faCalendarCheck}
+      ></FontAwesomeIcon>
+    ),
+  },
+  {
+    url: "https://daftaronline.rspaw.or.id/?page=infott",
+    title: "info tempat tidur",
+    icon: (
+      <FontAwesomeIcon
+        className="fa-xl animated fadeInUp"
+        icon={faBed}
+      ></FontAwesomeIcon>
+    ),
+  },
+  {
+    url: "/tarif-pelayanan",
+    title: "tarif layanan",
+    icon: (
+      <FontAwesomeIcon
+        className="fa-xl animated fadeInUp"
+        icon={faRupiahSign}
+      ></FontAwesomeIcon>
+    ),
+  },
+  {
+    url: "/eperfect",
+    title: "majalah e-perfect",
+    icon: (
+      <FontAwesomeIcon
+        className="fa-xl animated fadeInUp"
+        icon={faBookMedical}
+      ></FontAwesomeIcon>
+    ),
+  },
   {
     url: "https://forms.gle/EEitccyxm3GPZA3w8",
     title: "lowongan pekerjaan",
+    icon: (
+      <FontAwesomeIcon
+        className="fa-xl animated fadeInUp"
+        icon={faBriefcase}
+      ></FontAwesomeIcon>
+    ),
   },
-  { url: "", title: "bahan makanan penukar" },
+  {
+    url: "",
+    title: "bahan makanan penukar",
+    icon: (
+      <FontAwesomeIcon
+        className="fa-xl animated fadeInUp"
+        icon={faBowlFood}
+      ></FontAwesomeIcon>
+    ),
+  },
 ];
 
 export const services = [
@@ -148,37 +221,79 @@ export const services = [
     url: "/spi/penyalahgunaan-wewenang-pegawai-rspaw",
     img: fasilitasUmumImg,
     type: "complaint",
+    icon: (
+      <FontAwesomeIcon
+        className="fa-xl animated fadeInUp"
+        icon={faHandshakeSlash}
+      ></FontAwesomeIcon>
+    ),
   },
   {
     title: "Layanan Pengaduan",
     url: "/layanan-pengaduan",
     img: fasilitasUmumImg,
     type: "complaint",
+    icon: (
+      <FontAwesomeIcon
+        className="fa-xl animated fadeInUp"
+        icon={faPhoneFlip}
+      ></FontAwesomeIcon>
+    ),
   },
   {
     title: "Survey Kepuasan Pelanggan",
     url: "/survey-kepuasan-pelanggan",
     img: fasilitasUmumImg,
     type: "complaint",
+    icon: (
+      <FontAwesomeIcon
+        className="fa-xl animated fadeInUp"
+        icon={faCheckDouble}
+      ></FontAwesomeIcon>
+    ),
   },
   {
     title: "Wishtle Blowing System",
     url: "/spi/wbs-rspaw",
     img: fasilitasUmumImg,
     type: "complaint",
+    icon: (
+      <FontAwesomeIcon
+        className="fa-xl animated fadeInUp"
+        icon={faTowerCell}
+      ></FontAwesomeIcon>
+    ),
   },
   {
     title: "SP4N Lapor",
     url: "/sistem-pengelolaan-pengaduan-pelayanan-publik-nasional-sp4n-layanan-aspirasi-dan-pengaduan-online-rakyat-lapor",
     img: fasilitasUmumImg,
     type: "complaint",
+    icon: (
+      <FontAwesomeIcon
+        className="fa-xl animated fadeInUp"
+        icon={faBullhorn}
+      ></FontAwesomeIcon>
+    ),
   },
 ];
 
 export const newsinfo = [
   {
+    post_title: "Hasil Seleksi TTK Mitra 2023",
+    post_content: ``,
+    // author: "Humas RSPAW",
+    post_date: new Date("07/28/2023"),
+    post_image: "-",
+    post_group: "post",
+    post_status: "1",
+    // type: "news",
+    // id: "news1",
+    post_url: "/pdf/Hasil_Seleksi_TTK_Mitra_2023",
+  },
+  {
     post_title: "Penerimaan TTK Mitra",
-    post_content: ` `,
+    post_content: ``,
     // author: "Humas RSPAW",
     post_date: new Date("07/24/2023"),
     post_image: "-",
@@ -188,6 +303,7 @@ export const newsinfo = [
     // id: "news1",
     post_url: "/pdf/Penerimaan_TTK_Mitra",
   },
+
   // {
   //   title:
   //     "Kemenkes Meminta Dokter dan Tenaga Kesehatan Tidak Meninggalkan Pelayanan Pasien",
@@ -263,12 +379,42 @@ export const socmed = [
 ];
 
 export const iconsSocmed = {
-  facebook: <FontAwesomeIcon className="fa-xl" icon={faFacebookSquare} />,
-  twitter: <FontAwesomeIcon className="fa-xl" icon={faTwitterSquare} />,
-  instagram: <FontAwesomeIcon className="fa-xl" icon={faInstagramSquare} />,
-  whatsapp: <FontAwesomeIcon className="fa-xl" icon={faWhatsappSquare} />,
-  youtube: <FontAwesomeIcon className="fa-xl" icon={faYoutubeSquare} />,
-  email: <FontAwesomeIcon className="fa-xl" icon={faEnvelopeSquare} />,
+  facebook: (
+    <FontAwesomeIcon
+      className="fa-xl animated fadeInUp"
+      icon={faFacebookSquare}
+    />
+  ),
+  twitter: (
+    <FontAwesomeIcon
+      className="fa-xl animated fadeInUp"
+      icon={faTwitterSquare}
+    />
+  ),
+  instagram: (
+    <FontAwesomeIcon
+      className="fa-xl animated fadeInUp"
+      icon={faInstagramSquare}
+    />
+  ),
+  whatsapp: (
+    <FontAwesomeIcon
+      className="fa-xl animated fadeInUp"
+      icon={faWhatsappSquare}
+    />
+  ),
+  youtube: (
+    <FontAwesomeIcon
+      className="fa-xl animated fadeInUp"
+      icon={faYoutubeSquare}
+    />
+  ),
+  email: (
+    <FontAwesomeIcon
+      className="fa-xl animated fadeInUp"
+      icon={faEnvelopeSquare}
+    />
+  ),
 };
 
 export const history =
@@ -277,8 +423,7 @@ export const history =
 export const SP4N =
   '<p style="text-align:justify;">Sistem Pengelolaan Pengaduan Pelayanan Publik Nasional (SP4N) – Layanan Aspirasi dan Pengaduan Online Rakyat (LAPOR!) adalah layanan penyampaian semua aspirasi dan pengaduan masyarakat yang terintegrasi secara Nasional dengan laman akses website www.lapor.go.id</p><p style="text-align:justify;">LAPOR! telah ditetapkan sebagai Sistem Pengelolaan Pengaduan Pelayanan Publik Nasional (SP4N) berdasarkan Peraturan Presiden Nomor 76 Tahun 2013 dan Peraturan Menteri Pendayagunaan Aparatur Negara dan Reformasi Birokrasi Nomor 3 Tahun 2015.</p><p style="text-align:justify;">SP4N – LAPOR! dibentuk untuk merealisasikan kebijakan “no wrong door policy” yang menjamin hak masyarakat agar pengaduan dari manapun dan jenis apapun akan disalurkan kepada penyelenggara pelayanan publik yang berwenang menanganinya.</p><p style="text-align:justify;">Adapun tujuan SP4N adalah agar :</p><ul><li style="text-align:justify;">Penyelenggara dapat mengelola pengaduan dari masyarakat secara sederhana, cepat, tepat, tuntas, dan terkoordinasi dengan baik;</li><li style="text-align:justify;">Penyelenggara memberikan akses untuk partisipasi masyarakat dalam menyampaikan pengaduan; dan</li><li style="text-align:justify;">Meningkatkan kualitas pelayanan publik.</li></ul><p style="text-align:justify;">“Berani LAPOR! Untuk Pelayanan Publik yang Lebih Baik”</p><p style="text-align:center;"><a href="http://www.lapor.go.id/" target="_blank">Lapor Disini</a>&nbsp;</p><p style="text-align:center;"></p><img src="https://rspaw.or.id/wp-content/uploads/2022/07/image.png" alt="undefined" style="float:none;height: auto;width: auto"/><p style="text-align:center;"></p><img src="https://rspaw.or.id/wp-content/uploads/2022/10/Lapor.png" alt="undefined" style="float:none;height: auto;width: auto"/><p style="text-align:center;"></p><iframe width="auto" height="auto" src="https://youtu.be/a-7gO599NfY" frameBorder="0"></iframe><p style="text-align:center;"></p>';
 
-export const visimisi =
-  '<p style="text-align:start;"></p>  <img src="https://rspaw.or.id/wp-content/uploads/2020/04/poster2-820x1024.png" alt="undefined" style="float:none;height: auto;width: 100%"/>  <p></p>  <p>Pernyataan makna visi :</p>  <p style="text-align:justify;">Visi tersebut memberi gambaran yang menantang tentang keadaan masa depan yang berisikan cita dan citra yang ingin dicapai. Bahwa RS Paru dr. Ario Wirawan Salatiga melaksanakan pelayanan prima dan paripurna, kuratif dan rehabilitatif, dengan tidak meningkalkan upaya promotif, preventif, serta mampu mengembangkan kemampuan sumber daya manusia, termasuk meningkatkan kemampuan masyarakat terhadap upaya penanganan kesehatan spesialistik respirasi, utamanya kesehatan paru.</p>  <p style="text-align:start;">Penjelasan masing-masing Misi :</p>  <ul>  <li style="text-align:justify;">Adalah tindakan nyata yang dilakukan oleh Rumah Sakit yakni melaksanakan penatalaksanaan pelayanan kesehatan spesialistik respirasi sejak deteksi dini pengobatan, perawatan, sampai dengan tindakan sub spesialistik paru dan pelayanan spesialistik lain yang mendukung pelayanan paru secara paripurna;</li>  <li style="text-align:justify;">Sebagai rumah sakit yang memiliki angka kunjungan yang tinggi, dengan kasus penyakit yang bervariasi serta tersedianya sumber daya manusia yang memadai dan peralatan yang lengkap, terbuka kesempatan bagi institusi pendidikan pada semua strata termasuk LSM yang berkaitan dengan kesehatan paru untuk menjadikan Rumah Sakit Paru dr. Ario Wirawan Salatiga sebagai lahan pendidikan, pelatihan dan penelitian;</li>  <li style="text-align:justify;">Sebagai antisipasi terhadap perkembangan ilmu pengetahuan dan teknologi, perubahan pola penyakit, dan tuntutan masyarakat yang semakin kompleks maka peningkatan kualitas SDM adalah suatu keharusan yang harus dipenuhi rumah sakit;</li>  <li style="text-align:justify;">Peran SDM sebagai inspirator, penggerak dan pelaksana operasionalisasi rumah sakit perlu mendapatkan rangsangan yang memicu peningkatan kinerja beserta berupa penghargaan riil yaitu peningkatan kesejahteraan pegawai dan keluarga sebagai bagian dan tanggung jawab rumah sakit.</li>  </ul>  <p style="text-align:start;">TUJUAN :<br></p>  <p style="text-align:start;">Tujuan Rumah Sakit Paru dr. Ario Wirawan Salatiga adalah “ Mewujudkan masyarakat sehat, mandiri dan berkeadilan di bidang kesehatan paru dan pernapasan berasaskan gotong royong. <p style="text-align:center;"></p> ';
+export const visimisi = `<p style="text-align:start;"></p>  <img src=${visimisiImage} alt="visimisi" style="float:none;height: auto;width: 100%"/>  <p></p>  <p>Pernyataan makna visi :</p>  <p style="text-align:justify;">Visi tersebut memberi gambaran yang menantang tentang keadaan masa depan yang berisikan cita dan citra yang ingin dicapai. Bahwa RS Paru dr. Ario Wirawan Salatiga melaksanakan pelayanan prima dan paripurna, kuratif dan rehabilitatif, dengan tidak meningkalkan upaya promotif, preventif, serta mampu mengembangkan kemampuan sumber daya manusia, termasuk meningkatkan kemampuan masyarakat terhadap upaya penanganan kesehatan spesialistik respirasi, utamanya kesehatan paru.</p>  <p style="text-align:start;">Penjelasan masing-masing Misi :</p>  <ul>  <li style="text-align:justify;">Adalah tindakan nyata yang dilakukan oleh Rumah Sakit yakni melaksanakan penatalaksanaan pelayanan kesehatan spesialistik respirasi sejak deteksi dini pengobatan, perawatan, sampai dengan tindakan sub spesialistik paru dan pelayanan spesialistik lain yang mendukung pelayanan paru secara paripurna;</li>  <li style="text-align:justify;">Sebagai rumah sakit yang memiliki angka kunjungan yang tinggi, dengan kasus penyakit yang bervariasi serta tersedianya sumber daya manusia yang memadai dan peralatan yang lengkap, terbuka kesempatan bagi institusi pendidikan pada semua strata termasuk LSM yang berkaitan dengan kesehatan paru untuk menjadikan Rumah Sakit Paru dr. Ario Wirawan Salatiga sebagai lahan pendidikan, pelatihan dan penelitian;</li>  <li style="text-align:justify;">Sebagai antisipasi terhadap perkembangan ilmu pengetahuan dan teknologi, perubahan pola penyakit, dan tuntutan masyarakat yang semakin kompleks maka peningkatan kualitas SDM adalah suatu keharusan yang harus dipenuhi rumah sakit;</li>  <li style="text-align:justify;">Peran SDM sebagai inspirator, penggerak dan pelaksana operasionalisasi rumah sakit perlu mendapatkan rangsangan yang memicu peningkatan kinerja beserta berupa penghargaan riil yaitu peningkatan kesejahteraan pegawai dan keluarga sebagai bagian dan tanggung jawab rumah sakit.</li>  </ul>  <p style="text-align:start;">TUJUAN :<br></p>  <p style="text-align:start;">Tujuan Rumah Sakit Paru dr. Ario Wirawan Salatiga adalah “ Mewujudkan masyarakat sehat, mandiri dan berkeadilan di bidang kesehatan paru dan pernapasan berasaskan gotong royong. <p style="text-align:center;"></p> `;
 
 export const struktur =
   '<p style="text-align:start;"></p><img src="https://rspaw.or.id/wp-content/uploads/2022/09/struktur-organisasi-1024x472.png" alt="undefined" style="float:none;height: auto;width: 100%"/><p></p>';

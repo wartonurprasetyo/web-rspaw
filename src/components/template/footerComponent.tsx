@@ -1,22 +1,26 @@
-import {
-  faFacebookSquare,
-  faInstagramSquare,
-  faTwitterSquare,
-  faWhatsappSquare,
-  faYoutubeSquare,
-} from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
-import * as data from "../datas/fakeData";
 import { Link } from "react-router-dom";
 import { getPostByGroup, reqToken } from "../../services/api_web";
+import * as data from "../datas/fakeData";
 
 const FooterComponent = () => {
   const [recent, setRecent] = useState<any[]>([]);
   const [contactUs, setContactUs] = useState<any>({});
 
   const [copyright, setCopyright] = useState(
-    "RSPAW Salatiga.created by SIRS & HUKORMAS RSPAW"
+    "RSPAW Salatiga. created by SIRS & HUKORMAS RSPAW"
+  );
+  const [supportedBy, setSupportedBy] = useState(
+    <p>
+      supported by{" "}
+      <a
+        href="https://seventekno.com"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Seventekno
+      </a>
+    </p>
   );
 
   const [socmed, setSocmed] = useState([...data.socmedFooter]);
@@ -106,7 +110,7 @@ const FooterComponent = () => {
                   fontSize: "12px",
                 }}
               >
-                &#169;{new Date().getFullYear()} {copyright}
+                &#169;{new Date().getFullYear()} {copyright} {supportedBy}
               </span>
             </div>
             <div

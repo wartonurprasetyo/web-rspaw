@@ -47,7 +47,7 @@ const HomeComponent = () => {
       .catch((err) => {});
     await getPostByGroup(data)
       .then((resp) => {
-        setPengumuman([...resp.data.Data, ...fakedata.newsinfo]);
+        setPengumuman([...fakedata.newsinfo, ...resp.data.Data]);
       })
       .catch((err) => {
         setPengumuman([...fakedata.newsinfo]);
@@ -160,13 +160,16 @@ const HomeComponent = () => {
               <div key={`slide-${item.slider_id}`}>
                 <img
                   className="animated fadeInUp"
-                  onError={imageOnError}
+                  // onError={imageOnError}
                   style={{
                     userSelect: "none",
                     minHeight: "250px",
                     maxHeight: "600px",
                   }}
-                  src={window.location.host + item.slider_src}
+                  src={
+                    "https://rspaw.or.id" +
+                    item.slider_src?.replaceAll("/home/simrs", "/static/media")
+                  }
                   alt="Pepole"
                 />
                 {item.slider_caption && (
@@ -189,39 +192,43 @@ const HomeComponent = () => {
                   info.url?.includes("http") ? (
                     <a href={info.url} target="_blank">
                       <div className="block widget-container">
-                        <img
+                        {info.icon}
+                        {/* <img
+                        src=""
                           className="animated fadeInUp"
                           onError={imageOnError}
                           width={70}
                           height={70}
                           alt=""
-                        />
+                        /> */}
                         <span className="animated fadeInUp">{info.title}</span>
                       </div>
                     </a>
                   ) : (
                     <Link to={info.url}>
                       <div className="block widget-container">
-                        <img
+                        {info.icon}
+                        {/* <img
                           className="animated fadeInUp"
                           onError={imageOnError}
                           width={70}
                           height={70}
                           alt=""
-                        />
+                        /> */}
                         <span className="animated fadeInUp">{info.title}</span>
                       </div>
                     </Link>
                   )
                 ) : (
                   <div className="block widget-container">
-                    <img
+                    {info.icon}
+                    {/* <img
                       className="animated fadeInUp"
                       onError={imageOnError}
                       width={70}
                       height={70}
                       alt=""
-                    />
+                    /> */}
                     <span className="animated fadeInUp">{info.title}</span>
                   </div>
                 )}
@@ -307,11 +314,13 @@ const HomeComponent = () => {
                   {info.url ? (
                     <Link to={info.url}>
                       <div className="block widget-container">
+                        {info.icon}
                         <span className="animated fadeInUp">{info.title}</span>
                       </div>
                     </Link>
                   ) : (
                     <div className="block widget-container">
+                      {info.icon}
                       <span className="animated fadeInUp">{info.title}</span>
                     </div>
                   )}
@@ -334,7 +343,7 @@ const HomeComponent = () => {
                     <div className="block widget-container news-widget">
                       <img
                         onError={imageOnError}
-                        src={info.post_image}
+                        src={info.post_image || "-"}
                         className="animated fadeInUp rounded img-fluid"
                         alt=""
                       />
@@ -374,7 +383,7 @@ const HomeComponent = () => {
                     <div className="block widget-container news-widget">
                       <img
                         onError={imageOnError}
-                        src={info.post_image}
+                        src={info.post_image || "-"}
                         className="animated fadeInUp rounded img-fluid"
                         alt=""
                       />
@@ -414,7 +423,7 @@ const HomeComponent = () => {
                     <div className="block widget-container news-widget">
                       <img
                         onError={imageOnError}
-                        src={info.post_image}
+                        src={info.post_image || "-"}
                         className="animated fadeInUp rounded img-fluid"
                         alt=""
                       />
