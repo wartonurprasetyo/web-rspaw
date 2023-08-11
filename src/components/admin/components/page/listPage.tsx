@@ -42,7 +42,7 @@ const ListPage = () => {
         console.log(err);
         setData([]);
         loading.setLoading(false);
-        history.push("/login");
+        // history.push("/login");
       });
   }
 

@@ -226,7 +226,7 @@ const HomeComponent = () => {
                       className="animated fadeInUp"
                       onError={imageOnError}
                       width={70}
-                      height={70}
+                        height={70}
                       alt=""
                     /> */}
                     <span className="animated fadeInUp">{info.title}</span>
@@ -246,17 +246,31 @@ const HomeComponent = () => {
               .map((info: any) => (
                 <div className="col widget">
                   {info.url ? (
-                    <Link to={info.url}>
-                      <div className="block ">
-                        <img
-                          className="animated fadeInUp"
-                          onError={imageOnError}
-                          src={info.img}
-                          width="100%"
-                          alt=""
-                        />
-                      </div>
-                    </Link>
+                    info.url?.includes("http") ? (
+                      <a href={info.url} target="_blank">
+                        <div className="block ">
+                          <img
+                            className="animated fadeInUp"
+                            onError={imageOnError}
+                            src={info.img}
+                            width="100%"
+                            alt=""
+                          />
+                        </div>
+                      </a>
+                    ) : (
+                      <Link to={info.url}>
+                        <div className="block ">
+                          <img
+                            className="animated fadeInUp"
+                            onError={imageOnError}
+                            src={info.img}
+                            width="100%"
+                            alt=""
+                          />
+                        </div>
+                      </Link>
+                    )
                   ) : (
                     <div className="block ">
                       <img
@@ -312,12 +326,25 @@ const HomeComponent = () => {
               .map((info: any) => (
                 <div className="col widget">
                   {info.url ? (
-                    <Link to={info.url}>
-                      <div className="block widget-container">
-                        {info.icon}
-                        <span className="animated fadeInUp">{info.title}</span>
-                      </div>
-                    </Link>
+                    info.url?.includes("http") ? (
+                      <a href={info.url} target="_blank">
+                        <div className="block widget-container">
+                          {info.icon}
+                          <span className="animated fadeInUp">
+                            {info.title}
+                          </span>
+                        </div>
+                      </a>
+                    ) : (
+                      <Link to={info.url}>
+                        <div className="block widget-container">
+                          {info.icon}
+                          <span className="animated fadeInUp">
+                            {info.title}
+                          </span>
+                        </div>
+                      </Link>
+                    )
                   ) : (
                     <div className="block widget-container">
                       {info.icon}

@@ -25,7 +25,7 @@ const ListSlider = () => {
         console.log(err);
         setData([]);
         loading.setLoading(false);
-        history.push("/login");
+        // history.push("/login");
       });
   }
   function childList(e: any) {

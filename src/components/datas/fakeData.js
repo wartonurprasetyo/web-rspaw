@@ -230,7 +230,7 @@ export const services = [
   },
   {
     title: "Layanan Pengaduan",
-    url: "/layanan-pengaduan",
+    url: "http://202.180.30.19:5001/keluhan",
     img: fasilitasUmumImg,
     type: "complaint",
     icon: (
@@ -242,7 +242,7 @@ export const services = [
   },
   {
     title: "Survey Kepuasan Pelanggan",
-    url: "/survey-kepuasan-pelanggan",
+    url: "http://202.180.30.19:5001/survey",
     img: fasilitasUmumImg,
     type: "complaint",
     icon: (

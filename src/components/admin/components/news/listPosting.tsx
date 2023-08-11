@@ -67,7 +67,7 @@ const TabelPost = () => {
         setData([]);
         loading.setLoading(false);
         toast.error("Internal serve Error");
-        history.push("/login");
+        // history.push("/login");
       });
   }
   useEffect(() => {
