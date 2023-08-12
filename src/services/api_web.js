@@ -1,11 +1,14 @@
 // import _ from "lodash";
 import Config, { check } from "../config/Config";
 import axios from "axios";
+import { setupInterceptorsTo } from "./interceptor";
 
 const baseUrlDev = check();
 const client_key = Config.client_key;
 const client_uid = Config.client_uid;
 // console.log("axios", axios);
+
+setupInterceptorsTo(axios);
 
 export const reqToken = () => {
   // console.log("get menu");
