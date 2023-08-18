@@ -49,6 +49,10 @@ a.nav-menus.dropdown-toggle::after {
   border-radius: .5rem;
 }
 
+.widget-container>svg {
+  max-width: 50px;
+}
+
 .widget-container span {
   min-height: 60px;
   text-transform: uppercase;
