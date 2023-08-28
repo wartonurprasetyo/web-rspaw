@@ -71,6 +71,8 @@ const AdminLayout = (menu: any) => {
             history.push("/login")
         }
     }, []);
+    console.log('admin layout');
+    
     const [sidebarIsOpen, setSidebarOpen] = useState(true);
     const toggleSidebar = () => setSidebarOpen(!sidebarIsOpen);
     return (

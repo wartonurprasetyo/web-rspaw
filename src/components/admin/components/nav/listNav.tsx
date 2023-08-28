@@ -49,7 +49,7 @@ const ListNavigasi = () => {
             <Card className="my-2 border-0">
                 <CardBody>
                     <CardTitle tag="h5">
-                        Data Menu
+                        Data Parent
                     </CardTitle>
                     <Link to="/web-admin-paw/nav/add" className="btn btn-primary">Tambah</Link>
                 </CardBody>

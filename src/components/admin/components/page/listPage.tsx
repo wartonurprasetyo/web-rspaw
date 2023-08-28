@@ -5,12 +5,15 @@ import { deletePage, getAllPage } from "../../../../services/api_web";
 import { faEdit, faRemove } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import { Card, CardBody, CardTitle, Table, Button } from "reactstrap";
+import { Card, CardBody, CardTitle, Table, Button, Pagination, PaginationItem, PaginationLink } from "reactstrap";
 import { toast } from "react-toastify";
 
 const ListPage = () => {
   const [data, setData]: any = useState([]);
-
+  const [limit, setLimit]: any = useState(2);
+  const [page, setPage]: any = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const [first, setFirst] = useState(true);
   const loading = useContext(LoadingContext);
   function deleteNav(e: any, nav: any) {
     // loading.setLoading(true)
@@ -21,7 +24,7 @@ const ListPage = () => {
 
     deletePage(bodyContent, localStorage.getItem("token"))
       .then((resp) => {
-        getData();
+        getDatas();
         toast.success("Sukses Menghapus");
       })
       .catch((err) => {
@@ -30,25 +33,48 @@ const ListPage = () => {
       });
   }
   const history = useHistory();
-  function getData() {
+  function getDatas() {
     loading.setLoading(true);
-
-    getAllPage()
+    console.log(limit,page)
+    let data ={
+      limit:`${limit}`,
+      page:`${page}`
+    }
+    getAllPage(data)
       .then((resp) => {
+
         setData(resp.data.Data);
+        console.log(resp.data);
         loading.setLoading(false);
       })
       .catch((err) => {
         console.log(err);
         setData([]);
         loading.setLoading(false);
-        history.push("/login");
+        // history.push("/login");
       });
   }
+  const nextPage = () => {
+    // console.log("next");
+ setPage(page + 1);
+  };
+  const prevPage = () => {
+    // console.log("prev");
+    if (page > 1) setPage(page - 1);
+  };
 
-  useEffect(() => {
-    getData();
-  }, []);
+  useEffect(() => {    
+  //  if(!first){
+    getDatas();
+  //  }
+  }, [limit,page]);
+  // useEffect(() => {
+  //   if(first){
+  //     getDatas();
+  //     setFirst(false)
+  //   }
+    
+  // }, []);
   return (
     <>
       <Card className="my-2 border-0">
@@ -110,6 +136,50 @@ const ListPage = () => {
             )}
           </tbody>
         </Table>
+        <Pagination
+          className="pagination justify-content-end mb-0"
+          listClassName="justify-content-end mb-0"
+        >
+          <PaginationItem>
+            <PaginationLink
+              onClick={(e) => {
+                prevPage();
+              }}
+              // tabIndex="-1"
+            >
+              <i className="fas fa-angle-left" />
+              <span >Previous</span>
+            </PaginationLink>
+          </PaginationItem>
+          {/* {createPaginationPage(totalPages, page).map(
+            (el, index) => (
+              <PaginationItem
+                key={`page-${index}`}
+                className={`${page === el ? "active" : ""}`}
+              >
+                <PaginationLink
+                  onClick={(e) => {
+                    setPage(el);
+                  }}
+                >
+                  {el}
+                </PaginationLink>
+              </PaginationItem>
+            )
+          )} */}
+          <PaginationItem
+            // className={`${page === totalPages ? "disabled" : ""}`}
+          >
+            <PaginationLink
+              onClick={(e) => {
+                nextPage();
+              }}
+            >
+              <i className="fas fa-angle-right" />
+              <span >Next</span>
+            </PaginationLink>
+          </PaginationItem>
+        </Pagination>
       </Card>
     </>
   );

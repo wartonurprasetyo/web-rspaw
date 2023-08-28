@@ -27,11 +27,68 @@ export const reqToken = () => {
   });
 };
 
+export const addPostNav = (
+  data,
+  client_token = localStorage.getItem("token")
+) => {
+  // console.log("get post");
+  // let data = {
+  //   post_group: "post",
+  //   post_status: "1",
+  // };
+  let dataBody = {
+    auth: {
+      client_uid: `rspaw`,
+      client_key: client_key,
+      client_token: client_token,
+    },
+    ...data
+
+  }
+
+  return new Promise((resolve, reject) => {
+    axios
+      .post(`${baseUrlDev}client/nav/insert`, data, {
+        headers: {
+          "X-User": `rspaw`,
+          "X-Key ": client_key,
+          "X-Token": client_token,
+        },
+      })
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
 export const getAllMenus = (client_token = localStorage.getItem("token")) => {
   // console.log("get menu");
   return new Promise((resolve, reject) => {
     axios
       .get(`${baseUrlDev}client/nav/all`, {
+        headers: {
+          "X-User": `rspaw`,
+          "X-Key ": client_key,
+          "X-Token": client_token,
+        },
+      })
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+export const getNavParent = (client_token = localStorage.getItem("token")) => {
+  // console.log("get menu");
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`${baseUrlDev}client/nav/parent`, {
         headers: {
           "X-User": `rspaw`,
           "X-Key ": client_key,
@@ -491,11 +548,11 @@ export function updateSlider(
 }
 
 
-export const getAllPage = (client_token = localStorage.getItem("token")) => {
+export const getAllPage = (data ,client_token = localStorage.getItem("token")) => {
   // console.log("get menu");
   return new Promise((resolve, reject) => {
     axios
-      .get(`${baseUrlDev}client/page/select`, {
+      .post(`${baseUrlDev}client/page/select`,data, {
         headers: {
           "X-User": `rspaw`,
           "X-Key ": client_key,

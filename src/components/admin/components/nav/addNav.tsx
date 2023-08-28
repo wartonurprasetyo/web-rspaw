@@ -1,9 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { Button, Card, CardBody, CardHeader, CardTitle, Col, Form, FormGroup, Input, Label, Row } from "reactstrap";
-import { getAllMenus, listSubNav } from "../../../../services/api_web";
+import { addPostNav, getAllMenus, getNavParent, listSubNav } from "../../../../services/api_web";
 import LoadingContext from "../../../../contexts/LoadingContext";
 function AddNav() {
     const loading = useContext(LoadingContext)
+    const [namaParent, setNamaParent] = useState("")
+    const [nomorParent, setNomorParent] = useState("")
     const [data, setData] = useState<any>()
     const [listParen, setListParen] = useState([{
         label: "",
@@ -15,12 +17,14 @@ function AddNav() {
     }])
     const getDataListParent = () => {
         loading.setLoading(true)
-        getAllMenus().then((response) => {
+        getNavParent().then((response) => {
             var a: any[] = []
-            response.data.nav.forEach((element: any) => {
+            // console.log(response.data)
+            response.data.Data.forEach((element: any) => {
+        
                 a.push({
-                    label: element.parent_label,
-                    value: element.parent_id
+                    label: element.nav_label,
+                    value: element.nav_id
                 })
             });
             setListParen(a)
@@ -38,8 +42,7 @@ function AddNav() {
         loading.setLoading(true)
         listSubNav(query).then((response) => {
             var a: any[] = []
-            console.log(response);
-
+            // console.log(response);
             response.data.Data.forEach((element: any) => {
                 a.push({
                     label: element.nav_label,
@@ -55,6 +58,32 @@ function AddNav() {
         });
     }
 
+    function AddParent(){
+
+        let query = {
+            "nav_id": "",
+            "nav_parent_id": "8",
+            "nav_label": namaParent,
+            "nav_url": "#",
+            "nav_number": nomorParent,
+            "nav_status": "1"
+        }
+       
+        console.log(query)
+        loading.setLoading(true)
+        addPostNav(query).then((response) => {
+            console.log(response)
+            setNamaParent("")
+            setNomorParent("")
+
+            loading.setLoading(false)
+          
+
+        }).catch((err) => {
+            loading.setLoading(false)
+        });
+    }
+
     const changeData = (e: any, type: any) => {
         setData((prev: any) => ({ ...prev, [type]: e }));
     };
@@ -64,19 +93,19 @@ function AddNav() {
     }
 
     useEffect(() => {
-        getDataListParent()
+        // getDataListParent()
     }, [])
     return (<>
         <Card>
             <CardHeader>
                 <CardTitle tag="h5">
-                    Tambah Menu
+                    Tambah Parent
                 </CardTitle>
             </CardHeader>
             <CardBody>
 
                 <Form>
-                    <Row>
+                    {/* <Row>
                         <Col md={6}>
                             <FormGroup>
                                 <Label >
@@ -121,18 +150,32 @@ function AddNav() {
                                 </Input>
                             </FormGroup>
                         </Col>
-                    </Row>
+                    </Row> */}
                     <FormGroup>
                         <Label >
-                            Judul
+                            Nama Parent
                         </Label>
                         <Input
-                            name="judul"
+                            value={namaParent}
+                            name="Parent"
                             type="text"
-                            placeholder="Input Judul"
+                            placeholder="Input Nama Parent"
+                            onChange={(e) => setNamaParent(e.target.value)}
                         />
                     </FormGroup>
                     <FormGroup>
+                        <Label >
+                            Nomor Parent
+                        </Label>
+                        <Input
+                           value={nomorParent}
+                            name="no_parent"
+                            type="text"
+                            placeholder="Input Nomor Parent"
+                            onChange={(e) => setNomorParent(e.target.value)}
+                        />
+                    </FormGroup>
+                    {/* <FormGroup>
                         <Label >
                             URL
                         </Label>
@@ -140,9 +183,9 @@ function AddNav() {
                             type="text"
                             placeholder="Input URL"
                         />
-                    </FormGroup>
+                    </FormGroup> */}
 
-                    <Row>
+                    {/* <Row>
                         <Col md={6}>
                             <FormGroup>
                                 <Label >
@@ -171,11 +214,11 @@ function AddNav() {
                             </FormGroup>
                         </Col>
 
-                    </Row>
+                    </Row> */}
                     <Col className="d-flex justify-content-end" >
-                        <button className="btn btn-primary">
+                        <Button color="primary" onClick={() => AddParent()} className="btn btn-primary">
                             Tambah
-                        </button>
+                        </Button>
                     </Col>
                 </Form>
             </CardBody>

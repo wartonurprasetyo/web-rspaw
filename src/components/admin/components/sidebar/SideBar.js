@@ -43,7 +43,7 @@ const SideBar = ({ isOpen, toggle }) => (
 
          <NavItem>
           <NavLink className="nav-link-custom" tag={Link} to={"/web-admin-paw/nav"} h>
-            Data Menu
+            Data Parent
           </NavLink>
         </NavItem> 
         <NavItem>
