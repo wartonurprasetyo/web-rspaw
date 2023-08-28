@@ -544,6 +544,29 @@ export const getAllNavParent = (
   });
 };
 
+export const insertNav = (
+  data,
+  client_token = localStorage.getItem("token")
+) => {
+  // console.log("get menu");
+  return new Promise((resolve, reject) => {
+    axios
+      .post(`${baseUrlDev}client/nav/insert`, data, {
+        headers: {
+          "X-User": `rspaw`,
+          "X-Key ": client_key,
+          "X-Token": client_token,
+        },
+      })
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
 export const addPage = (data, client_token) => {
   // console.log("get post");
   // let data = {

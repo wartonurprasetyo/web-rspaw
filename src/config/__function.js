@@ -1,3 +1,4 @@
+import _ from "lodash";
 export const createArrayEntityFromObject = (obj) => {
   return Object.keys(obj);
 };
@@ -44,4 +45,8 @@ export const createQueryUrl = (arr, separator) => {
   });
   // console.log(query);
   return query;
+};
+
+export const getArray = (arr, key) => {
+  return arr[_.keys(arr).find((el) => el.includes(key))];
 };
