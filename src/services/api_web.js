@@ -567,6 +567,52 @@ export const insertNav = (
   });
 };
 
+export const updateNav = (
+  data,
+  client_token = localStorage.getItem("token")
+) => {
+  // console.log("get menu");
+  return new Promise((resolve, reject) => {
+    axios
+      .post(`${baseUrlDev}client/nav/update`, data, {
+        headers: {
+          "X-User": `rspaw`,
+          "X-Key ": client_key,
+          "X-Token": client_token,
+        },
+      })
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+export const deleteNav = (
+  data,
+  client_token = localStorage.getItem("token")
+) => {
+  // console.log("get menu");
+  return new Promise((resolve, reject) => {
+    axios
+      .post(`${baseUrlDev}client/nav/delete`, data, {
+        headers: {
+          "X-User": `rspaw`,
+          "X-Key ": client_key,
+          "X-Token": client_token,
+        },
+      })
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
 export const addPage = (data, client_token) => {
   // console.log("get post");
   // let data = {

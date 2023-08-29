@@ -25,7 +25,12 @@ import {
 } from "reactstrap";
 import { getArray } from "../../../../config/__function";
 import LoadingContext from "../../../../contexts/LoadingContext";
-import { getAllMenus, insertNav } from "../../../../services/api_web";
+import {
+  deleteNav,
+  getAllMenus,
+  insertNav,
+  updateNav,
+} from "../../../../services/api_web";
 import { toast } from "react-toastify";
 
 const ListNavigasi = () => {
@@ -136,7 +141,7 @@ const ListNavigasi = () => {
 
     console.log(data);
     // return;
-    insertNav(data)
+    updateNav(data)
       .then((res) => {
         toast.success("Berhasil Mengubah Menu");
         setitemtemp({});
@@ -154,7 +159,7 @@ const ListNavigasi = () => {
       nav_id: itemtemp.id,
     };
 
-    insertNav(data)
+    deleteNav(data)
       .then((res) => {
         toast.success("Berhasil hapus");
         setitemtemp({});
@@ -181,7 +186,6 @@ const ListNavigasi = () => {
   };
 
   const loading = useContext(LoadingContext);
-  function deleteNav(e: any) {}
   const history = useHistory();
   function getData() {
     loading.setLoading(true);
