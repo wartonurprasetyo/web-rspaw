@@ -348,8 +348,8 @@ const ListNavigasi = () => {
                       {el.label}
                     </span>
                     <div className="d-flex gap-2">
-                      <Button
-                        size="sm"
+                      <span
+                        className="btn btn-sm btn-secondary"
                         onClick={(e) => {
                           e.stopPropagation();
                           handleEditData(1, el, {});
@@ -360,10 +360,9 @@ const ListNavigasi = () => {
                           width={"15px"}
                           icon={faEdit}
                         ></FontAwesomeIcon>{" "}
-                      </Button>
-                      <Button
-                        color="primary"
-                        size="sm"
+                      </span>
+                      <span
+                        className="btn btn-sm btn-primary"
                         onClick={(e) => {
                           e.stopPropagation();
                           handleAddData(1, el, {});
@@ -373,20 +372,19 @@ const ListNavigasi = () => {
                           width={"15px"}
                           icon={faPlus}
                         ></FontAwesomeIcon>{" "}
-                      </Button>
-                      <Button
-                        size="sm"
+                      </span>
+                      <span
                         onClick={(e) => {
                           e.stopPropagation();
                           handleDeleteData(el);
                         }}
-                        color="danger"
+                        className="btn btn-sm btn-danger"
                       >
                         <FontAwesomeIcon
                           width={"15px"}
                           icon={faTimes}
                         ></FontAwesomeIcon>{" "}
-                      </Button>
+                      </span>
                     </div>
                   </div>
                 </AccordionHeader>
@@ -420,45 +418,30 @@ const ListNavigasi = () => {
                                     icon={faEdit}
                                   ></FontAwesomeIcon>
                                 </span>
-                                {/* <Button
-                                  size="sm"
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleEditData(2, el, elChild);
-                                    setitemtemp(elChild);
-                                  }}
-                                >
-                                  <FontAwesomeIcon
-                                    width={"15px"}
-                                    icon={faEdit}
-                                  ></FontAwesomeIcon>{" "}
-                                </Button> */}
-                                <Button
-                                  size="sm"
+                                <span
                                   onClick={(e) => {
                                     e.stopPropagation();
                                     handleAddData(2, el, elChild);
                                   }}
-                                  color="primary"
+                                  className="btn btn-sm btn-primary"
                                 >
                                   <FontAwesomeIcon
                                     width={"15px"}
                                     icon={faPlus}
                                   ></FontAwesomeIcon>{" "}
-                                </Button>
-                                <Button
-                                  size="sm"
+                                </span>
+                                <span
                                   onClick={(e) => {
                                     e.stopPropagation();
                                     handleDeleteData(elChild);
                                   }}
-                                  color="danger"
+                                  className="btn btn-sm btn-danger"
                                 >
                                   <FontAwesomeIcon
                                     width={"15px"}
                                     icon={faTimes}
                                   ></FontAwesomeIcon>{" "}
-                                </Button>
+                                </span>
                               </div>
                             </div>
                           </AccordionHeader>
@@ -472,8 +455,7 @@ const ListNavigasi = () => {
                                         <div className="d-flex justify-content-between w-100">
                                           <span>{elSubChild.label}</span>
                                           <div className="d-flex gap-2">
-                                            <Button
-                                              size="sm"
+                                            <span
                                               onClick={(e) => {
                                                 e.stopPropagation();
                                                 handleEditData(
@@ -483,25 +465,25 @@ const ListNavigasi = () => {
                                                 );
                                                 setitemtemp(elSubChild);
                                               }}
+                                              className="btn btn-sm btn-secondary"
                                             >
                                               <FontAwesomeIcon
                                                 width={"15px"}
                                                 icon={faEdit}
                                               ></FontAwesomeIcon>{" "}
-                                            </Button>
-                                            <Button
-                                              size="sm"
+                                            </span>
+                                            <span
                                               onClick={(e) => {
                                                 e.stopPropagation();
                                                 handleDeleteData(elSubChild);
                                               }}
-                                              color="danger"
+                                              className="btn btn-sm btn-danger"
                                             >
                                               <FontAwesomeIcon
                                                 width={"15px"}
                                                 icon={faTimes}
                                               ></FontAwesomeIcon>{" "}
-                                            </Button>
+                                            </span>
                                           </div>
                                         </div>
                                       </AccordionHeader>
