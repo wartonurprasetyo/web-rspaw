@@ -339,7 +339,10 @@ const ListNavigasi = () => {
                   <div className="d-flex justify-content-between w-100">
                     <span>
                       {el.child && el.child.length > 0 && (
-                        <FontAwesomeIcon icon={faAngleDown}></FontAwesomeIcon>
+                        <FontAwesomeIcon
+                          width={"15px"}
+                          icon={faAngleDown}
+                        ></FontAwesomeIcon>
                       )}
                       &nbsp;
                       {el.label}
@@ -353,7 +356,10 @@ const ListNavigasi = () => {
                           setitemtemp(el);
                         }}
                       >
-                        <FontAwesomeIcon icon={faEdit}></FontAwesomeIcon>{" "}
+                        <FontAwesomeIcon
+                          width={"15px"}
+                          icon={faEdit}
+                        ></FontAwesomeIcon>{" "}
                       </Button>
                       <Button
                         color="primary"
@@ -363,7 +369,10 @@ const ListNavigasi = () => {
                           handleAddData(1, el, {});
                         }}
                       >
-                        <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>{" "}
+                        <FontAwesomeIcon
+                          width={"15px"}
+                          icon={faPlus}
+                        ></FontAwesomeIcon>{" "}
                       </Button>
                       <Button
                         size="sm"
@@ -373,7 +382,10 @@ const ListNavigasi = () => {
                         }}
                         color="danger"
                       >
-                        <FontAwesomeIcon icon={faTimes}></FontAwesomeIcon>{" "}
+                        <FontAwesomeIcon
+                          width={"15px"}
+                          icon={faTimes}
+                        ></FontAwesomeIcon>{" "}
                       </Button>
                     </div>
                   </div>
@@ -388,13 +400,27 @@ const ListNavigasi = () => {
                               <span>
                                 {elChild.child && elChild.child.length > 0 && (
                                   <FontAwesomeIcon
+                                    width={"15px"}
                                     icon={faAngleDown}
                                   ></FontAwesomeIcon>
                                 )}
                                 &nbsp;{elChild.label}
                               </span>
                               <div className="d-flex gap-2">
-                                <Button
+                                <span
+                                  className="btn btn-sm btn-secondary"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleEditData(2, el, elChild);
+                                    setitemtemp(elChild);
+                                  }}
+                                >
+                                  <FontAwesomeIcon
+                                    width={"15px"}
+                                    icon={faEdit}
+                                  ></FontAwesomeIcon>
+                                </span>
+                                {/* <Button
                                   size="sm"
                                   onClick={(e) => {
                                     e.stopPropagation();
@@ -403,9 +429,10 @@ const ListNavigasi = () => {
                                   }}
                                 >
                                   <FontAwesomeIcon
+                                    width={"15px"}
                                     icon={faEdit}
                                   ></FontAwesomeIcon>{" "}
-                                </Button>
+                                </Button> */}
                                 <Button
                                   size="sm"
                                   onClick={(e) => {
@@ -415,6 +442,7 @@ const ListNavigasi = () => {
                                   color="primary"
                                 >
                                   <FontAwesomeIcon
+                                    width={"15px"}
                                     icon={faPlus}
                                   ></FontAwesomeIcon>{" "}
                                 </Button>
@@ -427,6 +455,7 @@ const ListNavigasi = () => {
                                   color="danger"
                                 >
                                   <FontAwesomeIcon
+                                    width={"15px"}
                                     icon={faTimes}
                                   ></FontAwesomeIcon>{" "}
                                 </Button>
@@ -456,25 +485,10 @@ const ListNavigasi = () => {
                                               }}
                                             >
                                               <FontAwesomeIcon
+                                                width={"15px"}
                                                 icon={faEdit}
                                               ></FontAwesomeIcon>{" "}
                                             </Button>
-                                            {/* <Button
-                                              size="sm"
-                                              onClick={(e) => {
-                                                e.stopPropagation();
-                                                handleAddData(
-                                                  elSubChild,
-                                                  elChild,
-                                                  3
-                                                );
-                                              }}
-                                              color="primary"
-                                            >
-                                              <FontAwesomeIcon
-                                                icon={faPlus}
-                                              ></FontAwesomeIcon>{" "}
-                                            </Button> */}
                                             <Button
                                               size="sm"
                                               onClick={(e) => {
@@ -484,6 +498,7 @@ const ListNavigasi = () => {
                                               color="danger"
                                             >
                                               <FontAwesomeIcon
+                                                width={"15px"}
                                                 icon={faTimes}
                                               ></FontAwesomeIcon>{" "}
                                             </Button>
