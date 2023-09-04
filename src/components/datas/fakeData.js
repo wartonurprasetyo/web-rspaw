@@ -230,7 +230,7 @@ export const services = [
   },
   {
     title: "Layanan Pengaduan",
-    url: "http://202.180.30.19:5001/keluhan",
+    url: "https://pengaduan.rspaw.or.id/menu/keluhan",
     img: fasilitasUmumImg,
     type: "complaint",
     icon: (
@@ -242,7 +242,7 @@ export const services = [
   },
   {
     title: "Survey Kepuasan Pelanggan",
-    url: "http://202.180.30.19:5001/survey",
+    url: "https://pengaduan.rspaw.or.id/menu/survey",
     img: fasilitasUmumImg,
     type: "complaint",
     icon: (
