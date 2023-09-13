@@ -5,15 +5,15 @@ module.exports = {
       // script: "npm",
       // args: "run-script start",
       script: "serve",
-      args: "build 8080 --spa",
+      args: "build --spa",
       watch: true,
       autorestart: true,
       env: {
-        PORT: 8080,
+        PORT: 3030,
         NODE_ENV: "development",
       },
       env_production: {
-        PORT: 8080,
+        PORT: 3030,
         NODE_ENV: "production",
       },
     },
