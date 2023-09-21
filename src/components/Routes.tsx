@@ -52,6 +52,16 @@ const Routes: any = [
   //   layout: "landing",
   //   component: <BlogComponent />,
   // },
+  // {
+  //   path: "/info/:category/:id",
+  //   layout: "landing",
+  //   component: <BlogComponent />,
+  // },
+  // {
+  //   path: "/info/:category",
+  //   layout: "landing",
+  //   component: <BlogsComponent />,
+  // },
   {
     path: "/info/berita/:id",
     layout: "landing",

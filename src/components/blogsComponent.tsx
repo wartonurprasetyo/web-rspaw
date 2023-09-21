@@ -9,15 +9,26 @@ const BlogsComponent = () => {
   const [newsinfo, setNewsInfo] = useState<any[]>([]);
   const params: any = useParams();
   const location: any = useHistory();
+  const categories = ["artikel", "berita", "pengumuman", "post"];
+  const [activeCategory, setActiveCategory] = useState("post");
 
   const getPost = async () => {
+    let category = "post";
+    let splittedUrl = location.location.pathname.split("/").filter((el) => el);
+    // console.log(splittedUrl);
+    if (splittedUrl.length == 2 && categories.includes(splittedUrl[1]))
+      category = splittedUrl[1];
+
+    // if (categories.includes(params.category)) category = params.category;
+    // console.log(category);
+    setActiveCategory(category);
     let data = {
-      post_group: "post",
+      post_group: category,
       post_status: "1",
     };
     await reqToken()
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         localStorage.setItem("token", res.data.Response.data);
         // token = res.data.Response.data;
       })
@@ -26,7 +37,10 @@ const BlogsComponent = () => {
       .then((resp) => {
         console.log(resp);
         let datas = [];
-        if (location.location.pathname == "/info/pengumuman")
+        if (
+          location.location.pathname == "/info/pengumuman" ||
+          params.category == "pengumuman"
+        )
           datas = fakedata.newsinfo.map((item: any) => {
             return { ...item, toUrl: item.post_url };
           });
@@ -52,7 +66,7 @@ const BlogsComponent = () => {
     console.log(params.category);
 
     // setNewsInfo(data.newsinfo);
-  }, []);
+  }, [params]);
   return (
     <>
       {/* <HeaderComponent></HeaderComponent> */}
@@ -61,7 +75,7 @@ const BlogsComponent = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="block">
-                <h1>{params.category}</h1>
+                <h1>{activeCategory}</h1>
                 <p>
                   {/* Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                   Nisi, quibusdam. */}
@@ -79,17 +93,25 @@ const BlogsComponent = () => {
               <div className="col-md-6">
                 <div className="post">
                   <div className="post-thumb">
-                    <a href={`${item.post_url}`}>
+                    {/* <a href={`${item.toUrl}`}>
                       <img
                         className="img-fluid blog-image"
                         src={item.post_image || "-"}
                         onError={imageOnError}
                         alt=""
                       />
-                    </a>
+                    </a> */}
+                    <Link to={`${item.toUrl}`}>
+                      <img
+                        className="img-fluid blog-image"
+                        src={item.post_image || "-"}
+                        onError={imageOnError}
+                        alt=""
+                      />
+                    </Link>
                   </div>
                   <h3 className="post-title">
-                    <Link to={`${item.post_url}`}>{item.post_title}</Link>
+                    <Link to={`${item.toUrl}`}>{item.post_title}</Link>
                   </h3>
                   <div className="post-meta">
                     <ul>

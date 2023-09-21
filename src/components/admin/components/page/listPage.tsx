@@ -5,11 +5,24 @@ import { deletePage, getAllPage } from "../../../../services/api_web";
 import { faEdit, faRemove } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import { Card, CardBody, CardTitle, Table, Button, Input, Col } from "reactstrap";
+import {
+  Card,
+  CardBody,
+  CardTitle,
+  Table,
+  Button,
+  Input,
+  Col,
+  Pagination,
+  PaginationItem,
+  PaginationLink,
+} from "reactstrap";
 import { toast } from "react-toastify";
 
 const ListPage = () => {
   const [data, setData]: any = useState([]);
+  const [page, setpage] = useState(1);
+  const [size, setsize] = useState(5);
 
   const loading = useContext(LoadingContext);
   function deleteNav(e: any, nav: any) {
@@ -33,13 +46,14 @@ const ListPage = () => {
   function getData() {
     loading.setLoading(true);
     let query = {
-      limit: "5",
-      page: "1"
+      limit: `${size}`,
+      page: `${page}`,
     };
     getAllPage(query)
       .then((resp) => {
-        setData(resp.data.Data);
+        console.log("finish");
         loading.setLoading(false);
+        setData(resp.data.Data);
       })
       .catch((err) => {
         console.log(err);
@@ -49,9 +63,21 @@ const ListPage = () => {
       });
   }
 
+  const nextPage = () => {
+    setpage(page + 1);
+  };
+
+  const prevPage = () => {
+    setpage(page - 1);
+  };
+
+  // useEffect(() => {
+  //   getData();
+  // }, []);
+
   useEffect(() => {
     getData();
-  }, []);
+  }, [page]);
 
   return (
     <>
@@ -63,7 +89,7 @@ const ListPage = () => {
           </Link>
         </CardBody>
       </Card>
-    
+
       <Card className="m-2 ">
         <Table striped>
           <thead>
@@ -88,7 +114,7 @@ const ListPage = () => {
               data.map((el: any, index: any) => (
                 <tr key={index}>
                   <th scope="row" className="text-center align-middle">
-                    {index + 1}
+                    {(page - 1) * size + index + 1}
                   </th>
                   <td className="align-middle">{el.post_title}</td>
                   <td className="align-middle">{el.post_url}</td>
@@ -115,6 +141,19 @@ const ListPage = () => {
             )}
           </tbody>
         </Table>
+        <div className="container d-flex justify-content-end">
+          <Pagination size="md">
+            <PaginationItem disabled={page == 1} onClick={() => prevPage()}>
+              <PaginationLink previous href="#" />
+            </PaginationItem>
+            <PaginationItem
+              disabled={data.length == 0}
+              onClick={() => nextPage()}
+            >
+              <PaginationLink next href="#" />
+            </PaginationItem>
+          </Pagination>
+        </div>
       </Card>
     </>
   );

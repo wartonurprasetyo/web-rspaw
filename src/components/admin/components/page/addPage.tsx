@@ -33,7 +33,7 @@ const AddPage = () => {
   const [title, setTitle] = useState("");
   const [status, setStatus] = useState("0");
   const [url, setUrl] = useState("");
-  const [kategori, setKategori] = useState("");
+  const [kategori, setKategori] = useState("page");
 
   const [filePath, setFilePath] = useState("");
 
@@ -402,7 +402,7 @@ const AddPage = () => {
                     <option value="" disabled>
                       Pilih Kategori
                     </option>
-                    <option value={"post"}>Berita</option>
+                    {/* <option value={"post"}>Berita</option> */}
                     <option value={"page"}>Halaman Statis</option>
                   </Input>
                 </FormGroup>
