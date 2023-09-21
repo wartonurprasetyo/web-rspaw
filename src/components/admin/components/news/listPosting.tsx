@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Button, Card, CardBody, CardText, CardTitle, Table } from "reactstrap";
+import { Button, Card, CardBody, CardText, CardTitle, Col, Input, Table } from "reactstrap";
 import {
   deletePosting,
   getPostByGroup,
@@ -36,6 +36,7 @@ const TabelPost = () => {
 
   const history = useHistory();
   const [clienToken, setClienToken] = useState("");
+  const [clienCategory, setCategory] = useState("");
   function deletePost(value: any) {
     let bodyContent = JSON.stringify({
       post_id: value,
@@ -53,7 +54,7 @@ const TabelPost = () => {
   function getData() {
     loading.setLoading(true);
     let query = {
-      post_group: "post",
+      post_group: clienCategory,
       post_status: "1",
     };
     getPostByGroup(query)
@@ -73,6 +74,10 @@ const TabelPost = () => {
   useEffect(() => {
     getData();
   }, []);
+  useEffect(() => {
+    getData();
+  }, [clienCategory]);
+  
   return (
     <>
       <Card className="my-2 border-0">
@@ -82,8 +87,30 @@ const TabelPost = () => {
             Tambah
           </Link>
         </CardBody>
+     
       </Card>
+      <Col sm={4}>
+            <Input
+              value={clienCategory}
+              onChange={(e) => {
+           
+                setCategory(e.target.value)
+                // getData()
+              }}
+              placeholder=""
+              type="select"
+
+            >
+              <option value="" disabled>Pilih Filter</option>
+              <option value={"post"}>Umum</option>
+              <option value={"berita"}>Berita</option>
+              <option value={"artikel"}>Artikel</option>
+              <option value={"pengumuman"}>Pengumuman</option>
+              <option value={"page"}>Halaman Statis</option>
+            </Input>
+          </Col>
       <Card className="m-2 ">
+        
         <Table striped>
           <thead>
             <tr>

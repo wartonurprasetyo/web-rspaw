@@ -104,7 +104,13 @@ function PostingBerita() {
                                     onChange={(e) => {
                                         if (e.target.value == "post") {
                                             setUrl("/post")
-                                        };
+                                        }else if(e.target.value == "berita"){
+                                            setUrl("/berita")   
+                                        }else if(e.target.value == "artikel"){
+                                            setUrl("/artikel")   
+                                        }else if(e.target.value == "pengumuman"){
+                                            setUrl("/berita")   
+                                        }
                                         setKategori(e.target.value)
                                     }}
                                     placeholder=""
@@ -112,7 +118,10 @@ function PostingBerita() {
 
                                 >
                                     <option value="" disabled>Pilih Kategori</option>
-                                    <option value={"post"}>Berita</option>
+                                    <option value={"post"}>Umum</option>
+                                    <option value={"berita"}>Berita</option>
+                                    <option value={"artikel"}>Artikel</option>
+                                    <option value={"pengumuman"}>Pengumuman</option>
                                     <option value={"page"}>Halaman Statis</option>
                                 </Input>
                             </Col>

@@ -5,7 +5,7 @@ import { deletePage, getAllPage } from "../../../../services/api_web";
 import { faEdit, faRemove } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import { Card, CardBody, CardTitle, Table, Button } from "reactstrap";
+import { Card, CardBody, CardTitle, Table, Button, Input, Col } from "reactstrap";
 import { toast } from "react-toastify";
 
 const ListPage = () => {
@@ -32,8 +32,11 @@ const ListPage = () => {
   const history = useHistory();
   function getData() {
     loading.setLoading(true);
-
-    getAllPage()
+    let query = {
+      limit: "5",
+      page: "1"
+    };
+    getAllPage(query)
       .then((resp) => {
         setData(resp.data.Data);
         loading.setLoading(false);
@@ -49,6 +52,7 @@ const ListPage = () => {
   useEffect(() => {
     getData();
   }, []);
+
   return (
     <>
       <Card className="my-2 border-0">
@@ -59,6 +63,7 @@ const ListPage = () => {
           </Link>
         </CardBody>
       </Card>
+    
       <Card className="m-2 ">
         <Table striped>
           <thead>
