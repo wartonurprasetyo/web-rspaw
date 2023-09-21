@@ -1,6 +1,8 @@
 const Config: any = {
   // BaseUrlDev: "https://rspaw.or.id/api/",
-  BaseUrlDev: "http://117.74.123.165:8899/",
+  // BaseUrlDev: "http://117.74.123.165:8899/",
+  BaseUrlDev: "http://117.74.123.162:8899/",
+
   // BaseUrlProd: "http://117.74.123.165:8899/",
   BaseUrlProd: "https://rspaw.or.id/api/",
   client_key:
