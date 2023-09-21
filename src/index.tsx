@@ -16,35 +16,35 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Switch>
-        {Routes.map((el:any, ind:any)=>{
-          if(el.layout === "/web-admin-paw"){
-            return(
-              <Route
-              path={el.layout+el.path}
+  // <React.StrictMode>
+  <BrowserRouter>
+    <Switch>
+      {Routes.map((el: any, ind: any) => {
+        if (el.layout === "/web-admin-paw") {
+          return (
+            <Route
+              path={el.layout + el.path}
               exact
-              render={(props) => <AdminLayout menu={el.component}/>}
+              render={(props) => <AdminLayout menu={el.component} />}
             />
-            )
-          }else{
-            return null
-          }
-        })}
-        <Route
-          path="/web-admin-paw"
-          exact
-          render={(props) => <AdminLayout menu={<TabelPost/>}/>}
-        />
-     
-        <Route path="/login" exact render={(props) => <LoginAdmin />} />
-        <Route path="/" render={(props) => <App />} />
-        {/* <Redirect from="/" to="/" /> */}
-      </Switch>
-      {/* <App /> */}
-    </BrowserRouter>
-  </React.StrictMode>
+          );
+        } else {
+          return null;
+        }
+      })}
+      <Route
+        path="/web-admin-paw"
+        exact
+        render={(props) => <AdminLayout menu={<TabelPost />} />}
+      />
+
+      <Route path="/login" exact render={(props) => <LoginAdmin />} />
+      <Route path="/" render={(props) => <App />} />
+      {/* <Redirect from="/" to="/" /> */}
+    </Switch>
+    {/* <App /> */}
+  </BrowserRouter>
+  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
