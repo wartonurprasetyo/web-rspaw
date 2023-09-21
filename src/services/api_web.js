@@ -502,11 +502,11 @@ export function deleteSlider(
   });
 }
 
-export const getAllPage = (client_token = localStorage.getItem("token")) => {
+export const getAllPage = (data ,client_token = localStorage.getItem("token")) => {
   // console.log("get menu");
   return new Promise((resolve, reject) => {
     axios
-      .get(`${baseUrlDev}client/page/select`, {
+      .post(`${baseUrlDev}client/page/select`,data, {
         headers: {
           "X-User": `rspaw`,
           "X-Key ": client_key,
