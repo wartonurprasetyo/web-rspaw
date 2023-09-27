@@ -26,14 +26,23 @@ const HomeComponent = () => {
 
   const handlePost = (item: any, type = "berita") => {
     return _.map(item, (el) => {
+      console.log();
       if (el.post_url.includes("/pdf"))
         return {
           ...el,
           toUrl: el.post_url,
+          post_image: el.post_content.substring(
+            el.post_content.indexOf("<img"),
+            el.post_content.indexOf('">') + 2
+          ),
         };
       return {
         ...el,
         toUrl: `/info/${type}/${el.post_id}`,
+        post_image: el.post_content.substring(
+          el.post_content.indexOf("<img"),
+          el.post_content.indexOf('">') + 2
+        ),
       };
     });
   };
