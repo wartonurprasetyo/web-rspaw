@@ -29,7 +29,7 @@ const FooterComponent = () => {
 
   const getPost = async () => {
     let data = {
-      post_group: "post",
+      post_group: "berita",
       post_status: "1",
     };
     await reqToken()

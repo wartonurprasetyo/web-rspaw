@@ -8,6 +8,7 @@ import * as fakedata from "./datas/fakeData";
 import { getPostByGroup, getSlider, reqToken } from "../services/api_web";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import _ from "lodash";
 // import InstagramEmbed from "react-instagram-embed";
 // import instagramFeed from "react-instagram-feed";
 // import InstagramFeed from "react-ig-feed";
@@ -23,97 +24,77 @@ const HomeComponent = () => {
   const [youtubeUrl, setYoutubeUrl] = useState("");
   const [schedule, setSchedule] = useState<any>({});
 
+  const handlePost = (item: any, type = "berita") => {
+    return _.map(item, (el) => {
+      if (item.post_url.includes("/pdf"))
+        return {
+          ...el,
+          toUrl: el.post_url,
+        };
+      return {
+        ...el,
+        toUrl: `/info/${type}/${el.post_id}`,
+      };
+    });
+  };
+
   const getPost = async () => {
     let data = {
-      post_group: "post",
+      // post_group: "post",
       post_status: "1",
     };
+    let type = "";
     await reqToken()
       .then((res) => {
         localStorage.setItem("token", res.data.Response.data);
       })
-      .catch((err) => {
-        // console.log(err);
-      });
+      .catch((err) => {});
+    type = "berita";
+    data["post_group"] = type;
     await getPostByGroup(data)
       .then((resp) => {
-        setNewsInfo(resp.data.Data);
+        setNewsInfo(handlePost(resp.data.Data, type));
       })
       .catch((err) => {});
+    type = "artikel";
+    data["post_group"] = type;
     await getPostByGroup(data)
       .then((resp) => {
-        setArtikel(resp.data.Data);
+        setArtikel(handlePost(resp.data.Data, type));
       })
       .catch((err) => {});
+    type = "pengumuman";
+    data["post_group"] = type;
     await getPostByGroup(data)
       .then((resp) => {
-        setPengumuman([...fakedata.newsinfo, ...resp.data.Data]);
+        setPengumuman(
+          _.orderBy(
+            [...fakedata.newsinfo, ...handlePost(resp.data.Data, type)],
+            "post_date",
+            "desc"
+          )
+        );
       })
       .catch((err) => {
-        setPengumuman([...fakedata.newsinfo]);
+        setPengumuman(_.orderBy([...fakedata.newsinfo], "post_date", "desc"));
       });
   };
-
-  // const getArtikel = async () => {
-  //   let data = {
-  //     post_group: "post",
-  //     post_status: "1",
-  //   };
-  //   await reqToken()
-  //     .then((res) => {
-  //       localStorage.setItem("token", res.data.Response.data);
-  //     })
-  //     .catch((err) => console.log(err));
-  //   await getPostByGroup(data)
-  //     .then((resp) => {
-  //       setArtikel(resp.data.Data);
-  //     })
-  //     .catch((err) => {});
-  //     await getPostByGroup(data)
-  //       .then((resp) => {
-  //         setPengumuman(resp.data.Data);
-  //       })
-  //       .catch((err) => {});
-  // };
-
-  // const getPengumuman = async () => {
-  //   let data = {
-  //     post_group: "post",
-  //     post_status: "1",
-  //   };
-  //   await reqToken()
-  //     .then((res) => {
-  //       localStorage.setItem("token", res.data.Response.data);
-  //     })
-  //     .catch((err) => console.log(err));
-  //   await getPostByGroup(data)
-  //     .then((resp) => {
-  //       setPengumuman(resp.data.Data);
-  //     })
-  //     .catch((err) => {});
-  // };
 
   const getSliderData = async () => {
     await getSlider()
       .then((resp) => {
-        // console.log("slider", resp.data.Data.data);
         setSlider(resp.data.Data.data);
       })
       .catch((err) => {});
   };
 
-  // console.log(infos);
   useEffect(() => {
     const asyncFunction = async () => {
       await getPost();
-      // await getArtikel();
-      // await getPengumuman();
       await getSliderData();
     };
     setInfos(fakedata.info);
     setServices(fakedata.services);
-    // setArtikel(fakedata.newsinfo);
-    // setPengumuman(fakedata.newsinfo);
     setSchedule(fakedata.schedule);
     setYoutubeUrl("https://www.youtube.com/embed/NA1BwOpvLX0");
 
@@ -160,7 +141,6 @@ const HomeComponent = () => {
               <div key={`slide-${item.slider_id}`}>
                 <img
                   className="animated fadeInUp"
-                  // onError={imageOnError}
                   style={{
                     userSelect: "none",
                     minHeight: "250px",
@@ -359,7 +339,7 @@ const HomeComponent = () => {
 
       <section>
         <div className="container text-center">
-          <Link to={"/berita-terbaru"}>
+          <Link to={"/info/berita"}>
             <h2 className="section-title">Berita</h2>
           </Link>
           <div className="row">
@@ -386,7 +366,7 @@ const HomeComponent = () => {
                           ? trimText(info.post_content).substring(0, 75) + "..."
                           : trimText(info.post_content)}
                       </span>
-                      <Link to={info.post_url}>
+                      <Link to={info.toUrl}>
                         <button className="animated fadeInUp btn readmore">
                           Read More...
                         </button>
@@ -401,7 +381,9 @@ const HomeComponent = () => {
 
       <section>
         <div className="container text-center">
-          <h2 className="section-title">Pengumuman</h2>
+          <Link to={"/info/pengumuman"}>
+            <h2 className="section-title">Pengumuman</h2>
+          </Link>
           <div className="row">
             {pengumuman.map(
               (info: any, index: number) =>
@@ -426,7 +408,7 @@ const HomeComponent = () => {
                           ? trimText(info.post_content).substring(0, 75) + "..."
                           : trimText(info.post_content)}
                       </span>
-                      <Link to={info.post_url}>
+                      <Link to={info.toUrl}>
                         <button className="animated fadeInUp btn readmore">
                           Read More...
                         </button>
@@ -441,7 +423,9 @@ const HomeComponent = () => {
 
       <section>
         <div className="container text-center">
-          <h2 className="section-title">Artikel</h2>
+          <Link to={"/info/artikel"}>
+            <h2 className="section-title">Artikel</h2>
+          </Link>
           <div className="row">
             {artikel.map(
               (info: any, index: number) =>
@@ -466,7 +450,7 @@ const HomeComponent = () => {
                           ? trimText(info.post_content).substring(0, 75) + "..."
                           : trimText(info.post_content)}
                       </span>
-                      <Link to={info.post_url}>
+                      <Link to={info.toUrl}>
                         <button className="animated fadeInUp btn readmore">
                           Read More...
                         </button>

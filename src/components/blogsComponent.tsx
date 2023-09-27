@@ -15,12 +15,9 @@ const BlogsComponent = () => {
   const getPost = async () => {
     let category = "post";
     let splittedUrl = location.location.pathname.split("/").filter((el) => el);
-    // console.log(splittedUrl);
     if (splittedUrl.length == 2 && categories.includes(splittedUrl[1]))
       category = splittedUrl[1];
 
-    // if (categories.includes(params.category)) category = params.category;
-    // console.log(category);
     setActiveCategory(category);
     let data = {
       post_group: category,
@@ -28,9 +25,7 @@ const BlogsComponent = () => {
     };
     await reqToken()
       .then((res) => {
-        // console.log(res);
         localStorage.setItem("token", res.data.Response.data);
-        // token = res.data.Response.data;
       })
       .catch((err) => console.log(err));
     await getPostByGroup(data)
@@ -64,8 +59,6 @@ const BlogsComponent = () => {
 
     getPost();
     console.log(params.category);
-
-    // setNewsInfo(data.newsinfo);
   }, [params]);
   return (
     <>
