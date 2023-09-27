@@ -358,6 +358,7 @@ const HomeComponent = () => {
                   <div className="col-md-4 widget">
                     <div className="block widget-container news-widget">
                       <img
+                        key={info.post_image}
                         onError={imageOnError}
                         src={info.post_image || "-"}
                         className="animated fadeInUp rounded img-fluid"
