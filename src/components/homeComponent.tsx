@@ -26,7 +26,7 @@ const HomeComponent = () => {
 
   const handlePost = (item: any, type = "berita") => {
     return _.map(item, (el) => {
-      if (item.post_url.includes("/pdf"))
+      if (el.post_url.includes("/pdf"))
         return {
           ...el,
           toUrl: el.post_url,

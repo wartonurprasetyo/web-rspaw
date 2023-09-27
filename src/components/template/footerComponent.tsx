@@ -27,6 +27,20 @@ const FooterComponent = () => {
 
   const [icons, setIcon] = useState<any>({ ...data.iconsSocmed });
 
+  const handlePost = (item: any, type = "berita") => {
+    return _.map(item, (el) => {
+      if (el.post_url.includes("/pdf"))
+        return {
+          ...el,
+          toUrl: el.post_url,
+        };
+      return {
+        ...el,
+        toUrl: `/info/${type}/${el.post_id}`,
+      };
+    });
+  };
+
   const getPost = async () => {
     let data = {
       post_group: "berita",
@@ -44,7 +58,7 @@ const FooterComponent = () => {
     await getPostByGroup(data)
       .then((resp) => {
         // console.log(resp);
-        setRecent(resp.data.Data);
+        setRecent(handlePost(resp.data.Data, "berita"));
       })
       .catch((err) => {
         // console.log(err);
