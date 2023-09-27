@@ -32,16 +32,16 @@ const HomeComponent = () => {
           ...el,
           toUrl: el.post_url,
           post_image: el.post_content.substring(
-            el.post_content.indexOf("<img"),
-            el.post_content.indexOf('">') + 2
+            el.post_content.indexOf('src="') + 5,
+            el.post_content.indexOf('">') + 0
           ),
         };
       return {
         ...el,
         toUrl: `/info/${type}/${el.post_id}`,
         post_image: el.post_content.substring(
-          el.post_content.indexOf("<img"),
-          el.post_content.indexOf('">') + 2
+          el.post_content.indexOf('src="') + 5,
+          el.post_content.indexOf('">') + 0
         ),
       };
     });
