@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getPostByGroup, reqToken } from "../../services/api_web";
 import * as data from "../datas/fakeData";
+import _ from "lodash";
 
 const FooterComponent = () => {
   const [recent, setRecent] = useState<any[]>([]);
