@@ -19,7 +19,13 @@ const SideBar = ({ isOpen, toggle }) => (
   <div
     className={classNames("sidebar", { "is-open": isOpen })}
     style={{
-      backgroundColor: "#1a9e94", height: "200%", position: 'fixed', left: 0, top: 0, marginRight: 250, borderRadius: 8,
+      backgroundColor: "#1a9e94",
+      height: "200%",
+      position: "fixed",
+      left: 0,
+      top: 0,
+      marginRight: 250,
+      borderRadius: 8,
       width: isOpen ? 80 : 250,
     }}
   >
@@ -34,29 +40,42 @@ const SideBar = ({ isOpen, toggle }) => (
     </div>
     <div className="side-menu">
       <Nav vertical className="">
-
         <NavItem>
-          <NavLink className="nav-link-custom" tag={Link} to={"/web-admin-paw"}  >
+          <NavLink className="nav-link-custom" tag={Link} to={"/web-admin-paw"}>
             Data Info Dan Berita
           </NavLink>
         </NavItem>
 
-         <NavItem>
-          <NavLink className="nav-link-custom" tag={Link} to={"/web-admin-paw/nav"} h>
+        <NavItem>
+          <NavLink
+            className="nav-link-custom"
+            tag={Link}
+            to={"/web-admin-paw/nav"}
+            h
+          >
             Data Menu
           </NavLink>
-        </NavItem> 
+        </NavItem>
         <NavItem>
-          <NavLink className="nav-link-custom" tag={Link} to={"/web-admin-paw/page"} h>
+          <NavLink
+            className="nav-link-custom"
+            tag={Link}
+            to={"/web-admin-paw/page"}
+            h
+          >
             Data Page
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink className="nav-link-custom" tag={Link} to={"/web-admin-paw/slider"} h>
+          <NavLink
+            className="nav-link-custom"
+            tag={Link}
+            to={"/web-admin-paw/slider"}
+            h
+          >
             Data Slider
           </NavLink>
         </NavItem>
-
       </Nav>
     </div>
   </div>

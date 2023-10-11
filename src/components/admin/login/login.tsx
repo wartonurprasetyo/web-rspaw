@@ -11,7 +11,7 @@ const LoginAdmin = () => {
   let navigate = useHistory();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [token, setToken] = useState("")
+  const [token, setToken] = useState("");
 
   const login = async () => {
     let headersList = {
@@ -39,12 +39,11 @@ const LoginAdmin = () => {
   };
 
   const doLogin = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     let bodyContent = JSON.stringify({
       uname: username,
       upswd: password,
     });
-
 
     // console.log(validate());
     loading.setLoading(true); // change loading state
@@ -53,7 +52,7 @@ const LoginAdmin = () => {
         loading.setLoading(false); // change loading state
 
         localStorage.setItem("rspaw-token", response.data.LoginID);
-        navigate.replace('/web-admin-paw/news')
+        navigate.replace("/web-admin-paw/news");
         // getEmployeeById(response.data.data.userId);
       })
       .catch((err) => {
@@ -63,16 +62,15 @@ const LoginAdmin = () => {
   };
 
   useEffect(() => {
-    let a = localStorage.getItem("rspaw-token")
+    let a = localStorage.getItem("rspaw-token");
 
     const asyncFuntion = async () => {
       await reqToken()
         .then((res) => {
           localStorage.setItem("token", res.data.Response.data);
-          setToken(res.data.Response.data)
+          setToken(res.data.Response.data);
         })
         .catch((err) => console.log(err));
-
     };
     asyncFuntion();
     // if (!a) {
@@ -116,11 +114,7 @@ const LoginAdmin = () => {
             />
           </div>
           <div className="d-grid gap-2 mt-3">
-            <button
-              type="submit"
-              className="btn btn-primary"
-              onClick={doLogin}
-            >
+            <button type="submit" className="btn btn-primary" onClick={doLogin}>
               Submit
             </button>
           </div>
