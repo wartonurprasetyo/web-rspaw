@@ -151,7 +151,8 @@ export const info = [
     ),
   },
   {
-    url: "https://forms.gle/EEitccyxm3GPZA3w8",
+    // url: "https://forms.gle/EEitccyxm3GPZA3w8",
+    url: "https://forms.gle/Zp1s25jorrZq9VNn9",
     title: "lowongan pekerjaan",
     icon: (
       <FontAwesomeIcon
