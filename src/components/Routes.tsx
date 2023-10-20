@@ -34,8 +34,10 @@ import EditPage from "./admin/components/page/editPage";
 const Routes: any = [
   {
     path: "/login",
-    layout: "auth",
-    component: <LoginAdmin />,
+    layout: "web-admin-paw",
+    component: <PostingBerita />,
+    // layout: "auth",
+    // component: <LoginAdmin />,
   },
   {
     path: "/",
