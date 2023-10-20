@@ -80,7 +80,13 @@ const HomeComponent = () => {
           _.orderBy(
             [
               ...handlePost(fakedata.newsinfo, type),
-              ...handlePost(resp.data.Data, type),
+              ...handlePost(
+                _.map(resp.data.Data, (item) => ({
+                  ...item,
+                  post_date: new Date(item.post_date),
+                })),
+                type
+              ),
             ],
             "post_date",
             "desc"
