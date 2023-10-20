@@ -58,6 +58,8 @@ const PdfComponent = () => {
         .then((res) => {
           loading.setLoading(false);
           console.log(res.data);
+          setTitleContentData(res.data.Data.post_title);
+          setPageTitleContentData(res.data.Data.post_group);
           setIsFetch(true);
           setDataPost(res.data.Data);
           setIsNotFound(res.data.Message == "Record not found");
