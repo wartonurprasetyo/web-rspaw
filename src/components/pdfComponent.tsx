@@ -7,6 +7,7 @@ import * as dataPages from "./datas/pages";
 import LoadingContext from "../contexts/LoadingContext"; // import loading
 
 import PDFViewer from "pdf-viewer-reactjs";
+import PENGUMUMAN_SDM_MITRA_2023 from "../assets/pdf/PENGUMUMAN_SDM_MITRA_2023.pdf";
 import Penerimaan_TTK_Mitra from "../assets/pdf/Penerimaan_TTK_Mitra.pdf";
 import Hasil_Seleksi_TTK_Mitra_2023 from "../assets/pdf/Hasil_Seleksi_TTK_Mitra_2023.pdf";
 import { Document, Page, pdfjs } from "react-pdf";
@@ -38,6 +39,11 @@ const PdfComponent = () => {
     if (id == "Hasil_Seleksi_TTK_Mitra_2023") {
       setContentData(Hasil_Seleksi_TTK_Mitra_2023);
       setTitleContentData("Hasil Seleksi TTK Mitra 2023");
+      setPageTitleContentData("Pengumuman");
+    }
+    if (id == "PENGUMUMAN_SDM_MITRA_2023") {
+      setContentData(PENGUMUMAN_SDM_MITRA_2023);
+      setTitleContentData("Pengumuman SDM Mitra 2023");
       setPageTitleContentData("Pengumuman");
     }
     loading.setLoading(true);

@@ -26,7 +26,7 @@ const HomeComponent = () => {
 
   const handlePost = (item: any, type = "berita") => {
     return _.map(item, (el) => {
-      console.log();
+      console.log(el.post_url);
       if (el.post_url.includes("/pdf"))
         return {
           ...el,
@@ -78,14 +78,23 @@ const HomeComponent = () => {
       .then((resp) => {
         setPengumuman(
           _.orderBy(
-            [...fakedata.newsinfo, ...handlePost(resp.data.Data, type)],
+            [
+              ...handlePost(fakedata.newsinfo, type),
+              ...handlePost(resp.data.Data, type),
+            ],
             "post_date",
             "desc"
           )
         );
       })
       .catch((err) => {
-        setPengumuman(_.orderBy([...fakedata.newsinfo], "post_date", "desc"));
+        setPengumuman(
+          _.orderBy(
+            [...handlePost(fakedata.newsinfo, type)],
+            "post_date",
+            "desc"
+          )
+        );
       });
   };
 
@@ -422,6 +431,7 @@ const HomeComponent = () => {
                         <button className="animated fadeInUp btn readmore">
                           Read More...
                         </button>
+                        {info.toUrl}
                       </Link>
                     </div>
                   </div>

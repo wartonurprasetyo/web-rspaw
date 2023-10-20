@@ -281,6 +281,18 @@ export const services = [
 
 export const newsinfo = [
   {
+    post_title: "Pengumuman SDM Mitra 2023",
+    post_content: ``,
+    // author: "Humas RSPAW",
+    post_date: new Date("10/20/2023"),
+    post_image: "-",
+    post_group: "post",
+    post_status: "1",
+    // type: "news",
+    // id: "news1",
+    post_url: "/pdf/PENGUMUMAN_SDM_MITRA_2023",
+  },
+  {
     post_title: "Hasil Seleksi TTK Mitra 2023",
     post_content: ``,
     // author: "Humas RSPAW",
