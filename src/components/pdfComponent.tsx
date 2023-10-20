@@ -106,7 +106,7 @@ const PdfComponent = () => {
                 <embed
                   src={
                     isFetch
-                      ? `https://rspaw.or.id/static/media/${dataPost.post_content}`
+                      ? `https://rspaw.or.id/static/media/fileuploads/${dataPost.post_content}`
                       : dataContent
                   }
                   width="100%"
