@@ -4,6 +4,7 @@ import { Link, useHistory, useParams } from "react-router-dom";
 import { formatDate, imageOnError, trimText } from "../assets/js/__global";
 import { getPostByGroup, reqToken } from "../services/api_web";
 import * as fakedata from "./datas/fakeData";
+import _ from "lodash";
 
 const BlogsComponent = () => {
   const [newsinfo, setNewsInfo] = useState<any[]>([]);
@@ -39,15 +40,23 @@ const BlogsComponent = () => {
           datas = fakedata.newsinfo.map((item: any) => {
             return { ...item, toUrl: item.post_url };
           });
-        setNewsInfo([
-          ...datas,
-          ...resp.data.Data.map((item: any) => {
-            return {
-              ...item,
-              toUrl: `${location.location.pathname}/${item.post_id}`,
-            };
-          }),
-        ]);
+        setNewsInfo(
+          _.orderBy(
+            [
+              ...datas,
+              ...resp.data.Data.map((item: any) => {
+                let url = `${location.location.pathname}/${item.post_id}`;
+                if (item.post_url.includes("/pdf")) url = item.post_url;
+                return {
+                  ...item,
+                  toUrl: `${url}`,
+                };
+              }),
+            ],
+            "post_date",
+            "desc"
+          )
+        );
       })
       .catch((err) => {
         console.log(err);
