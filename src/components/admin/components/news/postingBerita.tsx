@@ -87,7 +87,7 @@ function PostingBerita() {
     loading.setLoading(true);
     if (isPDF == "true") {
       let bodyContent = JSON.stringify({
-        filename: PDFName,
+        filename: PDFName.replaceAll(" ", "_").toLowerCase(),
         filebasenampat: urlPDF,
       });
       uploadImage(bodyContent, localStorage.getItem("token"))
