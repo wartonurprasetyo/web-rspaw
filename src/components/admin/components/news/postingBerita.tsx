@@ -85,7 +85,7 @@ function PostingBerita() {
     });
   function PostNews() {
     loading.setLoading(true);
-    if (isPDF) {
+    if (isPDF == "true") {
       let bodyContent = JSON.stringify({
         filename: PDFName,
         filebasenampat: urlPDF,
@@ -96,7 +96,7 @@ function PostingBerita() {
             post_id: "",
             post_author: author,
             post_date: date,
-            post_content: text,
+            post_content: PDFName,
             post_title: title,
             post_status: status,
             post_created: moment().format("YYYY-MM-DD hh:mm:ss"),

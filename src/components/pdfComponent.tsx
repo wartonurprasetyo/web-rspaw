@@ -1,7 +1,7 @@
 import { Parser } from "html-to-react";
 import { useContext, useEffect, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import * as data from "./datas/fakeData";
 import * as dataPages from "./datas/pages";
 import LoadingContext from "../contexts/LoadingContext"; // import loading
@@ -11,6 +11,7 @@ import PENGUMUMAN_SDM_MITRA_2023 from "../assets/pdf/PENGUMUMAN_SDM_MITRA_2023.p
 import Penerimaan_TTK_Mitra from "../assets/pdf/Penerimaan_TTK_Mitra.pdf";
 import Hasil_Seleksi_TTK_Mitra_2023 from "../assets/pdf/Hasil_Seleksi_TTK_Mitra_2023.pdf";
 import { Document, Page, pdfjs } from "react-pdf";
+import { getPostByUrl } from "../services/api_web";
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.js",
   import.meta.url
@@ -20,6 +21,10 @@ const PdfComponent = () => {
   const [dataContent, setContentData] = useState("");
   const [titleContent, setTitleContentData] = useState("");
   const [pageTitleContent, setPageTitleContentData] = useState("");
+  const pathUrl: any = useHistory();
+  const [isFetch, setIsFetch] = useState(false);
+  const [isNotFound, setIsNotFound] = useState(false);
+  const [dataPost, setDataPost] = useState<any>({});
 
   const params: any = useParams();
   const loading = useContext(LoadingContext); // get state & function loading
@@ -35,17 +40,34 @@ const PdfComponent = () => {
       setContentData(Penerimaan_TTK_Mitra);
       setTitleContentData("Penerimaan TTK Mitra");
       setPageTitleContentData("Pengumuman");
-    }
-    if (id == "Hasil_Seleksi_TTK_Mitra_2023") {
+    } else if (id == "Hasil_Seleksi_TTK_Mitra_2023") {
       setContentData(Hasil_Seleksi_TTK_Mitra_2023);
       setTitleContentData("Hasil Seleksi TTK Mitra 2023");
       setPageTitleContentData("Pengumuman");
-    }
-    if (id == "PENGUMUMAN_SDM_MITRA_2023") {
+    } else if (id == "PENGUMUMAN_SDM_MITRA_2023") {
       setContentData(PENGUMUMAN_SDM_MITRA_2023);
       setTitleContentData("Pengumuman SDM Mitra 2023");
       setPageTitleContentData("Pengumuman");
+    } else {
+      let newData = {
+        post_url: `${pathUrl.location.pathname}`,
+        // post_url: `${url}`,
+      };
+      loading.setLoading(true);
+      getPostByUrl(newData)
+        .then((res) => {
+          loading.setLoading(false);
+          console.log(res.data);
+          setIsFetch(true);
+          setDataPost(res.data.Data);
+          setIsNotFound(res.data.Message == "Record not found");
+        })
+        .catch((err) => {
+          loading.setLoading(false);
+          console.log(err);
+        });
     }
+
     loading.setLoading(true);
     setTimeout(() => {
       loading.setLoading(false);
