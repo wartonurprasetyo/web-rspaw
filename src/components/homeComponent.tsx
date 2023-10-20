@@ -431,7 +431,6 @@ const HomeComponent = () => {
                         <button className="animated fadeInUp btn readmore">
                           Read More...
                         </button>
-                        {info.toUrl}
                       </Link>
                     </div>
                   </div>
