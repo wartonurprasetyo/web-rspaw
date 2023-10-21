@@ -12,6 +12,28 @@ const BlogsComponent = () => {
   const location: any = useHistory();
   const categories = ["artikel", "berita", "pengumuman", "post"];
   const [activeCategory, setActiveCategory] = useState("post");
+  const handlePost = (item: any, type = "berita") => {
+    return _.map(item, (el) => {
+      console.log(el.post_url);
+      if (el.post_url.includes("/pdf"))
+        return {
+          ...el,
+          toUrl: el.post_url,
+          post_image: el.post_content.substring(
+            el.post_content.indexOf('src="') + 5,
+            el.post_content.indexOf('">') + 0
+          ),
+        };
+      return {
+        ...el,
+        toUrl: `/info/${type}/${el.post_id}`,
+        post_image: el.post_content.substring(
+          el.post_content.indexOf('src="') + 5,
+          el.post_content.indexOf('">') + 0
+        ),
+      };
+    });
+  };
 
   const getPost = async () => {
     let category = "post";
@@ -43,15 +65,19 @@ const BlogsComponent = () => {
         setNewsInfo(
           _.orderBy(
             [
-              ...datas,
-              ...resp.data.Data.map((item: any) => {
-                let url = `${location.location.pathname}/${item.post_id}`;
-                if (item.post_url.includes("/pdf")) url = item.post_url;
-                return {
-                  ...item,
-                  toUrl: `${url}`,
-                };
-              }),
+              ...handlePost(datas, params.category),
+              ...handlePost(
+                resp.data.Data.map((item: any) => {
+                  let url = `${location.location.pathname}/${item.post_id}`;
+                  if (item.post_url.includes("/pdf")) url = item.post_url;
+                  return {
+                    ...item,
+                    post_date: new Date(item.post_date),
+                    toUrl: `${url}`,
+                  };
+                }),
+                params.category
+              ),
             ],
             "post_date",
             "desc"
@@ -130,10 +156,12 @@ const BlogsComponent = () => {
                   <div className="post-content">
                     {/* <p>{Parser().parse(item.post_content)}</p> */}
                     <p>
-                      {item.post_content &&
-                      trimText(item.post_content).length > 250
-                        ? trimText(item.post_content).substring(0, 250) + "..."
-                        : trimText(item.post_content)}
+                      {!item.post_url.includes("/pdf/")
+                        ? item.post_content &&
+                          trimText(item.post_content).length > 75
+                          ? trimText(item.post_content).substring(0, 75) + "..."
+                          : trimText(item.post_content)
+                        : ""}
                     </p>
                     <Link to={`${item.toUrl}`} className="btn btn-main">
                       Read More

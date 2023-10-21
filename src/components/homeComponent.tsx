@@ -428,10 +428,13 @@ const HomeComponent = () => {
                         {info.post_title}
                       </span>
                       <span className="animated fadeInUp description">
-                        {info.post_content &&
-                        trimText(info.post_content).length > 75
-                          ? trimText(info.post_content).substring(0, 75) + "..."
-                          : trimText(info.post_content)}
+                        {!info.post_url.includes("/pdf/")
+                          ? info.post_content &&
+                            trimText(info.post_content).length > 75
+                            ? trimText(info.post_content).substring(0, 75) +
+                              "..."
+                            : trimText(info.post_content)
+                          : ""}
                       </span>
                       <Link to={info.toUrl}>
                         <button className="animated fadeInUp btn readmore">
