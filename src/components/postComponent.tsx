@@ -91,7 +91,12 @@ const PostComponent = () => {
                       alignItems: "center",
                     }}
                   >
-                    {Parser().parse(dataPost.post_content)}
+                    {Parser().parse(
+                      dataPost.post_content?.replaceAll(
+                        "<img",
+                        "<img style='width:100%'"
+                      )
+                    )}
                   </div>
                 </div>
               )}

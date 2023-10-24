@@ -2566,6 +2566,14 @@ ul.dropdown-menu li {
   line-height: 26px;
 }
 
+.post .post-content>p {
+  width: 100%;
+}
+
+.post .post-content>p>img {
+  width: 100%;
+}
+
 .post .post-content .btn-main,
 .post .post-content .btn-transparent,
 .post .post-content .btn-small {

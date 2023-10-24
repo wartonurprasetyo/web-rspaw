@@ -10,6 +10,7 @@ import PDFViewer from "pdf-viewer-reactjs";
 import PENGUMUMAN_SDM_MITRA_2023 from "../assets/pdf/PENGUMUMAN_SDM_MITRA_2023.pdf";
 import Penerimaan_TTK_Mitra from "../assets/pdf/Penerimaan_TTK_Mitra.pdf";
 import Hasil_Seleksi_TTK_Mitra_2023 from "../assets/pdf/Hasil_Seleksi_TTK_Mitra_2023.pdf";
+import TARIF_PELAYANAN_RS_MARET_2022 from "../assets/pdf/TARIF_PELAYANAN_RS_MARET_2022.pdf";
 import { Document, Page, pdfjs } from "react-pdf";
 import { getPostByUrl } from "../services/api_web";
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
@@ -47,6 +48,10 @@ const PdfComponent = () => {
     } else if (id == "PENGUMUMAN_SDM_MITRA_2023") {
       setContentData(PENGUMUMAN_SDM_MITRA_2023);
       setTitleContentData("Pengumuman SDM Mitra 2023");
+      setPageTitleContentData("Pengumuman");
+    } else if (id == "TARIF_PELAYANAN_RS_MARET_2022") {
+      setContentData(TARIF_PELAYANAN_RS_MARET_2022);
+      setTitleContentData("Tarif Pelayanan RS");
       setPageTitleContentData("Pengumuman");
     } else {
       let newData = {

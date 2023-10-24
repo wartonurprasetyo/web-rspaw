@@ -131,7 +131,7 @@ export const info = [
     ),
   },
   {
-    url: "/tarif-pelayanan",
+    url: "/pdf/TARIF_PELAYANAN_RS_MARET_2022",
     title: "tarif layanan",
     icon: (
       <FontAwesomeIcon
