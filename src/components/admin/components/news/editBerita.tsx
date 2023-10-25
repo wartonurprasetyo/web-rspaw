@@ -208,7 +208,7 @@ function EditBerita() {
       })
       .catch((err) => {
         console.log(err);
-        window.location.replace("/web-admin-paw");
+        // window.location.replace("/web-admin-paw");
       });
   }, []);
   return (
