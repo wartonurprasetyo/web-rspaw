@@ -197,7 +197,7 @@ function EditBerita() {
         setUrl(resp.data.Data.post_url);
         setKategori(resp.data.Data.post_group);
         setData(resp.data.Data);
-        if (resp.data.Data.post_url.includes(/pdf/)) {
+        if (resp.data.Data.post_url.includes("/pdf/")) {
           setIsPDF("true");
           setPDFName(resp.data.Data.post_content);
           setPDFPreview(
