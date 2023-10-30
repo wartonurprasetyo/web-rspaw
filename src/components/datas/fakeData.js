@@ -255,7 +255,7 @@ export const services = [
   },
   {
     title: "Wishtle Blowing System",
-    url: "/spi/wbs-rspaw",
+    url: "https://wbs.kemkes.go.id/auth/login",
     img: fasilitasUmumImg,
     type: "complaint",
     icon: (
