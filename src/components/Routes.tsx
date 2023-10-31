@@ -1,69 +1,36 @@
-import React from "react";
-import BlogComponent from "./blogComponent";
-import BlogsComponent from "./blogsComponent";
-import HomeComponent from "./homeComponent";
-import ContactComponent from "./contactComponent";
-import HistoryComponent from "./historyComponent";
-import Sp4nComponent from "./sp4nComponent";
-import VisiMisiComponent from "./visimisiComponent";
-import StrukturComponent from "./structureComponent";
-import DireksiComponent from "./direksiComponent";
-import UpayaComponent from "./upayaComponent";
-import MaklumatComponent from "./maklumatComponent";
-import VideoComponent from "./videoComponent";
 import WBKFotoComponent from "./WBKFotoComponent";
-import PostComponent from "./postComponent";
-import AdminLayout from "./admin/adminLayout";
-import PostingBerita from "./admin/components/news/postingBerita";
-import LoginAdmin from "./admin/login/login";
-import PageComponent from "./pageComponent";
-import TabelPost from "./admin/components/news/listPosting";
-import EditBerita from "./admin/components/news/editBerita";
-import ListNavigasi from "./admin/components/nav/listNav";
 import AddNav from "./admin/components/nav/addNav";
-import PdfComponent from "./pdfComponent";
-import ListSlider from "./admin/components/slider/listSlider";
-import AddSlider from "./admin/components/slider/addSlider";
-import EditSlider from "./admin/components/slider/editSlider";
-import ListPage from "./admin/components/page/listPage";
+import ListNavigasi from "./admin/components/nav/listNav";
+import EditBerita from "./admin/components/news/editBerita";
+import TabelPost from "./admin/components/news/listPosting";
+import PostingBerita from "./admin/components/news/postingBerita";
 import AddPage from "./admin/components/page/addPage";
 import EditPage from "./admin/components/page/editPage";
-
-// const HomeComponent = React.lazy(() => import("./homeComponent"));
+import ListPage from "./admin/components/page/listPage";
+import AddSlider from "./admin/components/slider/addSlider";
+import EditSlider from "./admin/components/slider/editSlider";
+import ListSlider from "./admin/components/slider/listSlider";
+import BlogComponent from "./blogComponent";
+import BlogsComponent from "./blogsComponent";
+import ContactComponent from "./contactComponent";
+import HomeComponent from "./homeComponent";
+import MaklumatComponent from "./maklumatComponent";
+import PageComponent from "./pageComponent";
+import PdfComponent from "./pdfComponent";
+import PostComponent from "./postComponent";
+import VideoComponent from "./videoComponent";
 
 const Routes: any = [
   {
     path: "/login",
     layout: "web-admin-paw",
     component: <PostingBerita />,
-    // layout: "auth",
-    // component: <LoginAdmin />,
   },
   {
     path: "/",
     layout: "landing",
     component: <HomeComponent />,
   },
-  // {
-  //   path: "/info/berita/:id/:subId",
-  //   layout: "landing",
-  //   component: <BlogComponent />,
-  // },
-  // {
-  //   path: "/info/berita/:id/:subId/:childId",
-  //   layout: "landing",
-  //   component: <BlogComponent />,
-  // },
-  // {
-  //   path: "/info/:category/:id",
-  //   layout: "landing",
-  //   component: <BlogComponent />,
-  // },
-  // {
-  //   path: "/info/:category",
-  //   layout: "landing",
-  //   component: <BlogsComponent />,
-  // },
   {
     path: "/info/berita/:id",
     layout: "landing",
@@ -224,10 +191,5 @@ const Routes: any = [
     layout: "/web-admin-paw",
     component: <EditPage />,
   },
-  // {
-  //   path: "/:post/:id",
-  //   layout: "landing",
-  //   component: <PostComponent />,
-  // },
 ];
 export default Routes;

@@ -10,11 +10,18 @@ import {
   Switch,
   Route,
   Link,
+  Redirect,
+  useLocation,
 } from "react-router-dom";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 
 const loading = <>Loading....</>;
 function App() {
+  const location = useLocation();
+  useEffect(() => {
+    console.log("location admin layout", location);
+    // if (location.hash.includes("login")) history.push("/login");
+  }, []);
   return (
     <>
       <HashRouter>
@@ -29,6 +36,7 @@ function App() {
               {item.component}
             </Route>
           ))}
+          <Redirect from="/*" to="/" />
         </Switch>
         {/* </Suspense> */}
         {/* 

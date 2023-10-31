@@ -7,9 +7,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import LoadingOverlay from "react-loading-overlay-ts";
 import {
+  Redirect,
   Route,
   HashRouter as Router,
   Switch,
+  useHistory,
   useLocation,
 } from "react-router-dom";
 import { ScaleLoader } from "react-spinners";
@@ -20,22 +22,21 @@ import FooterComponent from "../template/footerComponent";
 import HeaderComponent from "../template/headerComponent";
 
 function App() {
+  const history = useHistory();
+  const location = useLocation();
   const [loading, setLoading] = useState<any>(false);
   const changeLoadingState = (payload: boolean) => {
     setLoading(payload);
   };
   const [contactUs, setContactUs] = useState<any>({});
-  const location = useLocation();
+
   useEffect(() => {
-    // console.log(location.pathname);
-  }, [location.pathname]);
+    console.log("location landing layout", location);
+    if (location.hash.includes("login")) history.push("/login");
+  }, []);
   useEffect(() => {
     setContactUs(data.contactUs);
   }, []);
-  console.log(process.env.NODE_ENV);
-  useEffect(() => {
-    // console.log(window.location.pathname);
-  }, [window.location.pathname]);
   return (
     <>
       <Router>
@@ -63,6 +64,7 @@ function App() {
                   {item.component}
                 </Route>
               ))}
+              {/* <Redirect from="*" to="/" /> */}
             </Switch>
             <div id="scroll-to-top" className="scroll-to-top">
               <span className="icon ion-ios-arrow-up"></span>
