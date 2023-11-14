@@ -172,7 +172,10 @@ const HomeComponent = () => {
                   }}
                   src={
                     "https://rspaw.or.id" +
-                    item.slider_src?.replaceAll("/home/simrs", "/static/media")
+                    item.slider_src?.replaceAll(
+                      "/home/simrs/fileuploads",
+                      "/media"
+                    )
                   }
                   alt="Pepole"
                 />

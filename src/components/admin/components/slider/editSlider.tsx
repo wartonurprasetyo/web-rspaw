@@ -130,8 +130,8 @@ const EditSlider = () => {
         setImage(
           "https://rspaw.or.id" +
             response.data.Data.data.slider_src?.replaceAll(
-              "/home/simrs",
-              "/static/media"
+              "/home/simrs/fileuploads",
+              "/media"
             )
         );
       })
