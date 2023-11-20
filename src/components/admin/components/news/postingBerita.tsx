@@ -17,6 +17,7 @@ import LoadingContext from "../../../../contexts/LoadingContext";
 import ReactQuill from "react-quill";
 import { useHistory } from "react-router";
 import "react-quill/dist/quill.snow.css";
+import { toast } from "react-toastify";
 function PostingBerita() {
   const loading = useContext(LoadingContext);
   const [author, setAuthor] = useState("");
@@ -118,7 +119,13 @@ function PostingBerita() {
               loading.setLoading(false);
             });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          let msg = "";
+          if (err?.response?.status == 413) msg = "Size file terlalu besar";
+          if (err?.response?.status == 500) msg = "Internal server error";
+          toast.error(msg);
+          loading.setLoading(false);
+        });
     } else if (quillRef.current) {
       const editor = quillRef.current.getEditor();
       const quillDelta = editor.getContents();

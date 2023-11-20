@@ -23,6 +23,7 @@ import { useHistory, useParams } from "react-router";
 import LoadingContext from "../../../../contexts/LoadingContext";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { toast } from "react-toastify";
 
 function EditBerita() {
   const [author, setAuthor] = useState("");
@@ -98,11 +99,21 @@ function EditBerita() {
     loading.setLoading(true);
     if (isPDF == "true") {
       if (urlPDF) {
-        let bodyContent = JSON.stringify({
-          filename: PDFName.replaceAll(" ", "_").toLowerCase(),
-          filebasenampat: urlPDF,
-        });
-        await uploadImage(bodyContent, localStorage.getItem("token"));
+        try {
+          let bodyContent = JSON.stringify({
+            filename: PDFName.replaceAll(" ", "_").toLowerCase(),
+            filebasenampat: urlPDF,
+          });
+          await uploadImage(bodyContent, localStorage.getItem("token"));
+        } catch (error) {
+          // .catch((err) => {
+          let msg = "";
+          if (error?.response?.status == 413) msg = "Size file terlalu besar";
+          if (error?.response?.status == 500) msg = "Internal server error";
+          toast(msg);
+          loading.setLoading(false);
+          // });
+        }
       }
 
       let query = {
@@ -174,7 +185,13 @@ function EditBerita() {
               console.log(err);
             });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          let msg = "";
+          if (err?.response?.status == 413) msg = "Size file terlalu besar";
+          if (err?.response?.status == 500) msg = "Internal server error";
+          toast.error(msg);
+          loading.setLoading(false);
+        });
     }
   }
   useEffect(() => {
