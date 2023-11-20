@@ -121,7 +121,8 @@ function PostingBerita() {
         })
         .catch((err) => {
           let msg = "";
-          if (err?.response?.status == 413) msg = "Size file terlalu besar";
+          if (err?.response?.status == 413)
+            msg = "Size file terlalu besar (max 800kb)";
           if (err?.response?.status == 500) msg = "Internal server error";
           toast.error(msg);
           loading.setLoading(false);

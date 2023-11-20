@@ -108,7 +108,8 @@ function EditBerita() {
         } catch (error) {
           // .catch((err) => {
           let msg = "";
-          if (error?.response?.status == 413) msg = "Size file terlalu besar";
+          if (error?.response?.status == 413)
+            msg = "Size file terlalu besar (max 800kb)";
           if (error?.response?.status == 500) msg = "Internal server error";
           toast(msg);
           loading.setLoading(false);
