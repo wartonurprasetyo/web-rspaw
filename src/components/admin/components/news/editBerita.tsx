@@ -179,7 +179,7 @@ function EditBerita() {
               setContent("");
               setTitle("");
               loading.setLoading(false);
-              window.location.replace("/web-admin-paw");
+              history.push("/web-admin-paw");
             })
             .catch((err) => {
               loading.setLoading(false);

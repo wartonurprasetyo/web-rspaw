@@ -98,10 +98,10 @@ const EditSlider = () => {
     updateSlider(query)
       .then((result) => {
         toast.success("Succes");
-        window.location.replace("/web-admin-paw/slider");
+        history.push("/web-admin-paw/slider");
       })
       .catch((err) => {
-        window.location.replace("/web-admin-paw/slider");
+        history.push("/web-admin-paw/slider");
       });
   }
   const validImage = () => {
