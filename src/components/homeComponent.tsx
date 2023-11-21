@@ -120,7 +120,11 @@ const HomeComponent = () => {
         let returnData = {
           ...item,
         };
-        if (index != -1) returnData["icon"] = fakedata.info[index].icon;
+        if (index != -1)
+          returnData["icon"] =
+            typeof item.icon == "string"
+              ? item.icon
+              : fakedata.info[index].icon;
         return returnData;
       });
       // setInfos(fakedata.info);
@@ -207,29 +211,36 @@ const HomeComponent = () => {
                   info.url?.includes("http") ? (
                     <a href={info.url} target="_blank">
                       <div className="block widget-container">
-                        {info.icon}
-                        {/* <img
-                        src=""
-                          className="animated fadeInUp"
-                          onError={imageOnError}
-                          width={70}
-                          height={70}
-                          alt=""
-                        /> */}
+                        {typeof info.icon == "string" ? (
+                          <img
+                            src={info.icon}
+                            className="animated fadeInUp"
+                            onError={imageOnError}
+                            width={24}
+                            height={24}
+                            alt=""
+                          />
+                        ) : (
+                          info.icon
+                        )}
                         <span className="animated fadeInUp">{info.title}</span>
                       </div>
                     </a>
                   ) : (
                     <Link to={info.url}>
                       <div className="block widget-container">
-                        {info.icon}
-                        {/* <img
-                          className="animated fadeInUp"
-                          onError={imageOnError}
-                          width={70}
-                          height={70}
-                          alt=""
-                        /> */}
+                        {typeof info.icon == "string" ? (
+                          <img
+                            src={info.icon}
+                            className="animated fadeInUp"
+                            onError={imageOnError}
+                            width={24}
+                            height={24}
+                            alt=""
+                          />
+                        ) : (
+                          info.icon
+                        )}
                         <span className="animated fadeInUp">{info.title}</span>
                       </div>
                     </Link>
