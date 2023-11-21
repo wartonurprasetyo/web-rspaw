@@ -1,10 +1,10 @@
-import { useContext, useEffect, useState } from "react";
-import "./login.css";
-import { loginPage, reqToken } from "../../../services/api_web";
-import Config from "../../../config/Config";
 import axios from "axios";
+import { useContext, useEffect, useState } from "react";
+import { useHistory, useLocation } from "react-router-dom";
+import Config from "../../../config/Config";
 import LoadingContext from "../../../contexts/LoadingContext"; // import loading
-import { useHistory } from "react-router-dom";
+import { loginPage, reqToken } from "../../../services/api_web";
+import "./login.css";
 
 const LoginAdmin = () => {
   const loading = useContext(LoadingContext); // get state & function loading
@@ -12,6 +12,8 @@ const LoginAdmin = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [token, setToken] = useState("");
+  const history = useHistory();
+  const location = useLocation();
 
   const login = async () => {
     let headersList = {
@@ -32,9 +34,9 @@ const LoginAdmin = () => {
     };
     try {
       let response = await axios.request(reqOptions);
-      console.log(response.data, "sd");
+      // console.log(response.data, "sd");
     } catch (error) {
-      console.log(error, "sddd");
+      // console.log(error, "sddd");
     }
   };
 
@@ -76,6 +78,11 @@ const LoginAdmin = () => {
     // if (!a) {
     //     history.push("/login")
     // }
+  }, []);
+
+  useEffect(() => {
+    // console.log("login layout", location);
+    if (location.hash.includes("login")) history.push("/login");
   }, []);
 
   return (

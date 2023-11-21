@@ -1,18 +1,13 @@
 import { Parser } from "html-to-react";
+import _ from "lodash";
 import { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Link } from "react-router-dom";
 import { formatDate, imageOnError, trimText } from "../assets/js/__global";
-import * as fakedata from "./datas/fakeData";
 import { getPostByGroup, getSlider, reqToken } from "../services/api_web";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import _ from "lodash";
-// import InstagramEmbed from "react-instagram-embed";
-// import instagramFeed from "react-instagram-feed";
-// import InstagramFeed from "react-ig-feed";
-// import "react-ig-feed/dist/index.css";
+import * as fakedata from "./datas/fakeData";
+import axios from "axios";
 
 const HomeComponent = () => {
   const [slider, setSlider] = useState<any[]>([]);
@@ -26,7 +21,7 @@ const HomeComponent = () => {
 
   const handlePost = (item: any, type = "berita") => {
     return _.map(item, (el) => {
-      console.log(el.post_url);
+      // console.log(el.post_url);
       if (el.post_url.includes("/pdf"))
         return {
           ...el,
@@ -116,8 +111,21 @@ const HomeComponent = () => {
     const asyncFunction = async () => {
       await getPost();
       await getSliderData();
+      let jsonData = await axios.get(
+        "https://rspaw.or.id/static/media/fileuploads/fake.json"
+      );
+      let datainfo = _.map(jsonData.data, (item: any) => {
+        let index = _.findIndex(fakedata.info, { name: item.name });
+        console.log(index);
+        let returnData = {
+          ...item,
+        };
+        if (index != -1) returnData["icon"] = fakedata.info[index].icon;
+        return returnData;
+      });
+      // setInfos(fakedata.info);
+      setInfos(datainfo);
     };
-    setInfos(fakedata.info);
     setServices(fakedata.services);
     setSchedule(fakedata.schedule);
     setYoutubeUrl("https://www.youtube.com/embed/NA1BwOpvLX0");

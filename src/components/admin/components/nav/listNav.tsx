@@ -7,7 +7,8 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import _ from "lodash";
 import { useContext, useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 import {
   AccordionBody,
   AccordionHeader,
@@ -31,7 +32,6 @@ import {
   insertNav,
   updateNav,
 } from "../../../../services/api_web";
-import { toast } from "react-toastify";
 
 const ListNavigasi = () => {
   const [data, setData]: any = useState([]);
@@ -87,7 +87,7 @@ const ListNavigasi = () => {
 
   const handleDeleteData = (item: any) => {
     setLevel(level);
-    console.log(item);
+    // console.log(item);
 
     setitemtemp(item);
     setModalDelete(true);
@@ -120,7 +120,7 @@ const ListNavigasi = () => {
         setModalAdd(false);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 
@@ -136,10 +136,10 @@ const ListNavigasi = () => {
       nav_number: `${itemtemp.id}`,
       nav_status: "1",
     };
-    console.log(itemparent);
-    console.log(itemchild);
+    // console.log(itemparent);
+    // console.log(itemchild);
 
-    console.log(data);
+    // console.log(data);
     // return;
     updateNav(data)
       .then((res) => {
@@ -149,12 +149,12 @@ const ListNavigasi = () => {
         setModalEdit(false);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 
   const handleDelete = () => {
-    console.log(itemtemp);
+    // console.log(itemtemp);
     let data = {
       nav_id: itemtemp.id,
     };
@@ -167,7 +167,7 @@ const ListNavigasi = () => {
         setModalDelete(false);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 
@@ -234,7 +234,7 @@ const ListNavigasi = () => {
         loading.setLoading(false);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         setData([]);
         history.push("/login");
         loading.setLoading(false);
@@ -340,15 +340,15 @@ const ListNavigasi = () => {
             {data.map((el: any, index: any) => (
               <AccordionItem>
                 <AccordionHeader targetId={el.id}>
-                  <div className="d-flex justify-content-between w-100">
+                  <div className="d-flex justify-content-between w-100 px-2">
                     <span>
-                      {el.child && el.child.length > 0 && (
+                      {/* {el.child && el.child.length > 0 && (
                         <FontAwesomeIcon
                           width={"15px"}
                           icon={faAngleDown}
                         ></FontAwesomeIcon>
                       )}
-                      &nbsp;
+                      &nbsp; */}
                       {el.label}
                     </span>
                     <div className="d-flex gap-2">

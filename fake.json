@@ -1,0 +1,75 @@
+
+
+export const info = [
+  {
+    url: "https://daftaronline.rspaw.or.id/",
+    title: "daftar online",
+    icon: (
+      <FontAwesomeIcon
+        className="fa-xl animated fadeInUp"
+        icon={faCalendar}
+      ></FontAwesomeIcon>
+    ),
+  },
+  {
+    url: "/layanan/jadwal-dokter",
+    title: "jadwal dokter",
+    icon: (
+      <FontAwesomeIcon
+        className="fa-xl animated fadeInUp"
+        icon={faCalendarCheck}
+      ></FontAwesomeIcon>
+    ),
+  },
+  {
+    url: "https://daftaronline.rspaw.or.id/?page=infott",
+    title: "info tempat tidur",
+    icon: (
+      <FontAwesomeIcon
+        className="fa-xl animated fadeInUp"
+        icon={faBed}
+      ></FontAwesomeIcon>
+    ),
+  },
+  {
+    url: "/pdf/TARIF_PELAYANAN_RS_MARET_2022",
+    title: "tarif layanan",
+    icon: (
+      <FontAwesomeIcon
+        className="fa-xl animated fadeInUp"
+        icon={faRupiahSign}
+      ></FontAwesomeIcon>
+    ),
+  },
+  {
+    url: "/eperfect",
+    title: "majalah e-perfect",
+    icon: (
+      <FontAwesomeIcon
+        className="fa-xl animated fadeInUp"
+        icon={faBookMedical}
+      ></FontAwesomeIcon>
+    ),
+  },
+  {
+    // url: "https://forms.gle/EEitccyxm3GPZA3w8",
+    url: "https://forms.gle/Zp1s25jorrZq9VNn9",
+    title: "lowongan pekerjaan",
+    icon: (
+      <FontAwesomeIcon
+        className="fa-xl animated fadeInUp"
+        icon={faBriefcase}
+      ></FontAwesomeIcon>
+    ),
+  },
+  {
+    url: "",
+    title: "bahan makanan penukar",
+    icon: (
+      <FontAwesomeIcon
+        className="fa-xl animated fadeInUp"
+        icon={faBowlFood}
+      ></FontAwesomeIcon>
+    ),
+  },
+];

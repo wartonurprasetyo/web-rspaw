@@ -1,5 +1,15 @@
 import { useContext, useEffect, useState } from "react";
-import { Button, Card, CardBody, CardText, CardTitle, Col, Input, Table } from "reactstrap";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardText,
+  CardTitle,
+  Col,
+  Input,
+  Row,
+  Table,
+} from "reactstrap";
 import {
   deletePosting,
   getPostByGroup,
@@ -18,6 +28,7 @@ import { toast } from "react-toastify";
 
 const TabelPost = () => {
   const loading = useContext(LoadingContext);
+  const [status, setStatus] = useState("1");
   const [data, setData] = useState([
     {
       nav_id: "",
@@ -55,7 +66,7 @@ const TabelPost = () => {
     loading.setLoading(true);
     let query = {
       post_group: clienCategory,
-      post_status: "1",
+      post_status: status,
     };
     getPostByGroup(query)
       .then((resp) => {
@@ -76,8 +87,8 @@ const TabelPost = () => {
   }, []);
   useEffect(() => {
     getData();
-  }, [clienCategory]);
-  
+  }, [clienCategory, status]);
+
   return (
     <>
       <Card className="my-2 border-0">
@@ -87,30 +98,46 @@ const TabelPost = () => {
             Tambah
           </Link>
         </CardBody>
-     
       </Card>
-      <Col sm={4}>
-            <Input
-              value={clienCategory}
-              onChange={(e) => {
-           
-                setCategory(e.target.value)
-                // getData()
-              }}
-              placeholder=""
-              type="select"
-
-            >
-              <option value="" disabled>Pilih Filter</option>
-              <option value={"post"}>Umum</option>
-              <option value={"berita"}>Berita</option>
-              <option value={"artikel"}>Artikel</option>
-              <option value={"pengumuman"}>Pengumuman</option>
-              <option value={"page"}>Halaman Statis</option>
-            </Input>
-          </Col>
+      <Row>
+        <Col sm={4}>
+          <Input
+            value={clienCategory}
+            onChange={(e) => {
+              setCategory(e.target.value);
+              // getData()
+            }}
+            placeholder=""
+            type="select"
+          >
+            <option value="" disabled>
+              Pilih Filter
+            </option>
+            <option value={"post"}>Umum</option>
+            <option value={"berita"}>Berita</option>
+            <option value={"artikel"}>Artikel</option>
+            <option value={"pengumuman"}>Pengumuman</option>
+            <option value={"page"}>Halaman Statis</option>
+          </Input>
+        </Col>{" "}
+        <Col sm={4}>
+          <Input
+            value={status}
+            onChange={(e) => {
+              setStatus(e.target.value);
+            }}
+            placeholder=""
+            type="select"
+          >
+            <option value="" disabled>
+              Pilih Status
+            </option>
+            <option value={"1"}>Publish</option>
+            <option value={"0"}>Draft</option>
+          </Input>
+        </Col>
+      </Row>
       <Card className="m-2 ">
-        
         <Table striped>
           <thead>
             <tr>

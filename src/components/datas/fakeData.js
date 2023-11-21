@@ -101,6 +101,7 @@ export const slider = [
 
 export const info = [
   {
+    name: "data1",
     url: "https://daftaronline.rspaw.or.id/",
     title: "daftar online",
     icon: (
@@ -111,6 +112,7 @@ export const info = [
     ),
   },
   {
+    name: "data2",
     url: "/layanan/jadwal-dokter",
     title: "jadwal dokter",
     icon: (
@@ -121,6 +123,7 @@ export const info = [
     ),
   },
   {
+    name: "data3",
     url: "https://daftaronline.rspaw.or.id/?page=infott",
     title: "info tempat tidur",
     icon: (
@@ -131,6 +134,7 @@ export const info = [
     ),
   },
   {
+    name: "data4",
     url: "/pdf/TARIF_PELAYANAN_RS_MARET_2022",
     title: "tarif layanan",
     icon: (
@@ -141,6 +145,7 @@ export const info = [
     ),
   },
   {
+    name: "data5",
     url: "/eperfect",
     title: "majalah e-perfect",
     icon: (
@@ -151,7 +156,7 @@ export const info = [
     ),
   },
   {
-    // url: "https://forms.gle/EEitccyxm3GPZA3w8",
+    name: "data6",
     url: "https://forms.gle/Zp1s25jorrZq9VNn9",
     title: "lowongan pekerjaan",
     icon: (
@@ -162,6 +167,7 @@ export const info = [
     ),
   },
   {
+    name: "data7",
     url: "",
     title: "bahan makanan penukar",
     icon: (

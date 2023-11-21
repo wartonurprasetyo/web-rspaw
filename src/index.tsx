@@ -1,23 +1,26 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
+import { HashRouter, Route, Switch } from "react-router-dom";
 import "./assets/css/style.css";
-import App from "./components/app/App";
-import Admin from "./components/admin/App";
-import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-import AdminLayout from "./components/admin/adminLayout";
-import LoginAdmin from "./components/admin/login/login";
-import PostingBerita from "./components/admin/components/news/postingBerita";
-import EditBerita from "./components/admin/components/news/editBerita";
-import TabelPost from "./components/admin/components/news/listPosting";
 import Routes from "./components/Routes";
+import AdminLayout from "./components/admin/adminLayout";
+import TabelPost from "./components/admin/components/news/listPosting";
+import LoginAdmin from "./components/admin/login/login";
+import App from "./components/app/App";
+import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
+if (
+  window.location.href.includes("/login#/") ||
+  window.location.href.includes("/login")
+)
+  window.location.href = `${window.location.origin}/#/login`;
 root.render(
   // <React.StrictMode>
-  <BrowserRouter>
+  <HashRouter>
+    {/* <BrowserRouter> */}
     <Switch>
       {Routes.map((el: any, ind: any) => {
         if (el.layout === "/web-admin-paw") {
@@ -40,10 +43,10 @@ root.render(
 
       <Route path="/login" exact render={(props) => <LoginAdmin />} />
       <Route path="/" render={(props) => <App />} />
-      {/* <Redirect from="/" to="/" /> */}
     </Switch>
     {/* <App /> */}
-  </BrowserRouter>
+    {/* </BrowserRouter> */}
+  </HashRouter>
   // </React.StrictMode>
 );
 

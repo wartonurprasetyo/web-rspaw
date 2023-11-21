@@ -31,7 +31,7 @@ function App() {
   const [contactUs, setContactUs] = useState<any>({});
 
   useEffect(() => {
-    console.log("location landing layout", location);
+    // console.log("location landing layout", location);
     if (location.hash.includes("login")) history.push("/login");
   }, []);
   useEffect(() => {
