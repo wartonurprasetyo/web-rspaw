@@ -114,7 +114,9 @@ const HomeComponent = () => {
       let jsonData = await axios.get(
         "https://rspaw.or.id/static/media/fileuploads/fake.json"
       );
+      console.log(jsonData);
       let datainfo = _.map(jsonData.data, (item: any) => {
+        console.log(jsonData.data);
         let index = _.findIndex(fakedata.info, { name: item.name });
         console.log(index);
         let returnData = {
