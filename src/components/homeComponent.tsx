@@ -111,11 +111,9 @@ const HomeComponent = () => {
     const asyncFunction = async () => {
       await getPost();
       await getSliderData();
-      let jsonData = await axios.get(
-        "https://rspaw.or.id/static/media/fileuploads/fake.json"
-      );
+      let jsonData = await axios.get("https://rspaw.or.id/media/fake.json");
       console.log(jsonData);
-      let datainfo = _.map(jsonData.data, (item: any) => {
+      let datainfo = _.map(jsonData.data || [], (item: any) => {
         console.log(jsonData.data);
         let index = _.findIndex(fakedata.info, { name: item.name });
         console.log(index);
